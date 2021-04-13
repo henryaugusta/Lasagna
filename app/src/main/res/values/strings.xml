@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Lapor Satgas</string>
+    <string name="login">Login</string>
+    <string name="jargon">Cepat, Efisien, Responsive</string>
+    <string name="satgas">Aplikasi Lapor Satgas</string>
+    <string name="title_activity_main_menu_user">MainActivity</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifikasi</string>
+    <string name="title_home">Home</string>
+    <string name="belum_punya_akun_klik_disini_untuk_registrasi">Belum Punya Akun ? Klik Disini Untuk Registrasi</string>
+    <string name="settings">Settings</string>
+    <string name="buat_laporan">Buat Laporan</string>
+    <string name="kirim_report_baru">Kirim Report Baru</string>
+
+</resources>
