@@ -7,19 +7,23 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.feylabs.lasagna.ui.home.HomeFragment"
+        android:name="com.feylabs.lasagna.view.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_input_report"
+            app:destination="@id/navigation_input_report" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.feylabs.lasagna.ui.dashboard.DashboardFragment"
+        android:name="com.feylabs.lasagna.view.ui.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.feylabs.lasagna.ui.notifications.NotificationsFragment"
+        android:name="com.feylabs.lasagna.view.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
 
@@ -28,4 +32,8 @@
         android:name="com.feylabs.lasagna.view.report.user_input.UserTakePhotoActivity"
         android:label="activity_user_input_report"
         tools:layout="@layout/activity_user_input_report" />
+    <fragment
+        android:id="@+id/navigation_settings"
+        android:name="com.feylabs.lasagna.view.ui.settings.SettingsFragment"
+        android:label="Profile" />
 </navigation>

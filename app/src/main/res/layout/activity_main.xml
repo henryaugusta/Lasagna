@@ -92,6 +92,13 @@
         android:layout_height="match_parent"
         android:layout_width="match_parent"
         layout="@layout/layout_login_user" />
+    <include
+        android:id="@+id/lyt_register_user"
+        android:visibility="gone"
+        android:elevation="999dp"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        layout="@layout/layout_register_user" />
 
 
     <LinearLayout
@@ -120,6 +127,7 @@
             android:textAllCaps="false"/>
 
         <TextView
+            android:id="@+id/btn_init_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAlignment="center"

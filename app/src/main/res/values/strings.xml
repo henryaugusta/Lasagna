@@ -9,7 +9,21 @@
     <string name="title_home">Home</string>
     <string name="belum_punya_akun_klik_disini_untuk_registrasi">Belum Punya Akun ? Klik Disini Untuk Registrasi</string>
     <string name="settings">Settings</string>
-    <string name="buat_laporan">Buat Laporan</string>
     <string name="kirim_report_baru">Kirim Report Baru</string>
+    <string name="kirim_laporan">Kirim Laporan</string>
+    <string name="bandung_tanggap_covid">Bandung Tanggap Covid</string>
+    <string name="status_report">Status Report</string>
+    <string name="warta">Warta</string>
+    <string name="respons">Respons</string>
+    <string name="siaga">Kontak Siaga</string>
+    <string name="prixa">Artificial Intelligent dari Prixa.ai akan membantu kamu menganalisa gejala Covid</string>
+    <string name="terkini_di_bandung">Terkini di Bandung</string>
+    <string name="kabar_lintas_bandung">Kabar Lintas Bandung</string>
+    <string name="password_lama">Password Lama</string>
+    <string name="password_baru">Password Baru</string>
+    <string name="terbaru_di_kepri">Terbaru di Kepri</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="kabar_lintas_kepri">Kabar Lintas Kepri</string>
 
 </resources>

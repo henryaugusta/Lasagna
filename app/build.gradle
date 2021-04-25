@@ -11,6 +11,15 @@ android {
         viewBinding true
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+
     defaultConfig {
         applicationId "com.feylabs.lasagna"
         minSdkVersion 21
@@ -49,11 +58,39 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
+    implementation 'androidx.viewpager:viewpager:1.0.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
+    implementation 'com.airbnb.android:lottie:3.4.0'
+
+    implementation 'com.amitshekhar.android:android-networking:1.0.2'
+
+    implementation "com.arthurivanets.bottomsheet:bottomsheets-core:1.0.0"
+
+    //CHART AND GRAPHIC
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    implementation 'com.github.AnyChart:AnyChart-Android:1.1.2'
+
     implementation 'com.jaredrummler:material-spinner:1.3.1'
     api 'com.theartofdev.edmodo:android-image-cropper:2.8.+'
     implementation 'com.github.IslamKhSh:CardSlider:1.0.1'
+    implementation 'com.ramotion.cardslider:card-slider:0.3.1'
+
+
+
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
+    implementation 'com.github.tapadoo:alerter:7.1.0'
+    implementation 'me.relex:circleindicator:2.1.6'
+
+    implementation "ru.tinkoff.scrollingpagerindicator:scrollingpagerindicator:1.2.1"
+
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.2'
+
+    // Utils
+    implementation "androidx.viewpager2:viewpager2:1.0.0"
+    implementation 'com.jakewharton.timber:timber:4.7.1'
 }
