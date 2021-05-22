@@ -39,6 +39,10 @@ class Preference(context: Context) {
         return sharedPref.getString(KEY_NAME, null)
     }
 
+    fun getPrefInt(KEY_NAME: String): Int? {
+        return sharedPref.getInt(KEY_NAME,-9999)
+    }
+
 
     fun clearPreferences() {
         editor.clear()

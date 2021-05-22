@@ -19,7 +19,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.feylabs.lasagna.R
 import com.feylabs.lasagna.adapter.NewsAdapterCarousel
-import com.feylabs.lasagna.adapter.NewsViewPagerAdapter
 import com.feylabs.lasagna.databinding.FragmentHomeBinding
 import com.feylabs.lasagna.databinding.LayoutDetailNewsBinding
 import com.feylabs.lasagna.model.ModelNewsCarousel
@@ -28,14 +27,9 @@ import com.feylabs.lasagna.util.URL
 import com.feylabs.lasagna.util.baseclass.BaseFragment
 import com.feylabs.lasagna.util.baseclass.Util
 import com.feylabs.lasagna.view.MainMenuUserViewModel
+import com.feylabs.lasagna.view.bottom_sheet.NewsBottomSheet
 import com.feylabs.lasagna.viewmodel.NewsViewModel
-import com.ramotion.cardslider.CardSliderLayoutManager
-import com.ramotion.cardslider.CardSnapHelper
 import com.squareup.picasso.Picasso
-import kotlinx.coroutines.*
-import kotlinx.coroutines.Dispatchers.IO
-import kotlinx.coroutines.Dispatchers.Main
-import kotlinx.coroutines.NonCancellable.isActive
 import timber.log.Timber
 
 
@@ -51,17 +45,6 @@ class HomeFragment : BaseFragment() {
     lateinit var newsBottomSheetBinding: LayoutDetailNewsBinding
 
     lateinit var newsAdapterCarousel: NewsAdapterCarousel
-
-    override fun onResume() {
-        super.onResume()
-        if (newsViewModel.newsDB.value==null){
-            newsViewModel.fetchNews()
-        }
-    }
-
-    override fun onStart() {
-        super.onStart()
-    }
 
 
     override fun onCreateView(
@@ -82,20 +65,24 @@ class HomeFragment : BaseFragment() {
         Util.setStatusBarLight(requireActivity())
 
         menuViewModel.title.value="Beranda"
+        newsViewModel.fetchNews()
 
-        newsAdapterCarousel = NewsAdapterCarousel()
 
+        setUpAdapter()
 
-        vbinding.containerCardNews.apply {
-            setHasFixedSize(true)
-            adapter = newsAdapterCarousel
-            layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
-        }
+        setupRecyclerView()
 
         vbinding.indicator.attachToRecyclerView(vbinding.containerCardNews)
 
+        setUpViewAction()
+        setUpPrixaArtificalIntelligence()
+        setupObserver()
 
 
+    }
+
+    private fun setUpAdapter() {
+        newsAdapterCarousel = NewsAdapterCarousel()
 
         //Set News Item On Click
         newsAdapterCarousel.setInterface(object : NewsAdapterCarousel.NewsAdapterInterface {
@@ -125,17 +112,23 @@ class HomeFragment : BaseFragment() {
                         .into(image)
                 }
 
-
                 motDetailBottomSheet.show(true)
             }
 
         })
 
+    }
+
+    private fun setupRecyclerView() {
         vbinding.containerCardNews.adapter = newsAdapterCarousel
+        vbinding.containerCardNews.apply {
+            setHasFixedSize(true)
+            adapter = newsAdapterCarousel
+            layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+        }
+    }
 
-        setUpViewAction()
-        setUpPrixaArtificalIntelligence()
-
+    private fun setupObserver() {
         newsViewModel.newsDB.observe(viewLifecycleOwner, Observer {
             when (it) {
                 is Resource.Loading -> {
@@ -145,13 +138,12 @@ class HomeFragment : BaseFragment() {
                 is Resource.Error -> {
                     vbinding.includeLoading.loadingRoot.visibility = View.GONE
                     Timber.d("register: error")
-                    "Error".showLongToast()
+                    "Gagal Terhubung Dengan Server".showLongToast()
                 }
                 is Resource.Success -> {
                     it.data?.let { it1 -> newsAdapterCarousel.setData(it1) }
                     newsAdapterCarousel.notifyDataSetChanged()
                     vbinding.includeLoading.loadingRoot.visibility = View.GONE
-                    "Success Mengambil Data Berita ${it.data?.size}".showLongToast()
                     Timber.d("register: success")
                 }
 

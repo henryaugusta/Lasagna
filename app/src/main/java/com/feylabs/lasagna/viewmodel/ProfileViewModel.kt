@@ -5,8 +5,7 @@ import androidx.lifecycle.ViewModel
 import com.androidnetworking.AndroidNetworking
 import com.androidnetworking.error.ANError
 import com.androidnetworking.interfaces.JSONObjectRequestListener
-import com.feylabs.lasagna.model.ModelNewsCarousel
-import com.feylabs.lasagna.model.PeopleModel
+import com.feylabs.lasagna.model.api.PeopleModel
 import com.feylabs.lasagna.util.Resource
 import com.feylabs.lasagna.util.networking.Endpoint
 import org.json.JSONObject
@@ -19,10 +18,12 @@ class ProfileViewModel : ViewModel() {
     val updateStatus: MutableLiveData<Resource<String>> = MutableLiveData()
     val updatePassword: MutableLiveData<Resource<Int>> = MutableLiveData()
 
+    val getNewPeopleData : MutableLiveData<Resource<PeopleModel>> = MutableLiveData()
+
     val updatePhoto: MutableLiveData<Resource<String>> = MutableLiveData()
 
     fun retrieveProfile(id: String) {
-        peopleModel.postValue(Resource.Loading())
+        getNewPeopleData.postValue(Resource.Loading())
         Timber.d("user_id : $id")
         AndroidNetworking.post(Endpoint.PEOPLE_DETAIL(id))
             .build()
@@ -30,14 +31,14 @@ class ProfileViewModel : ViewModel() {
                 override fun onResponse(response: JSONObject?) {
                     Timber.d("response: success -> ${response?.toString()}")
                     if (response?.getInt("status") == 1) {
-                        parsePeopleJSON(response.getJSONObject("user"))
+                        peopleModel.postValue(Resource.Success(parsePeopleJSON(response.getJSONObject("user"))))
                     } else {
                         peopleModel.postValue(Resource.Error("Error"))
                     }
                 }
 
                 override fun onError(anError: ANError?) {
-                    peopleModel.postValue(Resource.Error("Error"))
+                    getNewPeopleData.postValue(Resource.Error("Error"))
                     Timber.d("profile: error -> ${anError?.message}")
                     Timber.d("profile: error -> ${anError?.errorCode}")
                     Timber.d("profile: error -> ${anError?.errorDetail}")
@@ -45,6 +46,7 @@ class ProfileViewModel : ViewModel() {
                 }
 
             })
+        peopleModel.postValue(Resource.Null())
     }
 
     fun updateProfile(
@@ -54,7 +56,7 @@ class ProfileViewModel : ViewModel() {
         email: String,
         username: String
     ) {
-        peopleModel.postValue(Resource.Loading())
+        updateStatus.postValue(Resource.Loading())
         Timber.d("user_id : $id")
         AndroidNetworking.post(Endpoint.PEOPLE_DETAIL_UPDATE(id))
             .addBodyParameter("nama", name)
@@ -81,6 +83,7 @@ class ProfileViewModel : ViewModel() {
                 }
 
             })
+        updateStatus.postValue(null)
     }
 
 
@@ -89,7 +92,7 @@ class ProfileViewModel : ViewModel() {
         old_pass: String,
         new_pass: String
     ) {
-        peopleModel.postValue(Resource.Loading())
+        updatePassword.postValue(Resource.Loading())
         Timber.d("user_id : $id")
         AndroidNetworking.post(Endpoint.PEOPLE_UPDATE_PASSWORD(id))
             .addBodyParameter("old_password", old_pass)
@@ -123,6 +126,8 @@ class ProfileViewModel : ViewModel() {
                 }
 
             })
+
+        updatePassword.value=Resource.Null()
     }
 
     fun updateImage(id:String,photo: File){
@@ -149,10 +154,11 @@ class ProfileViewModel : ViewModel() {
                 }
 
             })
+        updatePhoto.value=Resource.Null()
 
     }
 
-    private fun parsePeopleJSON(jsonObject: JSONObject) {
+    private fun parsePeopleJSON(jsonObject: JSONObject) : PeopleModel {
         jsonObject.let {
             val peopleFromDB = PeopleModel(
                 id = it.getString("id"),
@@ -167,10 +173,7 @@ class ProfileViewModel : ViewModel() {
                 photo_path = it.getString("photo_path")
             )
 
-            peopleModel.postValue(
-                Resource.Success(peopleFromDB)
-            )
-
+            return peopleFromDB
         }
     }
 

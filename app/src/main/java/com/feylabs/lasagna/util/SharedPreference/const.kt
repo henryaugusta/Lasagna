@@ -5,6 +5,7 @@ object const {
   const val USER_TYPE = "sws"
   const val USER_ID = "das"
 
+//  AIzaSyAoajgYBFmrbajptYkY6wkAsew_KsrMQxg
 
   const val USER_NAME ="dSEQEWWQ"
   const val USER_USERNAME ="dSSSEQSEQ"

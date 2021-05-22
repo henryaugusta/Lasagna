@@ -21,6 +21,7 @@ class NewsViewModel : ViewModel() {
             .build()
             .getAsJSONObject(object : JSONObjectRequestListener {
                 override fun onResponse(response: JSONObject) {
+                    Timber.d("news: success -> ${response.toString()}")
                     if (response.getInt("size") > 0) {
                         val arrayNews = response.getJSONArray("news")
                         parseNewsJSON(arrayNews)

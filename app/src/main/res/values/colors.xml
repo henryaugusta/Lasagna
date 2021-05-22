@@ -24,9 +24,11 @@
 
     <color name="blue_jeans">#0A3875</color>
 
+    <color name="green11">#289672</color>
+
 
     <color name="secondaryText">#959595</color>
-    <color name="xdGreen">#36C12C</color>
+    <color name="xdGreen">#16c79a</color>
     <color name="xdRed">#FF4848</color>
     <color name="xdOrange">#FF8748</color>
 

@@ -2,11 +2,9 @@ package com.feylabs.lasagna.util
 
 import android.Manifest
 import android.app.Activity
-import android.content.Context
 import android.content.pm.PackageManager
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.feylabs.lasagna.view.report.user_input.UserTakePhotoActivity
 
 class Permission  {
 

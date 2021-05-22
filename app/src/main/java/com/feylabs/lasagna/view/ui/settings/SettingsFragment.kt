@@ -12,30 +12,31 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import com.feylabs.lasagna.R
-import com.feylabs.lasagna.databinding.SettingsFragmentBinding
+import com.feylabs.lasagna.databinding.FragmentSettingsBinding
 import com.feylabs.lasagna.util.Resource
 import com.feylabs.lasagna.util.baseclass.BaseFragment
 import com.feylabs.lasagna.viewmodel.ProfileViewModel
 import com.feylabs.lasagna.util.SharedPreference.Preference
 import com.feylabs.lasagna.util.SharedPreference.UserPreferenceHelper
+import com.feylabs.lasagna.util.SharedPreference.const.USER_CONTACT
 import com.feylabs.lasagna.util.SharedPreference.const.USER_EMAIL
 import com.feylabs.lasagna.util.SharedPreference.const.USER_ID
 import com.feylabs.lasagna.util.SharedPreference.const.USER_NAME
 import com.feylabs.lasagna.util.SharedPreference.const.USER_PHOTO
 import com.feylabs.lasagna.util.SharedPreference.const.USER_USERNAME
 import com.feylabs.lasagna.util.networking.Endpoint.REAL_URL
+import com.feylabs.lasagna.view.MainActivity
 import com.feylabs.lasagna.view.MainMenuUserViewModel
-import com.feylabs.lasagna.view.take_photo_utility.UserChangePhotoActivity
+import com.feylabs.lasagna.view.ui.settings.take_photo_utility.UserChangePhotoActivity
 import com.squareup.picasso.MemoryPolicy
 import com.squareup.picasso.Picasso
-import com.theartofdev.edmodo.cropper.CropImage
 
 import timber.log.Timber
 
 class SettingsFragment : BaseFragment() {
 
 
-    lateinit var vbind: SettingsFragmentBinding
+    lateinit var vbind: FragmentSettingsBinding
 
     val pref by lazy { Preference(requireContext()) }
 
@@ -54,8 +55,8 @@ class SettingsFragment : BaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.settings_fragment, container, false)
-        vbind = SettingsFragmentBinding.bind(view)
+        val view = inflater.inflate(R.layout.fragment_settings, container, false)
+        vbind = FragmentSettingsBinding.bind(view)
         return vbind.root
     }
 
@@ -73,36 +74,13 @@ class SettingsFragment : BaseFragment() {
 
         menuViewModel.title.value = "Profile"
 
-        vbind.btnChangePhoto.setOnClickListener {
-            startActivity(Intent(requireActivity(),UserChangePhotoActivity::class.java))
-        }
+        setUpUIActionListener()
+        setUpObserver()
 
-        vbind.btnSavePassword.setOnClickListener {
-            var error = false;
-            vbind.apply {
-                if (etOldPassword.text.toString().isBlank()) {
-                    error = true
-                }
-                if (etNewPassword.text.toString().isBlank()) {
-                    error = true
-                }
-                if (etNewPassword.text.toString().length < 6) {
-                    error = true
-                    etNewPassword.error = "Password Baru Harus lebih dari 6 karakter"
-                }
-                if (error) {
-                    "Mohon Lengkapi Semua Form".showLongToast()
-                } else {
-                    val id = Preference(requireContext()).getPrefString(USER_ID).toString()
-                    profileViewModel.updatePassword(
-                        id,
-                        old_pass = etOldPassword.text.toString(),
-                        new_pass = etNewPassword.text.toString()
-                    )
-                }
-            }
-        }
 
+    }
+
+    private fun setUpUIActionListener() {
         //On User Click Save "Simpan Perubahan/Save Profile"
         vbind.btnSaveChange.setOnClickListener {
             var error = false;
@@ -134,7 +112,123 @@ class SettingsFragment : BaseFragment() {
                 }
             }
         }
+        vbind.btnLogout.setOnClickListener {
+            Preference(requireContext()).clearPreferences()
+            requireActivity().finish()
+            startActivity(Intent(requireContext(),MainActivity::class.java))
+        }
 
+        vbind.btnChangePhoto.setOnClickListener {
+            startActivity(Intent(requireActivity(),UserChangePhotoActivity::class.java))
+        }
+
+        vbind.btnSavePassword.setOnClickListener {
+            var error = false;
+            vbind.apply {
+                if (etOldPassword.text.toString().isBlank()) {
+                    error = true
+                }
+                if (etNewPassword.text.toString().isBlank()) {
+                    error = true
+                }
+                if (etNewPassword.text.toString().length < 6) {
+                    error = true
+                    etNewPassword.error = "Password Baru Harus lebih dari 6 karakter"
+                }
+                if (error) {
+                    "Mohon Lengkapi Semua Form".showLongToast()
+                } else {
+                    val id = Preference(requireContext()).getPrefString(USER_ID).toString()
+                    profileViewModel.updatePassword(
+                        id,
+                        old_pass = etOldPassword.text.toString(),
+                        new_pass = etNewPassword.text.toString()
+                    )
+                }
+            }
+        }
+
+    }
+
+    private fun setUpObserver() {
+        profileViewModel.peopleModel.observe(viewLifecycleOwner, Observer {
+            when (it) {
+                is Resource.Loading -> {
+                    Timber.d("profileFragment: loading")
+                    vbind.includeLoading.loadingRoot.visibility = View.VISIBLE
+                }
+                is Resource.Error -> {
+                    vbind.includeLoading.loadingRoot.visibility = View.GONE
+                    Timber.d("profileFragment: error")
+                    "Error".showLongToast()
+                }
+                is Resource.Success -> {
+                    val username = it.data?.username.toString()
+                    val email = it.data?.email.toString()
+                    val contact = it.data?.contact.toString()
+                    val name = it.data?.nama.toString()
+                    val nik = it.data?.nik.toString()
+                    val photo_path = REAL_URL+it.data?.photo_path.toString()
+                    val gender = it.data?.jk.toString()
+
+                    UserPreferenceHelper.updateUserPreference(
+                        requireContext(),
+                        name = name,
+                        username = username,
+                        email = email,
+                        contact = contact,
+                        photo = photo_path,
+                        gender = gender,
+                        nik = nik
+                    )
+                    updateLayoutFromPreference()
+
+                    Timber.d("profileFragment: success")
+                }
+            }
+        })
+        profileViewModel.updatePhoto.observe(viewLifecycleOwner, Observer {
+            when (it) {
+                is Resource.Loading -> {
+                    Timber.d("profileFragment: ->changePass loading")
+                }
+                is Resource.Error -> {
+                    Timber.d("profileFragment: ->changePass error")
+                    "Error".showLongToast()
+                }
+                is Resource.Success -> {
+                    //If Success, Retrieve Profile Again
+                    showSweetAlert("Success", "Berhasil Mengupdate Password", R.color.xdGreen)
+                    Timber.d("profileFragment: ->update success")
+                }
+            }
+        })
+        profileViewModel.updateStatus.observe(viewLifecycleOwner, Observer {
+            when (it) {
+                is Resource.Loading -> {
+                    Timber.d("profileFragment: ->update loading")
+                    vbind.includeLoading.loadingRoot.visibility = View.VISIBLE
+                    profileViewModel.updateStatus.value=null
+                }
+                is Resource.Error -> {
+                    showSweetAlert("Error", "Gagal Mengupdate Akun", R.color.xdRed)
+                    Timber.d("profileFragment: ->update error")
+                    "Error Mengupdate Status".showLongToast()
+                    profileViewModel.updateStatus.value=null
+
+                }
+                is Resource.Success -> {
+                    showSweetAlert("Success", "Berhasil Mengupdate Akun", R.color.xdGreen)
+                    profileViewModel.retrieveProfile(
+                        Preference(requireContext()).getPrefString(USER_ID).toString()
+                    )
+                    vbind.includeLoading.loadingRoot.visibility = View.GONE
+                    Timber.d("profileFragment: ->update success")
+                    profileViewModel.updateStatus.value=null
+                }
+                else -> {} // Do Nothing
+            }
+        })
         profileViewModel.updatePassword.observe(viewLifecycleOwner, Observer {
             when (it) {
                 is Resource.Loading -> {
@@ -163,119 +257,21 @@ class SettingsFragment : BaseFragment() {
                     vbind.includeLoading.loadingRoot.visibility = View.GONE
                     Timber.d("profileFragment: ->update success")
                 }
+                else -> {}
             }
         })
-
-        profileViewModel.updateStatus.observe(viewLifecycleOwner, Observer {
-            when (it) {
-                is Resource.Loading -> {
-                    Timber.d("profileFragment: ->update loading")
-                    vbind.includeLoading.loadingRoot.visibility = View.VISIBLE
-                }
-                is Resource.Error -> {
-                    showSweetAlert("Error", "Gagal Mengupdate Akun", R.color.xdRed)
-
-                    Timber.d("profileFragment: ->update error")
-                    "Error".showLongToast()
-                }
-                is Resource.Success -> {
-                    //If Success, Retrieve Profile Again
-                    showSweetAlert("Success", "Berhasil Mengupdate Akun", R.color.xdGreen)
-
-
-                    profileViewModel.retrieveProfile(
-                        Preference(requireContext()).getPrefString(USER_ID).toString()
-                    )
-
-                    vbind.includeLoading.loadingRoot.visibility = View.GONE
-                    Timber.d("profileFragment: ->update success")
-                }
-            }
-        })
-
-        profileViewModel.updatePhoto.observe(requireActivity(), Observer {
-            when (it) {
-                is Resource.Loading -> {
-                    Timber.d("profileFragment: ->changePass loading")
-                }
-                is Resource.Error -> {
-                    Timber.d("profileFragment: ->changePass error")
-                    "Error".showLongToast()
-                }
-                is Resource.Success -> {
-                    //If Success, Retrieve Profile Again
-                    showSweetAlert("Success", "Berhasil Mengupdate Password", R.color.xdGreen)
-                    Timber.d("profileFragment: ->update success")
-                }
-            }
-        })
-
-        profileViewModel.peopleModel.observe(viewLifecycleOwner, Observer {
-            when (it) {
-                is Resource.Loading -> {
-                    Timber.d("profileFragment: loading")
-                    vbind.includeLoading.loadingRoot.visibility = View.VISIBLE
-                }
-                is Resource.Error -> {
-                    vbind.includeLoading.loadingRoot.visibility = View.GONE
-                    Timber.d("profileFragment: error")
-                    "Error".showLongToast()
-                }
-                is Resource.Success -> {
-
-                    val username = it.data?.username.toString()
-                    val email = it.data?.email.toString()
-                    val contact = it.data?.contact.toString()
-                    val name = it.data?.nama.toString()
-                    val nik = it.data?.nik.toString()
-                    val photo_path = REAL_URL+it.data?.photo_path.toString()
-                    val gender = it.data?.jk.toString()
-
-                    vbind.etContact.setText(contact)
-                    vbind.etName.setText(name)
-                    vbind.etEmail.setText(email)
-                    vbind.etUsername.setText(username)
-                    vbind.includeLoading.loadingRoot.visibility = View.GONE
-
-                    UserPreferenceHelper.updateUserPreference(
-                        requireContext(),
-                        name = name,
-                        username = username,
-                        email = email,
-                        contact = contact,
-                        photo = photo_path,
-                        gender = gender,
-                        nik = nik
-                    )
-
-                    updateLayoutFromPreference()
-
-
-                    Timber.d("profileFragment: success")
-                }
-            }
-        })
-    }
-
-    private fun takePicture() {
-        CropImage.activity()
-            .start(requireContext(), this);
     }
 
 
     private fun updateLayoutFromPreference() {
-
         val pref = Preference(requireContext())
-
         pref.let {
-
             vbind.etName.setText(it.getPrefString(USER_NAME).toString())
             vbind.etEmail.setText(it.getPrefString(USER_EMAIL).toString())
-
             vbind.etUsername.setText(it.getPrefString(USER_USERNAME).toString())
-
+            vbind.tvName.text = Preference(requireContext()).getPrefString(USER_NAME).toString()
+            vbind.etContact.setText(Preference(requireContext()).getPrefString(USER_CONTACT).toString())
             Timber.d("photo_url : ${it.getPrefString(USER_PHOTO)}")
-
             if (it.getPrefString(USER_PHOTO).toString().isNotEmpty()) {
                 Picasso
                     .get()
@@ -285,11 +281,7 @@ class SettingsFragment : BaseFragment() {
                     .error(R.drawable.ic_empty_profile)
                     .into(vbind.ivProfilePict)
             }
-
         }
-
-
-        vbind.tvName.text = Preference(requireContext()).getPrefString(USER_NAME).toString()
     }
 
 

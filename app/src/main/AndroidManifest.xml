@@ -2,7 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.feylabs.lasagna">
-
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the "MyLocation" functionality.
+    -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
@@ -19,12 +24,33 @@
         android:theme="@style/Theme.Lasagna"
         android:usesCleartextTraffic="true"
         tools:replace="android:icon,android:theme">
-        <activity android:name=".view.take_photo_utility.UserChangePhotoActivity"></activity>
-        <activity android:name=".view.report.user_input.UserInputDetailActivity" />
+        <activity android:name=".view.ui.hospital.AddHospitalActivity"></activity>
+        <activity android:name=".view.ui.hospital.ListHospitalActivity">
+
+        </activity>
+        <activity android:name=".view.ui.report.DetailReportActivity" />
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/.
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity
+            android:name=".view.ExampleMapActivity"
+            android:label="@string/title_activity_example_map" />
+        <activity android:name=".view.ui.send_report.UserReviewBeforeInputActivity" />
+        <activity android:name=".view.ui.send_report.UserInputDetailActivity" />
+        <activity android:name=".view.ui.settings.take_photo_utility.UserChangePhotoActivity" />
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" /> <!-- optional (needed if default theme has no action bar) -->
-        <activity android:name=".view.report.user_input.UserTakePhotoActivity" />
+        <activity android:name=".view.ui.send_report.UserInputReportActivity" />
         <activity
             android:name=".view.MainMenuUserActivity"
             android:label="@string/title_activity_main_menu_user" />

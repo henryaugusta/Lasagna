@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:fillViewport="true"
     android:orientation="vertical"
-    tools:context=".view.take_photo_utility.UserChangePhotoActivity">
+    tools:context=".view.ui.settings.take_photo_utility.UserChangePhotoActivity">
 
     <ScrollView
         android:layout_width="match_parent"
