@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.feylabs.lasagna.R
 import com.feylabs.lasagna.adapter.ReportAdapter
 import com.feylabs.lasagna.databinding.FragmentMyReportBinding
-import com.feylabs.lasagna.model.api.ReportGetByUserModel
+import com.feylabs.lasagna.data.model.api.ReportGetByUserModel
 import com.feylabs.lasagna.util.Resource
 import com.feylabs.lasagna.util.SharedPreference.Preference
 import com.feylabs.lasagna.util.SharedPreference.const.USER_ID
@@ -53,14 +53,24 @@ class MyReportFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+
         setUpRecylerView()
         setUpObserver()
         setUpAdapter()
+        fetchData()
 
+        vbind.srl.setOnRefreshListener {
+            vbind.srl.isRefreshing = false
+            fetchData()
+        }
+
+    }
+
+    private fun fetchData() {
         userReportViewModel.getReportByUser(
             Preference(requireContext()).getPrefString(USER_ID).toString()
         )
-
     }
 
     private fun setUpAdapter() {
@@ -87,9 +97,9 @@ class MyReportFragment : BaseFragment() {
                     btnCancelReport.setOnClickListener {
                         userReportViewModel.deleteReport(model.id.toString())
                         "Batalkan Laporan".showLongToast()
-                        if(model.status.toInt()==0){
+                        if (model.status.toInt() == 0) {
                             optionUserSheet.dismiss(true)
-                        }else{
+                        } else {
                             "Laporan Yang Sudah Diproses Tidak Dapat Dibatalkan".showLongToast()
                         }
                     }

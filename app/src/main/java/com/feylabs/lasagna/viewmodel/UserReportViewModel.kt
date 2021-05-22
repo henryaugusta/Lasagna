@@ -6,9 +6,9 @@ import com.androidnetworking.AndroidNetworking
 import com.androidnetworking.error.ANError
 import com.androidnetworking.interfaces.JSONObjectRequestListener
 import com.androidnetworking.interfaces.StringRequestListener
-import com.feylabs.lasagna.model.ReportDetailModel
-import com.feylabs.lasagna.model.api.ReportGetByUserModel
-import com.feylabs.lasagna.model.api.SendReportModel
+import com.feylabs.lasagna.data.model.ReportDetailModel
+import com.feylabs.lasagna.data.model.api.ReportGetByUserModel
+import com.feylabs.lasagna.data.model.api.SendReportModel
 import com.feylabs.lasagna.util.Resource
 import com.feylabs.lasagna.util.networking.Endpoint
 import com.google.gson.Gson

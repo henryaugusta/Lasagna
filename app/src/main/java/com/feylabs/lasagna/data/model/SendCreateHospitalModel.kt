@@ -1,4 +1,4 @@
-package com.feylabs.lasagna.model
+package com.feylabs.lasagna.data.model
 
 import java.io.File
 

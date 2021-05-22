@@ -9,7 +9,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import com.feylabs.lasagna.R
+import com.feylabs.lasagna.adapter.ReportCategoryAdapter
 import com.feylabs.lasagna.databinding.ActivityMainMenuUserBinding
 import com.feylabs.lasagna.util.baseclass.BaseActivity
 import com.feylabs.lasagna.util.SharedPreference.Preference
@@ -63,6 +65,8 @@ class MainMenuUserActivity : BaseActivity() {
 //        menuInflater.inflate(R.menu.top_bar_menu,menu)
         return super.onCreateOptionsMenu(menu)
     }
+
+
 
     private fun setUpObserver() {
         menuViewModel.title.observe(this, Observer {

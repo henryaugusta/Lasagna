@@ -1,6 +1,5 @@
 package com.feylabs.lasagna.view.ui.report
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
@@ -8,11 +7,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.feylabs.lasagna.R
 import com.feylabs.lasagna.databinding.ActivityDetailReportBinding
-import com.feylabs.lasagna.model.ReportDetailModel
-import com.feylabs.lasagna.model.api.ReportGetByUserModel
+import com.feylabs.lasagna.data.model.ReportDetailModel
 import com.feylabs.lasagna.util.Resource
-import com.feylabs.lasagna.util.SharedPreference.Preference
-import com.feylabs.lasagna.util.SharedPreference.const
 import com.feylabs.lasagna.util.baseclass.BaseActivity
 import com.feylabs.lasagna.util.baseclass.Util
 import com.feylabs.lasagna.util.networking.Endpoint
@@ -54,6 +50,7 @@ class DetailReportActivity : BaseActivity(), OnMapReadyCallback {
         vbind.includeLoading.loadingRoot.setVisible()
 
         reportID = intent.getStringExtra(REPORT_ID).toString()
+
 
         if (reportID != "")
             viewModel.getDetailReport(reportID)

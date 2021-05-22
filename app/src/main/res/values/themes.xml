@@ -20,5 +20,16 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="weather_fonts_style">
+
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:shadowColor">#1A000000</item>
+        <item name="android:shadowDx">-4</item>
+        <item name="android:shadowDy">8</item>
+        <item name="android:shadowRadius">50</item>
+        <item name="android:textAlignment">center</item>
+
+    </style>
+
 
 </resources>

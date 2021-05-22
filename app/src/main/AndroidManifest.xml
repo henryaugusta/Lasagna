@@ -24,10 +24,11 @@
         android:theme="@style/Theme.Lasagna"
         android:usesCleartextTraffic="true"
         tools:replace="android:icon,android:theme">
-        <activity android:name=".view.ui.hospital.AddHospitalActivity"></activity>
-        <activity android:name=".view.ui.hospital.ListHospitalActivity">
-
-        </activity>
+        <activity
+            android:name=".view.ui.weather.WeatherActivity"
+            android:theme="@style/Theme.Lasagna.NoActionBar" />
+        <activity android:name=".view.ui.hospital.AddHospitalActivity" />
+        <activity android:name=".view.ui.hospital.ListHospitalActivity"></activity>
         <activity android:name=".view.ui.report.DetailReportActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.

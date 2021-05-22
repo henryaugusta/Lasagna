@@ -6,8 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.feylabs.lasagna.R
 import com.feylabs.lasagna.databinding.ItemNewsBinding
-import com.feylabs.lasagna.model.ModelNewsCarousel
-import com.github.islamkhsh.CardSliderAdapter
+import com.feylabs.lasagna.data.model.ModelNewsCarousel
 import com.squareup.picasso.Picasso
 
 class NewsAdapterCarousel() : RecyclerView.Adapter<NewsAdapterCarousel.NewsAdapterCarouselHolder>() {

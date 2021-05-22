@@ -1,9 +1,9 @@
-package com.feylabs.lasagna.model.api
+package com.feylabs.lasagna.data.model.api
 
 
 import com.google.gson.annotations.SerializedName
 
-data class DeleteHospitalModel(
+data class HospitalDetailModel(
     @SerializedName("data")
     val `data`: Data,
     @SerializedName("http_response")

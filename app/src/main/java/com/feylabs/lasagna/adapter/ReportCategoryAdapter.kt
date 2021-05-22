@@ -4,12 +4,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.feylabs.lasagna.R
 import com.feylabs.lasagna.databinding.ItemCategoryReportBinding
-import com.feylabs.lasagna.model.api.ReportCategoryModel
+import com.feylabs.lasagna.data.model.api.ReportCategoryModel
 import com.feylabs.lasagna.util.networking.Endpoint.REAL_URL
-import com.squareup.picasso.MemoryPolicy
-import com.squareup.picasso.Picasso
 import timber.log.Timber
 
 class ReportCategoryAdapter : RecyclerView.Adapter<ReportCategoryAdapter.ReportCategoyViewHolder>() {
@@ -41,10 +40,14 @@ class ReportCategoryAdapter : RecyclerView.Adapter<ReportCategoryAdapter.ReportC
             vbind.textView.text=model.category_name
             val imgUrl = REAL_URL+model.photo_path
             Timber.d("picasso url : $imgUrl")
-            Picasso.get()
+
+            Glide
+                .with(vbind.root)
                 .load(imgUrl)
-                .placeholder(R.drawable.ic_loading_gif)
-                .memoryPolicy(MemoryPolicy.NO_CACHE,MemoryPolicy.NO_STORE)
+                .skipMemoryCache(true)
+                .dontAnimate()
+                .thumbnail(Glide.with(vbind.root).load(R.raw.loading2))
+                .placeholder(R.drawable.ic_loading_small_1)
                 .into(vbind.imagePlaceholder)
 
         }

@@ -1,6 +1,7 @@
 package com.feylabs.lasagna.view.ui.home
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Build
 import android.os.Bundle
@@ -16,18 +17,24 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.feylabs.lasagna.R
+import com.feylabs.lasagna.view.ui.weather.WeatherActivity
 import com.feylabs.lasagna.adapter.NewsAdapterCarousel
+import com.feylabs.lasagna.adapter.ReportCategoryAdapter
 import com.feylabs.lasagna.databinding.FragmentHomeBinding
+import com.feylabs.lasagna.databinding.ItemCategoryReportBinding
 import com.feylabs.lasagna.databinding.LayoutDetailNewsBinding
-import com.feylabs.lasagna.model.ModelNewsCarousel
+import com.feylabs.lasagna.data.model.ModelNewsCarousel
+import com.feylabs.lasagna.data.model.api.ReportCategoryModel
 import com.feylabs.lasagna.util.Resource
 import com.feylabs.lasagna.util.URL
 import com.feylabs.lasagna.util.baseclass.BaseFragment
 import com.feylabs.lasagna.util.baseclass.Util
 import com.feylabs.lasagna.view.MainMenuUserViewModel
 import com.feylabs.lasagna.view.bottom_sheet.NewsBottomSheet
+import com.feylabs.lasagna.view.ui.hospital.ListHospitalActivity
 import com.feylabs.lasagna.viewmodel.NewsViewModel
 import com.squareup.picasso.Picasso
 import timber.log.Timber
@@ -39,6 +46,8 @@ class HomeFragment : BaseFragment() {
 
     val newsViewModel by lazy { ViewModelProvider(requireActivity()).get(NewsViewModel::class.java) }
     val menuViewModel by lazy { ViewModelProvider(requireActivity()).get(MainMenuUserViewModel::class.java) }
+
+    val menuAdapter by lazy { ReportCategoryAdapter() }
 
 
     lateinit var vbinding: FragmentHomeBinding
@@ -64,7 +73,7 @@ class HomeFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         Util.setStatusBarLight(requireActivity())
 
-        menuViewModel.title.value="Beranda"
+        menuViewModel.title.value = "Beranda"
         newsViewModel.fetchNews()
 
 
@@ -78,8 +87,62 @@ class HomeFragment : BaseFragment() {
         setUpPrixaArtificalIntelligence()
         setupObserver()
 
+        setUpMenuRecyclerview()
+        populateMenuRecyclerview()
 
     }
+
+    private fun populateMenuRecyclerview() {
+
+        menuAdapter.setData(
+            mutableListOf(
+                ReportCategoryModel.Data(
+                    category_name = "Rumah Sakit",
+                    id = 1,
+                    photo_path = "/static_web_files/hospital.png"
+                ), ReportCategoryModel.Data(
+                    category_name = "Laporan Warga",
+                    id = 2,
+                    photo_path = "/static_web_files/report.png"
+                ), ReportCategoryModel.Data(
+                    category_name = "Prediksi Cuaca",
+                    id = 3,
+                    photo_path = "/static_web_files/weather.png"
+                )
+            )
+        )
+
+        menuAdapter.setInterface(object : ReportCategoryAdapter.MyCategoryInterface {
+            override fun onclick(
+                model: ReportCategoryModel.Data,
+                adaptVbind: ItemCategoryReportBinding
+            ) {
+                when(model.id){
+                    1->{
+                        startActivity(Intent(requireContext(),ListHospitalActivity::class.java))
+                    }
+                    2->{
+                        startActivity(Intent(requireContext(),ListHospitalActivity::class.java))
+                    }
+                    3->{
+                        startActivity(Intent(requireContext(), WeatherActivity::class.java))
+                    }
+                }
+
+            }
+
+        })
+
+        menuAdapter.notifyDataSetChanged()
+    }
+
+    private fun setUpMenuRecyclerview() {
+        vbinding.rvCategory.apply {
+            adapter = menuAdapter
+            layoutManager = GridLayoutManager(requireContext(), 4)
+        }
+    }
+
 
     private fun setUpAdapter() {
         newsAdapterCarousel = NewsAdapterCarousel()
@@ -124,7 +187,8 @@ class HomeFragment : BaseFragment() {
         vbinding.containerCardNews.apply {
             setHasFixedSize(true)
             adapter = newsAdapterCarousel
-            layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         }
     }
 

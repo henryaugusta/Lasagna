@@ -1,4 +1,4 @@
-package com.feylabs.lasagna.model
+package com.feylabs.lasagna.data.model
 
 data class Category(
     val category_name: String,

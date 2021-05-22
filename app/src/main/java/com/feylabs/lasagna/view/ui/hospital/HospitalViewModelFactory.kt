@@ -1,9 +1,8 @@
-package com.feylabs.lasagna.viewmodel
+package com.feylabs.lasagna.view.ui.hospital
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.feylabs.lasagna.data.LasagnaRepository
-import com.feylabs.lasagna.view.ui.hospital.HospitalViewModel
 
 class HospitalViewModelFactory constructor(val repository: LasagnaRepository) :
     ViewModelProvider.NewInstanceFactory() {

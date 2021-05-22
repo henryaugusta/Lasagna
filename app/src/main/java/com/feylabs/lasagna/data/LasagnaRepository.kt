@@ -3,9 +3,10 @@ package com.feylabs.lasagna.data
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.feylabs.lasagna.data.remote.RemoteDataSource
-import com.feylabs.lasagna.model.SendCreateHospitalModel
-import com.feylabs.lasagna.model.api.DeleteHospitalModel
-import com.feylabs.lasagna.model.api.HospitalModel
+import com.feylabs.lasagna.data.model.SendCreateHospitalModel
+import com.feylabs.lasagna.data.model.api.DeleteHospitalModel
+import com.feylabs.lasagna.data.model.api.HospitalModel
+import com.feylabs.lasagna.data.model.api.Weather
 import com.feylabs.lasagna.util.Resource
 
 class LasagnaRepository(private val remoteDataSource: RemoteDataSource) {
@@ -34,10 +35,10 @@ class LasagnaRepository(private val remoteDataSource: RemoteDataSource) {
         return apiResponse
     }
 
-    fun getHospitalDetail(id:String) : MutableLiveData<Resource<HospitalModel.Data>>{
-        val apiResponse : MutableLiveData<Resource<HospitalModel.Data>> = MutableLiveData()
+    fun getHospitalDetail(id: String): MutableLiveData<Resource<HospitalModel.Data>> {
+        val apiResponse: MutableLiveData<Resource<HospitalModel.Data>> = MutableLiveData()
 
-        remoteDataSource.getHospital(id,object : RemoteDataSource.DetailHospitalCallback{
+        remoteDataSource.getHospital(id, object : RemoteDataSource.DetailHospitalCallback {
             override fun callback(response: Resource<HospitalModel.Data>) {
                 apiResponse.postValue(response)
             }
@@ -60,6 +61,19 @@ class LasagnaRepository(private val remoteDataSource: RemoteDataSource) {
         val apiResponse: MutableLiveData<Resource<String>> = MutableLiveData()
         remoteDataSource.editHospital(model, object : RemoteDataSource.AddHospitalCallback {
             override fun callback(response: Resource<String>) {
+                apiResponse.postValue(response)
+            }
+        })
+        return apiResponse
+    }
+
+    fun getWeatherDetail(
+        id: Int
+    ): MutableLiveData<Resource<Weather>> {
+        val apiResponse: MutableLiveData<Resource<Weather>> = MutableLiveData()
+
+        remoteDataSource.getWeather(id, object : RemoteDataSource.DetailWeatherCallback {
+            override fun callback(response: Resource<Weather>) {
                 apiResponse.postValue(response)
             }
         })

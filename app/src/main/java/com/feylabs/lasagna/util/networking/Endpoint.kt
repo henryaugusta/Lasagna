@@ -63,5 +63,11 @@ object Endpoint {
         return url
     }
 
+    fun GET_WEATHER(id:String): String {
+        val url = "https://ibnux.github.io/BMKG-importer/cuaca/$id.json"
+        Log.d("endpoint",url)
+        return url
+    }
+
     const val GET_REPORT_CATEGORY = "${BASE_URL}/category"
 }

@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.feylabs.lasagna.R
 import com.feylabs.lasagna.databinding.ItemPreviewReportBinding
-import com.feylabs.lasagna.model.api.ReportGetByUserModel
+import com.feylabs.lasagna.data.model.api.ReportGetByUserModel
 import com.feylabs.lasagna.util.networking.Endpoint
 
 class ReportAdapter() : RecyclerView.Adapter<ReportAdapter.ReportAdapterHolder>() {

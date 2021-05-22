@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import com.androidnetworking.AndroidNetworking
 import com.androidnetworking.error.ANError
 import com.androidnetworking.interfaces.JSONObjectRequestListener
-import com.feylabs.lasagna.model.api.ReportCategoryModel
+import com.feylabs.lasagna.data.model.api.ReportCategoryModel
 import com.feylabs.lasagna.util.Resource
 import com.feylabs.lasagna.util.networking.Endpoint
 import com.google.gson.Gson

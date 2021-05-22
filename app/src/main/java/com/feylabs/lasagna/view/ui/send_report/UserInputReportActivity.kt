@@ -19,7 +19,7 @@ import com.feylabs.lasagna.R
 import com.feylabs.lasagna.adapter.ReportCategoryAdapter
 import com.feylabs.lasagna.databinding.ActivityUserInputReportBinding
 import com.feylabs.lasagna.databinding.ItemCategoryReportBinding
-import com.feylabs.lasagna.model.api.ReportCategoryModel
+import com.feylabs.lasagna.data.model.api.ReportCategoryModel
 import com.feylabs.lasagna.util.Resource
 import com.feylabs.lasagna.util.SharedPreference.Preference
 import com.feylabs.lasagna.util.baseclass.BaseActivity

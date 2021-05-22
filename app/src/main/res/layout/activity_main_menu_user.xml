@@ -18,7 +18,6 @@
             android:layout_height="?attr/actionBarSize"
             android:background="@color/colorWhite">
 
-
         </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>

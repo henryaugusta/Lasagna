@@ -19,11 +19,10 @@ import com.feylabs.lasagna.data.LasagnaRepository
 import com.feylabs.lasagna.data.remote.RemoteDataSource
 import com.feylabs.lasagna.databinding.ActivityListHospitalBinding
 import com.feylabs.lasagna.databinding.MapInfoHospitalBinding
-import com.feylabs.lasagna.model.api.HospitalModel
+import com.feylabs.lasagna.data.model.api.HospitalModel
 import com.feylabs.lasagna.util.Resource
 import com.feylabs.lasagna.util.baseclass.BaseActivity
 import com.feylabs.lasagna.util.baseclass.Util
-import com.feylabs.lasagna.viewmodel.HospitalViewModelFactory
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory

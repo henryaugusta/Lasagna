@@ -1,4 +1,4 @@
-package com.feylabs.lasagna.model.api
+package com.feylabs.lasagna.data.model.api
 
 
 data class ReportGetByUserModel(

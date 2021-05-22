@@ -3,15 +3,11 @@ package com.feylabs.lasagna.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.feylabs.lasagna.R
 import com.feylabs.lasagna.databinding.ItemHospitalBinding
-import com.feylabs.lasagna.databinding.ItemPreviewReportBinding
-import com.feylabs.lasagna.model.api.HospitalModel
-import com.feylabs.lasagna.model.api.ReportGetByUserModel
-import com.feylabs.lasagna.util.networking.Endpoint
+import com.feylabs.lasagna.data.model.api.HospitalModel
 
 class HospitalAdapter() : RecyclerView.Adapter<HospitalAdapter.HospitalAdapterHolder>() {
 

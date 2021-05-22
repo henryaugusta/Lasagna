@@ -3,8 +3,8 @@ package com.feylabs.lasagna.view.ui.hospital
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.feylabs.lasagna.data.LasagnaRepository
-import com.feylabs.lasagna.model.SendCreateHospitalModel
-import com.feylabs.lasagna.model.api.HospitalModel
+import com.feylabs.lasagna.data.model.SendCreateHospitalModel
+import com.feylabs.lasagna.data.model.api.HospitalModel
 import com.google.android.gms.maps.model.LatLng
 
 class HospitalViewModel(private val repository: LasagnaRepository) : ViewModel() {

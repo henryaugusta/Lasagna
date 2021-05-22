@@ -48,7 +48,6 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(viewBinding.root)
 
-
         checkIsLogin()
         setUpBinding()
         setUpClock()

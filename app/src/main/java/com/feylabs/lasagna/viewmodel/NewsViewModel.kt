@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import com.androidnetworking.AndroidNetworking
 import com.androidnetworking.error.ANError
 import com.androidnetworking.interfaces.JSONObjectRequestListener
-import com.feylabs.lasagna.model.ModelNewsCarousel
+import com.feylabs.lasagna.data.model.ModelNewsCarousel
 import com.feylabs.lasagna.util.Resource
 import com.feylabs.lasagna.util.networking.Endpoint
 import org.json.JSONArray

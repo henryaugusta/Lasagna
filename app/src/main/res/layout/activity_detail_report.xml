@@ -159,7 +159,6 @@
                     android:textSize="20dp" />
 
 
-
                 <TextView
                     android:id="@+id/et_detail_alamat"
                     android:layout_width="match_parent"
@@ -177,7 +176,7 @@
 
     <include
         android:id="@+id/include_loading"
-        android:visibility="invisible"
+        android:visibility="gone"
         layout="@layout/layout_loading_transparent_full" />
 
 </RelativeLayout>

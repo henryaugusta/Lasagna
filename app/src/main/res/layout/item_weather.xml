@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:backgroundTint="@android:color/transparent"
+    android:layout_marginRight="10dp"
+    android:orientation="vertical"
+    app:cardCornerRadius="10dp">
+
+    <ImageView
+        android:id="@+id/iv_semi_morphism"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.6"
+        android:backgroundTint="@color/colorWhite"
+        android:background="@drawable/ic_rounded_5" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+
+        <TextView
+            android:id="@+id/label_temperature"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="22°C"
+            android:textAlignment="center"
+            android:theme="@style/weather_fonts_style" />
+
+        <ImageView
+            android:id="@+id/iv_logo"
+            android:layout_width="43dp"
+            android:layout_height="43dp"
+            android:src="@drawable/wet_cerah_berawan" />
+
+        <TextView
+            android:id="@+id/label_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="17:00"
+            android:textAlignment="center"
+            android:theme="@style/weather_fonts_style" />
+    </LinearLayout>
+
+</FrameLayout>

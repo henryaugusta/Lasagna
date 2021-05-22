@@ -8,7 +8,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.feylabs.lasagna.R
 import com.feylabs.lasagna.databinding.ActivityReviewBeforeInputBinding
-import com.feylabs.lasagna.model.api.SendReportModel
+import com.feylabs.lasagna.data.model.api.SendReportModel
 import com.feylabs.lasagna.util.Resource
 import com.feylabs.lasagna.util.SharedPreference.Preference
 import com.feylabs.lasagna.util.SharedPreference.const.USER_ID
