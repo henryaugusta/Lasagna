@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.feylabs.lasagna.data.remote.RemoteDataSource
 import com.feylabs.lasagna.data.model.SendCreateHospitalModel
+import com.feylabs.lasagna.data.model.api.CityWeather
 import com.feylabs.lasagna.data.model.api.DeleteHospitalModel
 import com.feylabs.lasagna.data.model.api.HospitalModel
 import com.feylabs.lasagna.data.model.api.Weather
@@ -74,6 +75,18 @@ class LasagnaRepository(private val remoteDataSource: RemoteDataSource) {
 
         remoteDataSource.getWeather(id, object : RemoteDataSource.DetailWeatherCallback {
             override fun callback(response: Resource<Weather>) {
+                apiResponse.postValue(response)
+            }
+        })
+        return apiResponse
+    }
+
+    fun getCityWeather(): MutableLiveData<Resource<CityWeather>> {
+        val apiResponse: MutableLiveData<Resource<CityWeather>> = MutableLiveData()
+
+        remoteDataSource.getCityWeather(object : RemoteDataSource.ListCityWeatherCallback {
+
+            override fun callback(response: Resource<CityWeather>) {
                 apiResponse.postValue(response)
             }
         })

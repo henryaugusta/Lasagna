@@ -39,9 +39,12 @@ class WeatherAdapterSimple() : RecyclerView.Adapter<WeatherAdapterSimple.Weather
                 myInterface.onclick(model)
             }
 
+
+
             vbind.apply {
                 this.labelTemperature.text = model.tempC + "°"
                 val take8 = model.jamCuaca.takeLast(8)
+                this.labelDate.text = model.jamCuaca.take(10)
                 this.labelTime.text = take8.take(5)
             }
 

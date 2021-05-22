@@ -6,6 +6,7 @@ import com.androidnetworking.error.ANError
 import com.androidnetworking.interfaces.JSONObjectRequestListener
 import com.androidnetworking.interfaces.StringRequestListener
 import com.feylabs.lasagna.data.model.SendCreateHospitalModel
+import com.feylabs.lasagna.data.model.api.CityWeather
 import com.feylabs.lasagna.data.model.api.DeleteHospitalModel
 import com.feylabs.lasagna.data.model.api.HospitalModel
 import com.feylabs.lasagna.data.model.api.Weather
@@ -184,7 +185,28 @@ class RemoteDataSource {
                     Log.d("rep_detail_weather", response.toString())
                     val gson = Gson()
                     val model = gson.fromJson(response, Weather::class.java)
-                    callback.callback(Resource.Success(model))
+                    callback.callback(Resource.Success(model,"Berhasil Menampilkan Prediksi Cuaca"))
+                }
+
+                override fun onError(anError: ANError?) {
+                    Log.d("rep_detail_weather", "error")
+                    Log.d("rep_detail_weather", anError?.errorBody.toString())
+                    Log.d("rep_detail_weather", anError?.message.toString())
+                    callback.callback(Resource.Error("Terjadi Kesalahan"))
+                }
+
+            })
+    }
+
+    fun getCityWeather(callback: ListCityWeatherCallback) {
+        AndroidNetworking.get(Endpoint.GET_CITY_WEATHER()).build()
+            .getAsString(object : StringRequestListener {
+                override fun onResponse(response: String?) {
+                    Log.d("rep_detail_weather", "success")
+                    Log.d("rep_detail_weather", response.toString())
+                    val gson = Gson()
+                    val model = gson.fromJson(response, CityWeather::class.java)
+                    callback.callback(Resource.Success(model,"Berhasil Fetch Data Kota"))
                 }
 
                 override fun onError(anError: ANError?) {
@@ -215,6 +237,10 @@ class RemoteDataSource {
 
     interface DetailWeatherCallback {
         fun callback(response: Resource<Weather>)
+    }
+
+    interface ListCityWeatherCallback {
+        fun callback(response: Resource<CityWeather>)
     }
 }
 
