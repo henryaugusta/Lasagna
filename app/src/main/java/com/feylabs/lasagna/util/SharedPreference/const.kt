@@ -3,6 +3,7 @@ package com.feylabs.lasagna.util.SharedPreference
 object const {
 
   const val USER_TYPE = "sws"
+  const val USER_ROLE = "sSSws"
   const val USER_ID = "das"
 
 //  AIzaSyAoajgYBFmrbajptYkY6wkAsew_KsrMQxg

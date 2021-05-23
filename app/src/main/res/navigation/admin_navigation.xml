@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/admin_navigation.xml"
+    app:startDestination="@id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.feylabs.lasagna.view.ui.admin.AdminHomeFragment"
+        android:label="fragment_admin_home"
+        tools:layout="@layout/fragment_admin_home" >
+        <action
+            android:id="@+id/action_nav_home_to_listHospitalActivity"
+            app:destination="@id/nav_hospital" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_slideshow"
+        android:name="com.feylabs.lasagna.view.ui.admin.AdminHomeFragment"
+        android:label="fragment_admin_home"
+        tools:layout="@layout/fragment_admin_home" />
+    <fragment
+        android:id="@+id/nav_user_management"
+        android:name="com.feylabs.lasagna.view.ui.admin.AdminUserManagementFragment"
+        android:label="fragment_admin_settings"
+        tools:layout="@layout/fragment_admin_user_management" />
+
+    <activity
+        android:id="@+id/nav_hospital"
+        android:name="com.feylabs.lasagna.view.ui.hospital.ListHospitalActivity"
+        android:label="activity_list_hospital"
+        tools:layout="@layout/activity_list_hospital" />
+    <fragment
+        android:id="@+id/nav_contact"
+        android:name="com.feylabs.lasagna.view.ui.contact.ContactListFragment"
+        android:label="fragment_contact_list"
+        tools:layout="@layout/fragment_contact_list" >
+        <action
+            android:id="@+id/action_nav_contact_to_createContactFragment"
+            app:destination="@id/createContactFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createContactFragment"
+        android:name="com.feylabs.lasagna.view.ui.contact.CreateContactFragment"
+        android:label="CreateContactFragment" />
+
+</navigation>

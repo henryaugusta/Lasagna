@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.feylabs.lasagna.R
 import com.feylabs.lasagna.databinding.ItemWeatherDetailBinding
 import com.feylabs.lasagna.data.model.api.Weather
@@ -48,14 +49,34 @@ class WeatherAdapterComplex() : RecyclerView.Adapter<WeatherAdapterComplex.Weath
                 this.labelDesc.text=model.cuaca
             }
 
-//            Glide
-//                .with(vbind.root)
-//                .load()
-//                .skipMemoryCache(true)
-//                .dontAnimate()
-//                .thumbnail(Glide.with(vbind.root).load(R.raw.loading2))
-//                .placeholder(R.drawable.ic_loading_small_1)
-//                .into(vbind.ivCover)
+            var res = 0
+            when(model.kodeCuaca){
+                "1"->{
+                    res = R.drawable.wet_cerah_berawan
+                }
+                "60"->{
+                    res = R.drawable.wet_hujan
+                }
+                "3"->{
+                    res = R.drawable.wet_berawan
+                }
+                "0"->{
+                    res = R.drawable.wet_cerah
+                }
+                else->{
+
+                }
+
+            }
+
+            Glide
+                .with(vbind.root)
+                .load("https://ibnux.github.io/BMKG-importer/icon/${model.kodeCuaca}.png")
+                .skipMemoryCache(true)
+                .dontAnimate()
+                .thumbnail(Glide.with(vbind.root).load(R.raw.loading2))
+                .placeholder(R.drawable.ic_loading_small_1)
+                .into(vbind.ivLogo)
         }
     }
 

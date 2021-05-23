@@ -124,5 +124,6 @@ dependencies {
     implementation "org.kodein.di:kodein-di-generic-jvm:$kodein_version"
     implementation "org.kodein.di:kodein-di-framework-android-x:$kodein_version"
 
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 
 }

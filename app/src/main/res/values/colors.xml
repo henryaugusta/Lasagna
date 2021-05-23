@@ -57,6 +57,8 @@
     <color name="colorPurplish">#F5F6FC</color>
     <color name="colorTextSecondary">#A8B2C8</color>
     <color name="colorOrangePrice">#f08a5d</color>
+    <color name="semi_white">#FFFDFD</color>
+    <color name="white_bluish">#F5FCFE</color>
 
 
 </resources>

@@ -74,6 +74,14 @@ object Endpoint {
         Log.d("endpoint",url)
         return url
     }
+    fun DELETE_CONTACT(id:String): String {
+        val url = "$BASE_URL/contact/$id/delete"
+        Log.d("endpoint",url)
+        return url
+    }
+
+    const val GET_CONTACT = "${BASE_URL}/contact/fetch"
+    const val CREATE_CONTACT = "${BASE_URL}/contact/store"
 
     const val GET_REPORT_CATEGORY = "${BASE_URL}/category"
 }

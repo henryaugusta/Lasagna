@@ -13,7 +13,7 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.FLASHLIGHT" />
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.CALL_PHONE" />
     <application
         android:name=".util.baseclass.LasagnaApplication"
         android:allowBackup="true"
@@ -25,12 +25,18 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:icon,android:theme">
         <activity
+            android:name=".view.ui.admin.AdminHomeActivity"
+            android:label="@string/title_activity_admin_home"
+            android:theme="@style/Theme.Lasagna.NoActionBar" >
+
+        </activity>
+        <activity android:name=".view.ui.daily_covid.DailyCovidActivity" />
+        <activity
             android:name=".view.ui.weather.WeatherActivity"
             android:theme="@style/Theme.Lasagna.NoActionBar"
-            android:windowSoftInputMode="stateHidden"
-            />
+            android:windowSoftInputMode="stateHidden" />
         <activity android:name=".view.ui.hospital.AddHospitalActivity" />
-        <activity android:name=".view.ui.hospital.ListHospitalActivity"></activity>
+        <activity android:name=".view.ui.hospital.ListHospitalActivity" />
         <activity android:name=".view.ui.report.DetailReportActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.

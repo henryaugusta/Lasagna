@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorWhite"
+    android:background="@color/white_bluish"
     tools:context=".view.ui.home.HomeFragment">
 
     <ScrollView
@@ -259,10 +259,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
-                    android:fontFamily="@font/sf_pro_display"
+                    android:fontFamily="@font/poppins_regular"
                     android:text="@string/terbaru_di_kepri"
                     android:textColor="@color/colorBlack"
-                    android:textSize="20dp" />
+                    android:textSize="20sp" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/container_card_news"
@@ -300,6 +300,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/poppins_regular"
                     android:text="@string/kirim_laporan"
                     android:textColor="@color/colorBlack" />
 
@@ -383,7 +385,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:background="@color/colorWhite"
+                android:background="#d3e0ea"
                 android:orientation="vertical"
                 android:padding="10dp">
 
@@ -392,9 +394,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
-                    android:fontFamily="@font/sf_pro_display"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="@color/colorWhite"
                     android:text="Menu"
-                    android:textColor="@color/colorBlack"
                     android:textSize="20dp" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -406,8 +408,32 @@
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                     android:orientation="horizontal"/>
 
+                <TextView
+                    android:layout_marginTop="30dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Made with ♥ by ESD Lab"
+                    android:textAlignment="center"
+                    android:textColor="@color/white" />
+
 
             </LinearLayout>
+
+            <RelativeLayout
+                android:visibility="gone"
+                android:layout_marginTop="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_homie"
+                    android:scaleType="fitXY"
+                    />
+
+            </RelativeLayout>
 
 
         </LinearLayout>

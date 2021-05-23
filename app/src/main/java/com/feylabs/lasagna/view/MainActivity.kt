@@ -25,6 +25,8 @@ import com.feylabs.lasagna.util.SharedPreference.const.USER_EMAIL
 import com.feylabs.lasagna.util.SharedPreference.const.USER_ID
 import com.feylabs.lasagna.util.SharedPreference.const.USER_NAME
 import com.feylabs.lasagna.util.SharedPreference.const.USER_PHOTO
+import com.feylabs.lasagna.util.SharedPreference.const.USER_TYPE
+import com.feylabs.lasagna.view.ui.admin.AdminHomeActivity
 
 import kotlinx.coroutines.*
 import timber.log.Timber
@@ -87,17 +89,30 @@ class MainActivity : BaseActivity() {
                 is Resource.Success -> {
                     showSweetAlert("Login Berhasil","Selamat Datang $USER_NAME",R.color.xdGreen)
                     //Save User ID , Name and Email to SharedPref
-                    Preference(this).apply {
-                        save(IS_USER_LOGIN,true)
-                        save(USER_NAME,loginViewModel.USER_EMAIL.value.toString())
-                        save(USER_ID,loginViewModel.USER_ID.value.toString())
-                        save(USER_EMAIL,loginViewModel.USER_EMAIL.value.toString())
+
+                    if (loginViewModel.USER_TYPE.value=="admin"){
+                        Preference(this).apply {
+                            save(USER_TYPE,"admin")
+                            save(IS_USER_LOGIN,true)
+                            save(USER_NAME,loginViewModel.USER_EMAIL.value.toString())
+                            save(USER_ID,loginViewModel.USER_ID.value.toString())
+                            save(USER_EMAIL,loginViewModel.USER_EMAIL.value.toString())
+                        }
+                    }else{
+                        Preference(this).apply {
+                            save(USER_TYPE,"user")
+                            save(IS_USER_LOGIN,true)
+                            save(USER_NAME,loginViewModel.USER_EMAIL.value.toString())
+                            save(USER_ID,loginViewModel.USER_ID.value.toString())
+                            save(USER_EMAIL,loginViewModel.USER_EMAIL.value.toString())
+                        }
+                        "Login Berhasil".showLongToast()
+                        Timber.d("login: success")
+                        Timber.d("login: ${loginViewModel.USER_NAME.value}")
+                        Timber.d("login: ${loginViewModel.USER_USERNAME.value}")
                     }
-                    "Login Berhasil".showLongToast()
                     checkIsLogin()
-                    Timber.d("login: success")
-                    Timber.d("login: ${loginViewModel.USER_NAME.value}")
-                    Timber.d("login: ${loginViewModel.USER_USERNAME.value}")
+
                 }
             }
         })
@@ -182,7 +197,11 @@ class MainActivity : BaseActivity() {
     private fun checkIsLogin() {
         val isLogin : Boolean = Preference(this).getPrefBool(IS_USER_LOGIN) ?:false
         if (isLogin){
-            startActivity(Intent(this,MainMenuUserActivity::class.java))
+            if (Preference(this).getPrefString(USER_TYPE).toString()=="admin"){
+                startActivity(Intent(this,AdminHomeActivity::class.java))
+            }else{
+                startActivity(Intent(this,MainMenuUserActivity::class.java))
+            }
             finish()
         }else{
             //Do Nothing

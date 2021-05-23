@@ -2,13 +2,12 @@ package com.feylabs.lasagna.data
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.feylabs.lasagna.data.local.ContactItemModel
 import com.feylabs.lasagna.data.remote.RemoteDataSource
 import com.feylabs.lasagna.data.model.SendCreateHospitalModel
-import com.feylabs.lasagna.data.model.api.CityWeather
-import com.feylabs.lasagna.data.model.api.DeleteHospitalModel
-import com.feylabs.lasagna.data.model.api.HospitalModel
-import com.feylabs.lasagna.data.model.api.Weather
+import com.feylabs.lasagna.data.model.api.*
 import com.feylabs.lasagna.util.Resource
+import java.io.File
 
 class LasagnaRepository(private val remoteDataSource: RemoteDataSource) {
 
@@ -31,6 +30,17 @@ class LasagnaRepository(private val remoteDataSource: RemoteDataSource) {
                 apiResponse.value = response
             }
 
+        })
+
+        return apiResponse
+    }
+
+    fun getCovidDetail(): MutableLiveData<Resource<GovCovidData>> {
+        val apiResponse: MutableLiveData<Resource<GovCovidData>> = MutableLiveData()
+        remoteDataSource.covidIDSummary(object : RemoteDataSource.CovidSummaryCallback {
+            override fun callback(response: Resource<GovCovidData>) {
+                apiResponse.value = response
+            }
         })
 
         return apiResponse
@@ -83,14 +93,70 @@ class LasagnaRepository(private val remoteDataSource: RemoteDataSource) {
 
     fun getCityWeather(): MutableLiveData<Resource<CityWeather>> {
         val apiResponse: MutableLiveData<Resource<CityWeather>> = MutableLiveData()
-
         remoteDataSource.getCityWeather(object : RemoteDataSource.ListCityWeatherCallback {
-
             override fun callback(response: Resource<CityWeather>) {
                 apiResponse.postValue(response)
             }
         })
         return apiResponse
+    }
+
+    fun createContact(name:String,description:String,photo:File): MutableLiveData<Resource<String>> {
+        val apiResponse: MutableLiveData<Resource<String>> = MutableLiveData()
+        remoteDataSource.createContact(name,description,photo,callback = object :RemoteDataSource.AddContactCallback{
+            override fun callback(response: Resource<String>) {
+                apiResponse.postValue(response)
+            }
+        })
+        return apiResponse
+    }
+
+    fun deleteContact(id:String): MutableLiveData<Resource<String>> {
+        val apiResponse: MutableLiveData<Resource<String>> = MutableLiveData()
+        remoteDataSource.deleteContact(id,callback = object :RemoteDataSource.DeleteContactCallback{
+            override fun callback(response: Resource<String>) {
+                apiResponse.postValue(response)
+            }
+        })
+        return apiResponse
+    }
+
+    fun getContact(): MutableLiveData<Resource<MutableList<ContactItemModel>>> {
+        val apiResponse: MutableLiveData<Resource<MutableList<ContactItemModel>>> =
+            MutableLiveData()
+        val tempList = mutableListOf<ContactItemModel>()
+        remoteDataSource.getContact(object : RemoteDataSource.GetContactCallback {
+            override fun callback(response: Resource<ContactResponseModel>) {
+                when (response) {
+                    is Resource.Success -> {
+                        response.data?.data?.forEach {
+                            tempList.add(
+                                ContactItemModel(
+                                    createdAt = it.createdAt,
+                                    id = it.id,
+                                    deskripsi = it.deskripsi,
+                                    name = it.name,
+                                    photoPath = it.photoPath,
+                                    updatedAt = it.updatedAt
+                                )
+                            )
+                        }
+                        apiResponse.postValue(Resource.Success(tempList,response.message))
+
+                    }
+                    is Resource.Loading -> {
+                        apiResponse.postValue(Resource.Loading())
+                    }
+                    is Resource.Error -> {
+                        apiResponse.postValue(Resource.Error(response.data?.message.toString()))
+                    }
+                }
+            }
+
+        })
+
+        return apiResponse
+
     }
 
 

@@ -15,7 +15,6 @@ import com.tapadoo.alerter.Alerter
 open class BaseActivity : AppCompatActivity() {
 
 
-
     fun String.showLongToast() {
         Toast.makeText(this@BaseActivity, this, Toast.LENGTH_LONG).show()
     }

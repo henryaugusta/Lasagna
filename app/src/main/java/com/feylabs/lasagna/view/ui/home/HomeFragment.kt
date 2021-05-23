@@ -17,23 +17,27 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.feylabs.lasagna.R
 import com.feylabs.lasagna.view.ui.weather.WeatherActivity
 import com.feylabs.lasagna.adapter.NewsAdapterCarousel
 import com.feylabs.lasagna.adapter.ReportCategoryAdapter
+import com.feylabs.lasagna.data.LasagnaRepository
 import com.feylabs.lasagna.databinding.FragmentHomeBinding
 import com.feylabs.lasagna.databinding.ItemCategoryReportBinding
 import com.feylabs.lasagna.databinding.LayoutDetailNewsBinding
 import com.feylabs.lasagna.data.model.ModelNewsCarousel
 import com.feylabs.lasagna.data.model.api.ReportCategoryModel
+import com.feylabs.lasagna.data.remote.RemoteDataSource
 import com.feylabs.lasagna.util.Resource
 import com.feylabs.lasagna.util.URL
 import com.feylabs.lasagna.util.baseclass.BaseFragment
 import com.feylabs.lasagna.util.baseclass.Util
 import com.feylabs.lasagna.view.MainMenuUserViewModel
 import com.feylabs.lasagna.view.bottom_sheet.NewsBottomSheet
+import com.feylabs.lasagna.view.ui.daily_covid.DailyCovidActivity
 import com.feylabs.lasagna.view.ui.hospital.ListHospitalActivity
 import com.feylabs.lasagna.viewmodel.NewsViewModel
 import com.squareup.picasso.Picasso
@@ -73,12 +77,14 @@ class HomeFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         Util.setStatusBarLight(requireActivity())
 
+        val factory = HomeViewModelFactory(LasagnaRepository(RemoteDataSource()))
+        homeViewModel = ViewModelProvider(this, factory).get(HomeViewModel::class.java)
+
         menuViewModel.title.value = "Beranda"
         newsViewModel.fetchNews()
 
 
         setUpAdapter()
-
         setupRecyclerView()
 
         vbinding.indicator.attachToRecyclerView(vbinding.containerCardNews)
@@ -108,6 +114,14 @@ class HomeFragment : BaseFragment() {
                     category_name = "Prediksi Cuaca",
                     id = 3,
                     photo_path = "/static_web_files/weather.png"
+                ), ReportCategoryModel.Data(
+                    category_name = "Covid Harian",
+                    id = 4,
+                    photo_path = "/static_web_files/covid.png"
+                ), ReportCategoryModel.Data(
+                    category_name = "Kontak Penting",
+                    id = 5,
+                    photo_path = "/static_web_files/contact.png"
                 )
             )
         )
@@ -117,15 +131,22 @@ class HomeFragment : BaseFragment() {
                 model: ReportCategoryModel.Data,
                 adaptVbind: ItemCategoryReportBinding
             ) {
-                when(model.id){
-                    1->{
-                        startActivity(Intent(requireContext(),ListHospitalActivity::class.java))
+                when (model.id) {
+                    1 -> {
+                        startActivity(Intent(requireContext(), ListHospitalActivity::class.java))
                     }
-                    2->{
-                        startActivity(Intent(requireContext(),ListHospitalActivity::class.java))
+                    2 -> {
+                        startActivity(Intent(requireContext(), ListHospitalActivity::class.java))
                     }
-                    3->{
+                    3 -> {
                         startActivity(Intent(requireContext(), WeatherActivity::class.java))
+                    }
+                    4 -> {
+                        startActivity(Intent(requireContext(), DailyCovidActivity::class.java))
+                    }
+                    5 -> {
+                        Navigation.findNavController(vbinding.root)
+                            .navigate(R.id.action_navigation_home_to_contactListFragment)
                     }
                 }
 
@@ -211,6 +232,31 @@ class HomeFragment : BaseFragment() {
                     Timber.d("register: success")
                 }
 
+            }
+        })
+
+
+        homeViewModel.covidSummary
+        homeViewModel.covidSummary.observe(viewLifecycleOwner, Observer {
+            when (it) {
+                is Resource.Success -> {
+                    it.data.apply {
+                        vbinding.odp.text = this?.data?.jumlahOdp.toString()
+                        vbinding.death.text = this?.update?.total?.jumlahMeninggal.toString()
+                        vbinding.deathNew.text =
+                            this?.update?.penambahan?.jumlahMeninggal.toString()
+                        vbinding.recovered.text = this?.update?.total?.jumlahMeninggal.toString()
+                        vbinding.recoveredNew.text =
+                            this?.update?.penambahan?.jumlahMeninggal.toString()
+                        vbinding.infected.text = this?.update?.total?.jumlahPositif.toString()
+                        vbinding.infectedNew.text =
+                            this?.update?.penambahan?.jumlahSembuh.toString()
+                        vbinding.inHospital.text = this?.update?.total?.jumlahDirawat.toString()
+                    }
+                }
+                else -> {
+
+                }
             }
         })
     }

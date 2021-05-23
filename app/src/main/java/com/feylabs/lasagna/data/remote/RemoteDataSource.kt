@@ -1,20 +1,25 @@
 package com.feylabs.lasagna.data.remote
 
+import android.annotation.SuppressLint
 import android.util.Log
 import com.androidnetworking.AndroidNetworking
 import com.androidnetworking.error.ANError
 import com.androidnetworking.interfaces.JSONObjectRequestListener
 import com.androidnetworking.interfaces.StringRequestListener
 import com.feylabs.lasagna.data.model.SendCreateHospitalModel
-import com.feylabs.lasagna.data.model.api.CityWeather
-import com.feylabs.lasagna.data.model.api.DeleteHospitalModel
-import com.feylabs.lasagna.data.model.api.HospitalModel
-import com.feylabs.lasagna.data.model.api.Weather
+import com.feylabs.lasagna.data.model.api.*
 import com.feylabs.lasagna.util.Resource
+import com.feylabs.lasagna.util.URL.INDONESIA_SUMMARY
 import com.feylabs.lasagna.util.networking.Endpoint
+import com.feylabs.lasagna.util.networking.Endpoint.CREATE_CONTACT
+import com.feylabs.lasagna.util.networking.Endpoint.DELETE_CONTACT
+import com.feylabs.lasagna.util.networking.Endpoint.GET_CONTACT
 import com.google.gson.Gson
 import org.json.JSONObject
+import java.io.File
+import java.nio.file.Files
 
+@SuppressLint("LogNotTimber")
 class RemoteDataSource {
 
     var gson: Gson = Gson()
@@ -141,8 +146,6 @@ class RemoteDataSource {
         request.apply {
             if (model.photo.toString() != "") {
                 addMultipartFile("photo", model.photo)
-            } else {
-
             }
             addMultipartParameter("name", model.name)
             addMultipartParameter("alamat", model.alamat)
@@ -185,7 +188,12 @@ class RemoteDataSource {
                     Log.d("rep_detail_weather", response.toString())
                     val gson = Gson()
                     val model = gson.fromJson(response, Weather::class.java)
-                    callback.callback(Resource.Success(model,"Berhasil Menampilkan Prediksi Cuaca"))
+                    callback.callback(
+                        Resource.Success(
+                            model,
+                            "Berhasil Menampilkan Prediksi Cuaca"
+                        )
+                    )
                 }
 
                 override fun onError(anError: ANError?) {
@@ -206,7 +214,7 @@ class RemoteDataSource {
                     Log.d("rep_detail_weather", response.toString())
                     val gson = Gson()
                     val model = gson.fromJson(response, CityWeather::class.java)
-                    callback.callback(Resource.Success(model,"Berhasil Fetch Data Kota"))
+                    callback.callback(Resource.Success(model, "Berhasil Fetch Data Kota"))
                 }
 
                 override fun onError(anError: ANError?) {
@@ -214,6 +222,115 @@ class RemoteDataSource {
                     Log.d("rep_detail_weather", anError?.errorBody.toString())
                     Log.d("rep_detail_weather", anError?.message.toString())
                     callback.callback(Resource.Error("Terjadi Kesalahan"))
+                }
+
+            })
+    }
+
+    fun getContact(callback: GetContactCallback) {
+        callback.callback(Resource.Loading())
+        AndroidNetworking.get(GET_CONTACT).build()
+            .getAsString(object : StringRequestListener {
+                override fun onResponse(response: String?) {
+                    Log.d("rep_contact", "success")
+                    Log.d("rep_contact", response.toString())
+                    val model = Gson().fromJson(response, ContactResponseModel::class.java)
+                    callback.callback(Resource.Success(model, model.message))
+                }
+
+                override fun onError(anError: ANError?) {
+                    Log.d("rep_contact", "error")
+                    Log.d("rep_contact", anError?.errorBody.toString())
+                    Log.d("rep_contact", anError?.message.toString())
+                    callback.callback(Resource.Error("Terjadi Kesalahan"))
+                }
+
+            })
+    }
+
+    fun getDetailContact(){
+
+    }
+
+    fun createContact(
+        name: String,
+        description: String,
+        photo: File,
+        callback: AddContactCallback
+    ) {
+        callback.callback(Resource.Loading())
+        AndroidNetworking.upload(CREATE_CONTACT)
+            .addMultipartParameter("name", name)
+            .addMultipartParameter("deskripsi", description)
+            .addMultipartFile("photo", photo)
+            .build()
+            .getAsString(object : StringRequestListener {
+                override fun onResponse(response: String?) {
+                    Log.d("rep_contact_add", "success")
+                    Log.d("rep_contact_add", response.toString())
+                    val model = Gson().fromJson(response, ContactResponseModel::class.java)
+                    callback.callback(Resource.Success(model.message,model.message))
+                }
+
+                override fun onError(anError: ANError?) {
+                    Log.d("rep_contact_add", "error")
+                    Log.d("rep_contact_add", anError?.errorBody.toString())
+                    Log.d("rep_contact_add", anError?.message.toString())
+                    callback.callback(Resource.Error("Terjadi Kesalahan"))
+                }
+
+            })
+    }
+
+    fun deleteContact(
+        id: String,
+        callback: DeleteContactCallback
+    ) {
+        callback.callback(Resource.Loading())
+        AndroidNetworking.delete(DELETE_CONTACT(id))
+            .addBodyParameter("id",id)
+            .build()
+            .getAsString(object : StringRequestListener {
+                override fun onResponse(response: String?) {
+                    Log.d("rep_contact_add", "success")
+                    Log.d("rep_contact_add", response.toString())
+                    val model = Gson().fromJson(response, ContactDeleteResponse::class.java)
+                    if (model.status==1){
+                        callback.callback(Resource.Success(model.message,model.message))
+                    }else{
+                        if (model.status==1){
+                            callback.callback(Resource.Error(model.message))
+                        }
+                    }
+                }
+
+                override fun onError(anError: ANError?) {
+                    Log.d("rep_contact_delete", "error")
+                    Log.d("rep_contact_delete", anError?.errorBody.toString())
+                    Log.d("rep_contact_delete", anError?.message.toString())
+                    callback.callback(Resource.Error("Terjadi Kesalahan"))
+                }
+
+            })
+    }
+
+    fun covidIDSummary(callback: CovidSummaryCallback) {
+        AndroidNetworking.get(INDONESIA_SUMMARY).build()
+            .getAsString(object : StringRequestListener {
+                override fun onResponse(response: String?) {
+                    Log.d("rep_kopit", "success")
+                    Log.d("rep_kopit", response.toString())
+                    val model = gson.fromJson(response, GovCovidData::class.java)
+                    if (model != null) {
+                        callback.callback(Resource.Success(model, "Berhasil Memuat Data Covid"))
+                    }
+                }
+
+                override fun onError(anError: ANError?) {
+                    Log.d("rep_kopit", "error")
+                    Log.d("rep_kopit", anError?.errorBody.toString())
+                    Log.d("rep_kopit", anError?.message.toString())
+                    callback.callback(Resource.Error("Gagal Memuat Data Covid"))
                 }
 
             })
@@ -241,6 +358,22 @@ class RemoteDataSource {
 
     interface ListCityWeatherCallback {
         fun callback(response: Resource<CityWeather>)
+    }
+
+    interface CovidSummaryCallback {
+        fun callback(response: Resource<GovCovidData>)
+    }
+
+    interface GetContactCallback {
+        fun callback(response: Resource<ContactResponseModel>)
+    }
+
+    interface AddContactCallback {
+        fun callback(response: Resource<String>)
+    }
+
+    interface DeleteContactCallback {
+        fun callback(response: Resource<String>)
     }
 }
 

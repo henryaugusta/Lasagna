@@ -17,6 +17,7 @@ class LoginViewModel : ViewModel() {
     val USER_USERNAME : MutableLiveData<String> = MutableLiveData()
     val USER_ID : MutableLiveData<String> = MutableLiveData()
     val USER_EMAIL : MutableLiveData<String> = MutableLiveData()
+    val USER_TYPE : MutableLiveData<String> = MutableLiveData()
 
     fun sendLoginData(
         username: String,
@@ -34,13 +35,24 @@ class LoginViewModel : ViewModel() {
                 override fun onResponse(response: JSONObject) {
                     Timber.d("login: response-> $response")
                     if (response.getString("status")=="1"){
-                        val people = response.getJSONObject("people")
-                        //these are 4 main pref for user people
-                        USER_ID.postValue(people.getString("id"))
-                        USER_NAME.postValue(people.getString("nama"))
-                        USER_USERNAME.postValue(people.getString("username"))
-                        USER_EMAIL.postValue(people.getString("email"))
-                        loginStatus.postValue(Resource.Success("Login Berhasil"))
+
+                        if (response.getString("type")=="admin"){
+                            val people = response.getJSONObject("people")
+                            USER_TYPE.postValue("admin")
+                            USER_ID.postValue(people.getString("id"))
+                            USER_NAME.postValue(people.getString("name"))
+                            USER_EMAIL.postValue(people.getString("email"))
+                            loginStatus.postValue(Resource.Success("Login Berhasil (Admin)"))
+                        }else{
+                            val people = response.getJSONObject("people")
+                            //these are 4 main pref for user people
+                            USER_ID.postValue(people.getString("id"))
+                            USER_NAME.postValue(people.getString("nama"))
+                            USER_USERNAME.postValue(people.getString("username"))
+                            USER_EMAIL.postValue(people.getString("email"))
+                            loginStatus.postValue(Resource.Success("Login Berhasil"))
+                        }
+
                     }else{
                         loginStatus.postValue(Resource.Error("Username atau Password Tidak Ditemukan"))
                     }

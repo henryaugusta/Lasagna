@@ -11,8 +11,8 @@
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_navigation_home_to_navigation_input_report"
-            app:destination="@id/navigation_input_report" />
+            android:id="@+id/action_navigation_home_to_contactListFragment"
+            app:destination="@id/contactListFragment" />
     </fragment>
 
     <fragment
@@ -27,13 +27,15 @@
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
 
-    <activity
-        android:id="@+id/navigation_input_report"
-        android:name="com.feylabs.lasagna.view.ui.send_report.UserInputReportActivity"
-        android:label="activity_user_input_report"
-        tools:layout="@layout/activity_user_input_report" />
     <fragment
         android:id="@+id/navigation_settings"
         android:name="com.feylabs.lasagna.view.ui.settings.SettingsFragment"
         android:label="Profile" />
+    <fragment
+        android:id="@+id/contactListFragment"
+        android:name="com.feylabs.lasagna.view.ui.contact.ContactListFragment"
+        android:label="fragment_contact_list"
+        tools:layout="@layout/fragment_contact_list" />
+
+
 </navigation>

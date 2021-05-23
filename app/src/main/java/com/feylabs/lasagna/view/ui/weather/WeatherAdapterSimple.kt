@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.feylabs.lasagna.R
 import com.feylabs.lasagna.databinding.ItemWeatherBinding
 import com.feylabs.lasagna.data.model.api.Weather
@@ -48,14 +49,16 @@ class WeatherAdapterSimple() : RecyclerView.Adapter<WeatherAdapterSimple.Weather
                 this.labelTime.text = take8.take(5)
             }
 
-//            Glide
-//                .with(vbind.root)
-//                .load()
-//                .skipMemoryCache(true)
-//                .dontAnimate()
-//                .thumbnail(Glide.with(vbind.root).load(R.raw.loading2))
-//                .placeholder(R.drawable.ic_loading_small_1)
-//                .into(vbind.ivCover)
+
+            Glide
+                .with(vbind.root)
+                .load("https://ibnux.github.io/BMKG-importer/icon/${model.kodeCuaca}.png")
+                .skipMemoryCache(true)
+                .dontAnimate()
+                .thumbnail(Glide.with(vbind.root).load(R.raw.loading2))
+                .placeholder(R.drawable.ic_loading_small_1)
+                .into(vbind.ivLogo)
+
         }
     }
 
