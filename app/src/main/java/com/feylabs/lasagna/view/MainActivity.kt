@@ -94,7 +94,7 @@ class MainActivity : BaseActivity() {
                         Preference(this).apply {
                             save(USER_TYPE,"admin")
                             save(IS_USER_LOGIN,true)
-                            save(USER_NAME,loginViewModel.USER_EMAIL.value.toString())
+                            save(USER_NAME,loginViewModel.USER_NAME.value.toString())
                             save(USER_ID,loginViewModel.USER_ID.value.toString())
                             save(USER_EMAIL,loginViewModel.USER_EMAIL.value.toString())
                         }
@@ -119,7 +119,6 @@ class MainActivity : BaseActivity() {
 
         //Login Button Logic
         viewBinding.lytLoginUser.let {
-
             it.btnLogin.setOnClickListener { _ ->
                 var isError = false
 

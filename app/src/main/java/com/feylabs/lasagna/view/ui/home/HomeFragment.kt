@@ -50,7 +50,6 @@ class HomeFragment : BaseFragment() {
 
     val newsViewModel by lazy { ViewModelProvider(requireActivity()).get(NewsViewModel::class.java) }
     val menuViewModel by lazy { ViewModelProvider(requireActivity()).get(MainMenuUserViewModel::class.java) }
-
     val menuAdapter by lazy { ReportCategoryAdapter() }
 
 
@@ -82,6 +81,7 @@ class HomeFragment : BaseFragment() {
 
         menuViewModel.title.value = "Beranda"
         newsViewModel.fetchNews()
+
 
 
         setUpAdapter()

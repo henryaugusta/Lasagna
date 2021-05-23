@@ -35,7 +35,6 @@ class LoginViewModel : ViewModel() {
                 override fun onResponse(response: JSONObject) {
                     Timber.d("login: response-> $response")
                     if (response.getString("status")=="1"){
-
                         if (response.getString("type")=="admin"){
                             val people = response.getJSONObject("people")
                             USER_TYPE.postValue("admin")

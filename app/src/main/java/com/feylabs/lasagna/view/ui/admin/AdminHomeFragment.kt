@@ -9,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation
 import com.feylabs.lasagna.R
 import com.feylabs.lasagna.databinding.FragmentAdminHomeBinding
+import com.feylabs.lasagna.util.SharedPreference.Preference
+import com.feylabs.lasagna.util.SharedPreference.const
 
 class AdminHomeFragment : Fragment() {
 
@@ -34,7 +36,14 @@ class AdminHomeFragment : Fragment() {
         vbind.containerRS.setOnClickListener {
             Navigation.findNavController(vbind.root).navigate(R.id.action_nav_home_to_listHospitalActivity)
         }
+
+        vbind.containerKontak.setOnClickListener {
+            Navigation.findNavController(vbind.root).navigate(R.id.action_nav_home_to_nav_contact)
+        }
         (requireActivity() as AppCompatActivity).supportActionBar?.title = "Admin Lapor Satgas"
+
+        vbind.labelName.text = Preference(requireContext()).getPrefString(const.USER_NAME).toString()
+        vbind.labelEmail.text = Preference(requireContext()).getPrefString(const.USER_EMAIL).toString()
 
     }
 

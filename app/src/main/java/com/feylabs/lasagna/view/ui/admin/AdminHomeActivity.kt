@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
@@ -16,6 +17,8 @@ import androidx.navigation.ui.setupWithNavController
 import com.feylabs.lasagna.R
 import com.feylabs.lasagna.databinding.ActivityAdminHomeBinding
 import com.feylabs.lasagna.util.SharedPreference.Preference
+import com.feylabs.lasagna.util.SharedPreference.const.USER_EMAIL
+import com.feylabs.lasagna.util.SharedPreference.const.USER_NAME
 import com.feylabs.lasagna.util.baseclass.BaseActivity
 import com.feylabs.lasagna.view.MainActivity
 import com.google.android.material.navigation.NavigationView
@@ -38,7 +41,6 @@ class AdminHomeActivity : BaseActivity() {
         val navController = findNavController(R.id.nav_host_fragment)
 
 
-
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
@@ -51,12 +53,18 @@ class AdminHomeActivity : BaseActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
+        val labelName = navView.getHeaderView(0).findViewById(R.id.label_title) as TextView
+        val labelDesc = navView.getHeaderView(0).findViewById(R.id.label_desc) as TextView
+
+        labelName.text = Preference(this).getPrefString(USER_NAME).toString()
+        labelDesc.text = Preference(this).getPrefString(USER_EMAIL).toString()
+
         val signoutMenuItem = vbind.navViewAdmin.menu.findItem(R.id.btn_logout)
         signoutMenuItem.setOnMenuItemClickListener {
             "Sign Out".showLongToast()
             Preference(this).clearPreferences()
             finish()
-            startActivity(Intent(this,MainActivity::class.java))
+            startActivity(Intent(this, MainActivity::class.java))
             true
         }
     }

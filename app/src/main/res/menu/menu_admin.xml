@@ -7,9 +7,7 @@
         <item
             android:id="@+id/nav_home"
             android:title="@string/menu_home" />
-        <item
-            android:id="@+id/nav_gallery"
-            android:title="@string/menu_gallery" />
+
         <item
             android:id="@+id/nav_user_management"
             android:title="User Management" />
@@ -17,6 +15,7 @@
         <item
             android:id="@+id/nav_contact"
             android:title="Contact Management" />
+
         <item
             android:id="@+id/nav_hospital"
             android:title="Rumah Sakit" />
