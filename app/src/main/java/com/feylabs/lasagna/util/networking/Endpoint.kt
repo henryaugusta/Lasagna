@@ -79,9 +79,20 @@ object Endpoint {
         Log.d("endpoint",url)
         return url
     }
-
     const val GET_CONTACT = "${BASE_URL}/contact/fetch"
     const val CREATE_CONTACT = "${BASE_URL}/contact/store"
 
+    const val CREATE_CATEGORY = "${BASE_URL}/category/store"
     const val GET_REPORT_CATEGORY = "${BASE_URL}/category"
+    fun DELETE_CATEGORY(id:String): String {
+        val url = "$BASE_URL/category/$id/delete"
+        Log.d("endpoint",url)
+        return url
+    }
+
+    fun EDIT_CATEGORY(id:String): String {
+        val url = "$BASE_URL/category/$id/update"
+        Log.d("endpoint",url)
+        return url
+    }
 }

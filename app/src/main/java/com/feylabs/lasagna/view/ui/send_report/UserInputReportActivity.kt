@@ -67,7 +67,7 @@ class UserInputReportActivity : BaseActivity() {
 
         Util.setStatusBarLight(this)
 
-        requestLocationPermission()
+        requestPermission()
 
         setUpToolbar()
         setUpAdapter()
@@ -282,7 +282,7 @@ class UserInputReportActivity : BaseActivity() {
         }
     }
 
-    private fun requestLocationPermission() {
+    private fun requestPermission() {
         if (ActivityCompat.checkSelfPermission(
                 this,
                 Manifest.permission.ACCESS_FINE_LOCATION
@@ -310,7 +310,6 @@ class UserInputReportActivity : BaseActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
             val result = CropImage.getActivityResult(data)
             if (resultCode == Activity.RESULT_OK) {

@@ -37,6 +37,10 @@ class AdminHomeFragment : Fragment() {
             Navigation.findNavController(vbind.root).navigate(R.id.action_nav_home_to_listHospitalActivity)
         }
 
+        vbind.containerCategory.setOnClickListener {
+            Navigation.findNavController(vbind.root).navigate(R.id.action_nav_home_to_categoryManageFragment)
+        }
+
         vbind.containerKontak.setOnClickListener {
             Navigation.findNavController(vbind.root).navigate(R.id.action_nav_home_to_nav_contact)
         }

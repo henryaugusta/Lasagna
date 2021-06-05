@@ -25,7 +25,7 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:icon,android:theme">
         <activity
-            android:name=".view.ui.admin.AdminHomeActivity"
+            android:name=".view.ui.AdminHomeActivity"
             android:label="@string/title_activity_admin_home"
             android:theme="@style/Theme.Lasagna.NoActionBar" >
 

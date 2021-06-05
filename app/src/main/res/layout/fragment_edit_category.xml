@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/lyt_user_profile"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_change_photo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:elevation="2dp"
+                        android:layout_centerInParent="true"
+                        android:layout_below="@id/cardvi"
+                        android:src="@drawable/ic_baseline_add_circle_24"
+                        app:backgroundTint="@color/blue_jeans"
+                        android:text="Ganti Foto"
+                        app:tint="@color/white" />
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardvi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center"
+                        app:cardCornerRadius="80dp"
+                        android:layout_margin="2dp">
+
+                        <ImageView
+                            android:id="@+id/ivPict"
+                            android:layout_width="160dp"
+                            android:layout_height="160dp"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/carousel_city_placeholder" />
+                    </androidx.cardview.widget.CardView>
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/rellay1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="15dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Nama Kategori"
+                                android:textSize="13sp" />
+
+                            <EditText
+                                android:id="@+id/et_name"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:drawablePadding="10dp"
+                                android:fontFamily="sans-serif-light"
+                                android:hint="Nama Kategori"
+                                android:textColor="@color/colorBlack"
+                                android:textSize="18sp" />
+
+                        </LinearLayout>
+
+
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btn_save_changes"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/poppins_medium"
+                                android:text="Simpan Perubahan"
+                                android:textAlignment="center"
+                                android:textColor="@color/colorWhite" />
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+
+
+        <include
+            android:id="@+id/include_loading"
+            layout="@layout/layout_loading_transparent" />
+
+        <include
+            android:id="@+id/include_loading_full"
+            layout="@layout/layout_loading_transparent_full" />
+
+
+        <include
+            android:id="@+id/include_map"
+            layout="@layout/layout_pick_report_location"
+            android:visibility="gone" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

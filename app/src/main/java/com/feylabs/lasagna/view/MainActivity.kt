@@ -24,9 +24,8 @@ import com.feylabs.lasagna.util.SharedPreference.const.IS_USER_LOGIN
 import com.feylabs.lasagna.util.SharedPreference.const.USER_EMAIL
 import com.feylabs.lasagna.util.SharedPreference.const.USER_ID
 import com.feylabs.lasagna.util.SharedPreference.const.USER_NAME
-import com.feylabs.lasagna.util.SharedPreference.const.USER_PHOTO
 import com.feylabs.lasagna.util.SharedPreference.const.USER_TYPE
-import com.feylabs.lasagna.view.ui.admin.AdminHomeActivity
+import com.feylabs.lasagna.view.ui.AdminHomeActivity
 
 import kotlinx.coroutines.*
 import timber.log.Timber
@@ -197,7 +196,7 @@ class MainActivity : BaseActivity() {
         val isLogin : Boolean = Preference(this).getPrefBool(IS_USER_LOGIN) ?:false
         if (isLogin){
             if (Preference(this).getPrefString(USER_TYPE).toString()=="admin"){
-                startActivity(Intent(this,AdminHomeActivity::class.java))
+                startActivity(Intent(this, AdminHomeActivity::class.java))
             }else{
                 startActivity(Intent(this,MainMenuUserActivity::class.java))
             }

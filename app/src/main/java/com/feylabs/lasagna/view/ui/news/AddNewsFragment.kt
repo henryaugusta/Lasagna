@@ -1,4 +1,4 @@
-package com.feylabs.lasagna.view.ui.admin
+package com.feylabs.lasagna.view.ui.news
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,14 +8,20 @@ import android.view.ViewGroup
 import com.feylabs.lasagna.R
 
 
-class AdminSettingsFragment : Fragment() {
+class AddNewsFragment : Fragment() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_admin_settings, container, false)
+        return inflater.inflate(R.layout.fragment_add_news, container, false)
     }
+
 
 }

@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_nav_home_to_nav_contact"
             app:destination="@id/nav_contact" />
+        <action
+            android:id="@+id/action_nav_home_to_categoryManageFragment"
+            app:destination="@id/nav_category" />
     </fragment>
 
     <fragment
@@ -42,5 +45,17 @@
         android:id="@+id/createContactFragment"
         android:name="com.feylabs.lasagna.view.ui.contact.CreateContactFragment"
         android:label="CreateContactFragment" />
+    <fragment
+        android:id="@+id/nav_category"
+        android:name="com.feylabs.lasagna.view.ui.category.CategoryManageFragment"
+        android:label="CategoryManageFragment" >
+        <action
+            android:id="@+id/action_nav_category_to_editCategory"
+            app:destination="@id/editCategory" />
+    </fragment>
+    <fragment
+        android:id="@+id/editCategory"
+        android:name="com.feylabs.lasagna.view.ui.category.CategoryEditFragment"
+        android:label="EditCategory" />
 
 </navigation>

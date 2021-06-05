@@ -1,13 +1,10 @@
-package com.feylabs.lasagna.view.ui.admin
+package com.feylabs.lasagna.view.ui
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
-import android.view.MenuItem
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -47,7 +44,8 @@ class AdminHomeActivity : BaseActivity() {
             setOf(
                 R.id.nav_home,
                 R.id.nav_contact,
-                R.id.nav_user_management
+                R.id.nav_user_management,
+                R.id.nav_category
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -69,11 +67,11 @@ class AdminHomeActivity : BaseActivity() {
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.menu_admin, menu)
-        return true
-    }
+//    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+//        // Inflate the menu; this adds items to the action bar if it is present.
+//        menuInflater.inflate(R.menu.menu_admin, menu)
+//        return true
+//    }
 
 
     override fun onSupportNavigateUp(): Boolean {
