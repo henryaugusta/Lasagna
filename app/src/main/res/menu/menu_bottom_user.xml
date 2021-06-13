@@ -14,11 +14,6 @@
         android:title="Laporan Saya" />
 
     <item
-        android:id="@+id/navigation_notifications"
-        android:icon="@drawable/ic_notifications_black_24dp"
-        android:title="@string/title_notifications" />
-
-    <item
         android:id="@+id/navigation_settings"
         android:menuCategory="container"
         android:icon="@drawable/ic_baseline_settings_24"

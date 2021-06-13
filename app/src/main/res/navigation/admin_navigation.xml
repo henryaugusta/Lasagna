@@ -19,6 +19,12 @@
         <action
             android:id="@+id/action_nav_home_to_categoryManageFragment"
             app:destination="@id/nav_category" />
+        <action
+            android:id="@+id/action_nav_home_to_manageNewsFragment"
+            app:destination="@id/navigation_news" />
+        <action
+            android:id="@+id/action_nav_home_to_listReportActivity"
+            app:destination="@id/listReportActivity" />
     </fragment>
 
     <fragment
@@ -44,11 +50,12 @@
     <fragment
         android:id="@+id/createContactFragment"
         android:name="com.feylabs.lasagna.view.ui.contact.CreateContactFragment"
-        android:label="CreateContactFragment" />
+        android:label="Kontak Penting" />
     <fragment
         android:id="@+id/nav_category"
+        tools:layout="@layout/fragment_category_manage"
         android:name="com.feylabs.lasagna.view.ui.category.CategoryManageFragment"
-        android:label="CategoryManageFragment" >
+        android:label="Kategori Laporan" >
         <action
             android:id="@+id/action_nav_category_to_editCategory"
             app:destination="@id/editCategory" />
@@ -56,6 +63,23 @@
     <fragment
         android:id="@+id/editCategory"
         android:name="com.feylabs.lasagna.view.ui.category.CategoryEditFragment"
-        android:label="EditCategory" />
+        android:label="Edit Category" />
+    <fragment
+        android:id="@+id/navigation_news"
+        tools:layout="@layout/fragment_manage_news"
+        android:name="com.feylabs.lasagna.view.ui.news.ManageNewsFragment"
+        android:label="Manage News" >
+        <action
+            android:id="@+id/action_navigation_news_to_addNewsFragment"
+            app:destination="@id/addNewsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addNewsFragment"
+        android:name="com.feylabs.lasagna.view.ui.news.AddNewsFragment"
+        android:label="Add News" />
+    <activity
+        android:id="@+id/listReportActivity"
+        android:name="com.feylabs.lasagna.view.ui.proceed.ListReportActivity"
+        android:label="Report Dari Warga" />
 
 </navigation>

@@ -1,4 +1,4 @@
-package com.feylabs.lasagna.view
+package com.feylabs.lasagna.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

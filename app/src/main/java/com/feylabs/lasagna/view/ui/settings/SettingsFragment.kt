@@ -26,7 +26,7 @@ import com.feylabs.lasagna.util.SharedPreference.const.USER_PHOTO
 import com.feylabs.lasagna.util.SharedPreference.const.USER_USERNAME
 import com.feylabs.lasagna.util.networking.Endpoint.REAL_URL
 import com.feylabs.lasagna.view.MainActivity
-import com.feylabs.lasagna.view.MainMenuUserViewModel
+import com.feylabs.lasagna.viewmodel.MainMenuUserViewModel
 import com.feylabs.lasagna.view.ui.settings.take_photo_utility.UserChangePhotoActivity
 import com.squareup.picasso.MemoryPolicy
 import com.squareup.picasso.Picasso

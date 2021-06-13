@@ -9,13 +9,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
-import androidx.recyclerview.widget.GridLayoutManager
 import com.feylabs.lasagna.R
-import com.feylabs.lasagna.adapter.ReportCategoryAdapter
 import com.feylabs.lasagna.databinding.ActivityMainMenuUserBinding
 import com.feylabs.lasagna.util.baseclass.BaseActivity
 import com.feylabs.lasagna.util.SharedPreference.Preference
 import com.feylabs.lasagna.view.ui.send_report.UserInputReportActivity
+import com.feylabs.lasagna.viewmodel.MainMenuUserViewModel
 import com.feylabs.lasagna.viewmodel.ProfileViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -52,8 +51,8 @@ class MainMenuUserActivity : BaseActivity() {
             setOf(
                 R.id.navigation_home,
                 R.id.navigation_my_report,
-                R.id.navigation_notifications,
-                R.id.navigation_settings
+                R.id.navigation_settings,
+                R.id.navigation_news
             )
         )
 //        setupActionBarWithNavController(navController, appBarConfiguration)

@@ -18,32 +18,25 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="top"
+                android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="250dp"
-                    android:layout_margin="10dp">
+                    android:layout_height="220dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/cardvi"
+
+                    <ImageView
+                        android:id="@+id/ivPict"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_centerInParent="true"
-                        android:layout_margin="2dp"
-                        app:cardCornerRadius="20dp">
+                        android:scaleType="fitXY"
+                        android:src="@drawable/carousel_city_placeholder" />
 
-                        <ImageView
-                            android:id="@+id/ivPict"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/carousel_city_placeholder" />
-                    </androidx.cardview.widget.CardView>
 
-                </RelativeLayout>
+                </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/rellay1"
@@ -54,46 +47,29 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
                         android:orientation="vertical"
                         android:padding="15dp">
-
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/btn_change_photo"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/cardvi"
-                            android:layout_centerInParent="true"
-                            android:elevation="2dp"
-                            android:src="@drawable/ic_baseline_add_circle_24"
-                            android:text="Ganti Foto"
-                            app:backgroundTint="@color/blue_jeans"
-                            app:tint="@color/white" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btn_change_photo"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:elevation="2dp"
+                                android:src="@drawable/ic_baseline_add_circle_24"
+                                android:text="Tambahkan Foto"
+                                app:backgroundTint="@color/blue_jeans"
+                                app:fabSize="mini"
+                                app:tint="@color/white" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Penulis Berita"
-                                android:textSize="13sp" />
-
-                            <EditText
-                                android:id="@+id/et_title"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:drawablePadding="10dp"
-                                android:fontFamily="sans-serif-light"
-                                android:hint="Penulis Berita"
-                                android:textColor="@color/colorBlack"
-                                android:textSize="18sp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Judul Berita"
+                                android:text="Nama Instansi"
                                 android:textSize="13sp" />
 
                             <EditText
@@ -102,35 +78,48 @@
                                 android:layout_height="wrap_content"
                                 android:drawablePadding="10dp"
                                 android:fontFamily="sans-serif-light"
-                                android:hint="Judul Berita"
+                                android:hint="Nama Instansi"
                                 android:textColor="@color/colorBlack"
                                 android:textSize="18sp" />
 
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/poppins_regular"
-                                android:text="Isi Berita"
-                                android:textColor="@color/colorBlack"
-                                android:textSize="12sp" />
-
-                            <com.google.android.material.textfield.TextInputLayout
-                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp">
-
-                                <com.google.android.material.textfield.TextInputEditText
-                                    android:id="@+id/et_content"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="top"
-                                    android:hint="Isi Berita"
-                                    android:inputType="textMultiLine"
-                                    android:lines="15" />
-                            </com.google.android.material.textfield.TextInputLayout>
-
                         </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Status Terbaru"
+                            android:textSize="13sp" />
+
+                        <androidx.appcompat.widget.AppCompatSpinner
+                            android:id="@+id/spinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Tindakan/Deskripsi Aksi : "
+                            android:textSize="13sp" />
+
+
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            >
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/et_aksi"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="top"
+                                android:inputType="textMultiLine"
+                                android:hint="Rincian Kejadian"
+                                android:lines="5" />
+                        </com.google.android.material.textfield.TextInputLayout>
 
 
                         <LinearLayout
@@ -139,17 +128,16 @@
                             android:gravity="center"
                             android:orientation="vertical">
 
-
                             <com.google.android.material.button.MaterialButton
                                 android:id="@+id/btn_save_changes"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="20dp"
                                 android:fontFamily="@font/poppins_medium"
-                                android:text="Simpan Berita"
+                                android:text="Simpan Perubahan"
                                 android:textAlignment="center"
                                 android:textColor="@color/colorWhite" />
                         </LinearLayout>
+
 
                     </LinearLayout>
 

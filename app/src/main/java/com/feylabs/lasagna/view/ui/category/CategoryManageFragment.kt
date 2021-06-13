@@ -12,20 +12,16 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.feylabs.lasagna.R
-import com.feylabs.lasagna.data.LasagnaRepository
 import com.feylabs.lasagna.data.model.api.ReportCategoryModel
-import com.feylabs.lasagna.data.remote.RemoteDataSource
 import com.feylabs.lasagna.databinding.BottomsheetManageCategoryBinding
 import com.feylabs.lasagna.databinding.FragmentCategoryManageBinding
-import com.feylabs.lasagna.databinding.FragmentContactListBinding
 import com.feylabs.lasagna.databinding.ItemCategoryForAdminBinding
 import com.feylabs.lasagna.util.Resource
 import com.feylabs.lasagna.util.baseclass.BaseFragment
-import com.feylabs.lasagna.view.MainMenuUserViewModel
+import com.feylabs.lasagna.viewmodel.MainMenuUserViewModel
 import com.feylabs.lasagna.view.ui.category.CategoryEditFragment.Companion.CATEGORY_ID
 import com.feylabs.lasagna.view.ui.category.CategoryEditFragment.Companion.CATEGORY_NAME
 import com.feylabs.lasagna.view.ui.category.CategoryEditFragment.Companion.CATEGORY_PHOTO_PATH
-import com.feylabs.lasagna.view.ui.contact.ContactViewModelFactory
 import com.feylabs.lasagna.viewmodel.CategoryViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialog
 

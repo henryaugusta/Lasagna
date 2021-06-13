@@ -1,12 +1,17 @@
 package com.feylabs.lasagna.view.ui.news
 
+import android.os.Build
+import android.text.Html
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.feylabs.lasagna.R
 import com.feylabs.lasagna.databinding.ItemNewsBinding
 import com.feylabs.lasagna.data.model.ModelNewsCarousel
+import com.feylabs.lasagna.databinding.ItemNewsListBinding
 import com.squareup.picasso.Picasso
 
 class NewsAdapterAdmin() : RecyclerView.Adapter<NewsAdapterAdmin.NewsAdapterCarouselHolder>() {
@@ -26,12 +31,28 @@ class NewsAdapterAdmin() : RecyclerView.Adapter<NewsAdapterAdmin.NewsAdapterCaro
     }
 
     inner class NewsAdapterCarouselHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val view = ItemNewsBinding.bind(view)
+        val view = ItemNewsListBinding.bind(view)
         fun bind(model: ModelNewsCarousel) {
-            view.labelNewsTitle.text = model.title
-            Picasso.get()
+            view.labelName.text = model.title
+            view.labelContent.text = model.content
+            view.labelAuthor.text = model.author
+
+            Glide
+                .with(view.root)
                 .load(model.photo_img)
-                .into(view.imagePlaceholder)
+                .skipMemoryCache(true)
+                .dontAnimate()
+                .thumbnail(Glide.with(view.root).load(R.raw.loading2))
+                .placeholder(R.drawable.ic_loading_small_1)
+                .into(view.ivCover)
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                view.labelContent.text = (Html.fromHtml(model.content, Html.FROM_HTML_MODE_COMPACT))
+            } else {
+                view.labelContent.text = (Html.fromHtml(model.content))
+            }
+
+            Log.d("imgz",model.photo_img)
 
             view.root.setOnClickListener {
                 newsAdapterInterface.onclick(model)
@@ -46,7 +67,7 @@ class NewsAdapterAdmin() : RecyclerView.Adapter<NewsAdapterAdmin.NewsAdapterCaro
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsAdapterCarouselHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_news, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_news_list, parent, false)
         return NewsAdapterCarouselHolder(view)
     }
 

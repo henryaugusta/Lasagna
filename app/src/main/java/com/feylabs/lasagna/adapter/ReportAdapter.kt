@@ -47,7 +47,7 @@ class ReportAdapter() : RecyclerView.Adapter<ReportAdapter.ReportAdapterHolder>(
                     }
                     "2" -> {
                         background =
-                            (ContextCompat.getDrawable(context, R.drawable.ic_status_waiting))
+                            (ContextCompat.getDrawable(context, R.drawable.ic_status_coordination))
                     }
                     "3" -> {
                         background =

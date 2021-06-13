@@ -17,7 +17,7 @@ import com.feylabs.lasagna.util.Resource
 import com.feylabs.lasagna.util.SharedPreference.Preference
 import com.feylabs.lasagna.util.SharedPreference.const.USER_ID
 import com.feylabs.lasagna.util.baseclass.BaseFragment
-import com.feylabs.lasagna.view.MainMenuUserViewModel
+import com.feylabs.lasagna.viewmodel.MainMenuUserViewModel
 import com.feylabs.lasagna.view.bottom_sheet.OptionReportUserBottomSheet
 import com.feylabs.lasagna.view.ui.report.DetailReportActivity
 import com.feylabs.lasagna.view.ui.report.DetailReportActivity.Companion.REPORT_ID

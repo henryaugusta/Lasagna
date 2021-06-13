@@ -27,8 +27,6 @@ class AdminHomeFragment : Fragment() {
         // Inflate the layout for this fragment
         vbind = FragmentAdminHomeBinding.bind(inflater.inflate(R.layout.fragment_admin_home, container, false))
         return vbind.root
-
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -41,8 +39,16 @@ class AdminHomeFragment : Fragment() {
             Navigation.findNavController(vbind.root).navigate(R.id.action_nav_home_to_categoryManageFragment)
         }
 
+        vbind.containerNews.setOnClickListener {
+            Navigation.findNavController(vbind.root).navigate(R.id.action_nav_home_to_manageNewsFragment)
+        }
+
         vbind.containerKontak.setOnClickListener {
             Navigation.findNavController(vbind.root).navigate(R.id.action_nav_home_to_nav_contact)
+        }
+
+        vbind.containerReport.setOnClickListener {
+            Navigation.findNavController(vbind.root).navigate(R.id.action_nav_home_to_listReportActivity)
         }
         (requireActivity() as AppCompatActivity).supportActionBar?.title = "Admin Lapor Satgas"
 

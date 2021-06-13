@@ -35,10 +35,11 @@ import com.feylabs.lasagna.util.Resource
 import com.feylabs.lasagna.util.URL
 import com.feylabs.lasagna.util.baseclass.BaseFragment
 import com.feylabs.lasagna.util.baseclass.Util
-import com.feylabs.lasagna.view.MainMenuUserViewModel
+import com.feylabs.lasagna.viewmodel.MainMenuUserViewModel
 import com.feylabs.lasagna.view.bottom_sheet.NewsBottomSheet
 import com.feylabs.lasagna.view.ui.daily_covid.DailyCovidActivity
 import com.feylabs.lasagna.view.ui.hospital.ListHospitalActivity
+import com.feylabs.lasagna.view.ui.proceed.ListReportActivity
 import com.feylabs.lasagna.viewmodel.NewsViewModel
 import com.squareup.picasso.Picasso
 import timber.log.Timber
@@ -136,7 +137,7 @@ class HomeFragment : BaseFragment() {
                         startActivity(Intent(requireContext(), ListHospitalActivity::class.java))
                     }
                     2 -> {
-                        startActivity(Intent(requireContext(), ListHospitalActivity::class.java))
+                        startActivity(Intent(requireContext(), ListReportActivity::class.java))
                     }
                     3 -> {
                         startActivity(Intent(requireContext(), WeatherActivity::class.java))
@@ -241,7 +242,7 @@ class HomeFragment : BaseFragment() {
             when (it) {
                 is Resource.Success -> {
                     it.data.apply {
-                        vbinding.odp.text = this?.data?.jumlahOdp.toString()
+                        vbinding.odp.text = "Total ODP ( Indonesia ) : "+this?.data?.jumlahOdp.toString()
                         vbinding.death.text = this?.update?.total?.jumlahMeninggal.toString()
                         vbinding.deathNew.text =
                             this?.update?.penambahan?.jumlahMeninggal.toString()
@@ -251,7 +252,7 @@ class HomeFragment : BaseFragment() {
                         vbinding.infected.text = this?.update?.total?.jumlahPositif.toString()
                         vbinding.infectedNew.text =
                             this?.update?.penambahan?.jumlahSembuh.toString()
-                        vbinding.inHospital.text = this?.update?.total?.jumlahDirawat.toString()
+                        vbinding.inHospital.text = "Dirawat : " + this?.update?.total?.jumlahDirawat.toString()
                     }
                 }
                 else -> {

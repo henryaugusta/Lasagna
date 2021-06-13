@@ -14,6 +14,7 @@ import com.feylabs.lasagna.util.networking.Endpoint
 import com.google.gson.Gson
 import org.json.JSONObject
 import timber.log.Timber
+import java.io.File
 
 class UserReportViewModel : ViewModel() {
 
@@ -21,6 +22,7 @@ class UserReportViewModel : ViewModel() {
     val reportByUser: MutableLiveData<Resource<ReportGetByUserModel>> = MutableLiveData()
     val statusDeleteReport: MutableLiveData<Resource<String>> = MutableLiveData()
     val statusDetailReport: MutableLiveData<Resource<ReportDetailModel>> = MutableLiveData()
+    val storeResponse: MutableLiveData<Resource<String>> = MutableLiveData()
 
     fun sendReportModel(model: SendReportModel) {
         sendReportStatus.postValue(Resource.Loading())
@@ -57,6 +59,39 @@ class UserReportViewModel : ViewModel() {
         }
     }
 
+    fun sendReportResponse(
+        id: String, status_code: String, responder: String,
+        text: String,
+        photo: File
+    ) {
+        storeResponse.postValue(Resource.Loading())
+        AndroidNetworking.upload(Endpoint.STORE_RESPONSE(id))
+            .addMultipartParameter("status_code", status_code)
+            .addMultipartParameter("responder", responder)
+            .addMultipartParameter("text", text)
+            .addMultipartFile("photo", photo)
+            .build()
+            .getAsJSONObject(object : JSONObjectRequestListener {
+                override fun onResponse(response: JSONObject) {
+                    Timber.d("uploadReport: response -> $response")
+                    if (response.getInt("status") == 1) {
+                        storeResponse.postValue(Resource.Success(response.getString("message")))
+                    } else {
+                        storeResponse.postValue(Resource.Error(response.getString("message")))
+                    }
+                }
+
+                override fun onError(anError: ANError?) {
+                    Timber.d("uploadReport: error -> ${anError?.message}")
+                    Timber.d("uploadReport: error -> ${anError?.errorCode}")
+                    Timber.d("uploadReport: error -> ${anError?.errorDetail}")
+                    Timber.d("uploadReport: error -> ${anError?.errorBody}")
+                    storeResponse.postValue(Resource.Error(anError?.localizedMessage.toString()))
+                }
+
+            })
+    }
+
     fun deleteReport(reportID: String) {
         statusDeleteReport.value = Resource.Loading()
         AndroidNetworking.delete(Endpoint.REPORT_DELETE(reportID)).build()
@@ -82,6 +117,35 @@ class UserReportViewModel : ViewModel() {
         val gson = Gson()
         reportByUser.value = Resource.Loading()
         AndroidNetworking.get(Endpoint.REPORT_GET_BY_USER(userID))
+            .build()
+            .getAsString(object : StringRequestListener {
+                override fun onResponse(response: String?) {
+                    Timber.d("getReportByUser: success -> $response")
+                    val reportResponse: ReportGetByUserModel =
+                        gson.fromJson(response.toString(), ReportGetByUserModel::class.java)
+                    if (reportResponse.report.total < 1) {
+                        reportByUser.value = Resource.Error("Belum Ada Laporan")
+                    } else {
+                        reportByUser.value = Resource.Success(reportResponse)
+                    }
+                }
+
+                override fun onError(anError: ANError?) {
+                    reportByUser.value = Resource.Error(anError?.localizedMessage.toString())
+                    Timber.d("getReportByUser: error -> ${anError?.message}")
+                    Timber.d("getReportByUser: error -> ${anError?.errorCode}")
+                    Timber.d("getReportByUser: error -> ${anError?.errorDetail}")
+                    Timber.d("getReportByUser: error -> ${anError?.errorBody}")
+                }
+
+            })
+    }
+
+
+    fun getAllReport(filter: String = "") {
+        val gson = Gson()
+        reportByUser.value = Resource.Loading()
+        AndroidNetworking.get(Endpoint.REPORT_ALL())
             .build()
             .getAsString(object : StringRequestListener {
                 override fun onResponse(response: String?) {

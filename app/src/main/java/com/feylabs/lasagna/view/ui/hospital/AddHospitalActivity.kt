@@ -315,6 +315,7 @@ class AddHospitalActivity : BaseActivity(), OnMapReadyCallback {
 
 
                 } else {
+                    vbind.includeLoadingFull.loadingRoot.setVisible()
                     "Create Hospital".showLongToast()
                     viewmodelHospital.createHospital(
                         SendCreateHospitalModel(

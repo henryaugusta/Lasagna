@@ -19,13 +19,12 @@ import com.feylabs.lasagna.data.local.ContactItemModel
 import com.feylabs.lasagna.data.remote.RemoteDataSource
 import com.feylabs.lasagna.databinding.FragmentContactListBinding
 import com.feylabs.lasagna.util.Resource
+import com.feylabs.lasagna.util.SharedPreference.Preference
+import com.feylabs.lasagna.util.SharedPreference.const
 import com.feylabs.lasagna.util.baseclass.BaseFragment
 import com.feylabs.lasagna.util.networking.Endpoint
-import com.feylabs.lasagna.view.MainMenuUserViewModel
+import com.feylabs.lasagna.viewmodel.MainMenuUserViewModel
 import com.feylabs.lasagna.view.bottom_sheet.OptionContactBottomSheet
-import com.feylabs.lasagna.view.ui.home.HomeViewModel
-
-
 
 
 class ContactListFragment : BaseFragment() {
@@ -62,6 +61,10 @@ class ContactListFragment : BaseFragment() {
         (requireActivity() as AppCompatActivity).supportActionBar?.title = "Kontak Instansi"
         menuViewModel.title.value = "Kontak Instansi Penting"
 
+        if (Preference(requireContext()).getPrefString(const.USER_TYPE) != "admin") {
+            vbind.btnAdd.visibility=View.GONE
+        }
+
         vbind.rvContact.apply {
             layoutManager=LinearLayoutManager(requireContext())
             adapter= adapterContact
@@ -79,7 +82,7 @@ class ContactListFragment : BaseFragment() {
                 is Resource.Success -> {
                     tempContactList.clear()
                     observeContact()
-                    showSweetAlert("Berhasil",it.message.toString(),R.color.xdGreen)
+                    showSweetAlert("Berhasil","Berhasil Menghapus Kontak",R.color.xdGreen)
                     vbind.includeLoading.loadingRoot.setGone()
                 }
                 is Resource.Loading -> {
@@ -101,6 +104,10 @@ class ContactListFragment : BaseFragment() {
                 bottomSheet.myVbind.btnSeeCall.setOnClickListener {
                     val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + model.deskripsi))
                     startActivity(intent)
+                }
+
+                if (Preference(requireContext()).getPrefString(const.USER_TYPE) != "admin") {
+                    bottomSheet.myVbind.btnDelete.visibility=View.GONE
                 }
 
                 bottomSheet.myVbind.btnDelete.setOnClickListener {

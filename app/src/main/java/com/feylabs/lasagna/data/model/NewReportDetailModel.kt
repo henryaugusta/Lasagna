@@ -3,7 +3,7 @@ package com.feylabs.lasagna.data.model
 
 import com.google.gson.annotations.SerializedName
 
-data class ReportDetailModel(
+data class NewReportDetailModel(
     @SerializedName("http_response")
     val httpResponse: Int,
     @SerializedName("message")

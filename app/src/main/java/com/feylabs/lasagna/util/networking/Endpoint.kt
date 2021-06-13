@@ -4,11 +4,10 @@ import android.util.Log
 import java.io.File
 
 object Endpoint {
-//    const val REAL_URL = "https://lapor-satgas.feylaboratory.xyz"
-//    const val BASE_URL = "https://lapor-satgas.feylaboratory.xyz/api"
-//    const val BASE_URL = "http://127.0.0.1:9000/api"
-    const val REAL_URL = "http://192.168.1.161:9000"
-    const val BASE_URL = "http://192.168.1.161:9000/api"
+    const val REAL_URL = "https://lapor-satgas.feylaboratory.xyz"
+    const val BASE_URL = "https://lapor-satgas.feylaboratory.xyz/api"
+//    const val REAL_URL = "http://192.168.1.161:9000"
+//    const val BASE_URL = "http://192.168.1.161:9000/api"
 
     const val PEOPLE_LOGIN = "${BASE_URL}/people/login"
     const val PEOPLE_REGISTER = "${BASE_URL}/people/register"
@@ -16,6 +15,10 @@ object Endpoint {
     const val REPORT_SEND = "${BASE_URL}/report/store"
     fun REPORT_GET_BY_USER(id_user: String): String {
         return "${BASE_URL}/report/users/$id_user/"
+    }
+
+    fun REPORT_ALL(): String {
+        return "${BASE_URL}/report/users/all"
     }
     fun REPORT_DELETE(id_report: String): String {
         return "${BASE_URL}/report/$id_report/delete"
@@ -42,6 +45,7 @@ object Endpoint {
     }
 
     const val NEWS_FETCH_ALL = "${BASE_URL}/news/fetchAll"
+    const val NEWS_STORE = "${BASE_URL}/news/store"
 
     const val HOSPITAL_FETCH = "${BASE_URL}/hospital/fetch"
 
@@ -92,6 +96,12 @@ object Endpoint {
 
     fun EDIT_CATEGORY(id:String): String {
         val url = "$BASE_URL/category/$id/update"
+        Log.d("endpoint",url)
+        return url
+    }
+
+    fun STORE_RESPONSE(id:String): String {
+        val url = "$BASE_URL/report/$id/store-response"
         Log.d("endpoint",url)
         return url
     }

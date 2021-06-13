@@ -6,6 +6,7 @@ import android.content.Intent
 import android.location.LocationManager
 import android.net.Uri
 import android.os.Bundle
+import android.provider.ContactsContract
 import android.util.Log
 import android.view.View
 import android.view.animation.AnimationUtils
@@ -16,11 +17,13 @@ import com.bumptech.glide.Glide
 import com.feylabs.lasagna.R
 import com.feylabs.lasagna.adapter.HospitalAdapter
 import com.feylabs.lasagna.data.LasagnaRepository
+import com.feylabs.lasagna.data.model.api.HospitalModel
 import com.feylabs.lasagna.data.remote.RemoteDataSource
 import com.feylabs.lasagna.databinding.ActivityListHospitalBinding
 import com.feylabs.lasagna.databinding.MapInfoHospitalBinding
-import com.feylabs.lasagna.data.model.api.HospitalModel
 import com.feylabs.lasagna.util.Resource
+import com.feylabs.lasagna.util.SharedPreference.Preference
+import com.feylabs.lasagna.util.SharedPreference.const
 import com.feylabs.lasagna.util.baseclass.BaseActivity
 import com.feylabs.lasagna.util.baseclass.Util
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -172,12 +175,25 @@ class ListHospitalActivity : BaseActivity(), OnMapReadyCallback {
         }
 
         vbind.includeHospitalDetail.apply {
+
+            btnCallAmbulance.setOnClickListener {
+                contact(model.kontak_ambulance)
+            }
+
+            btnCall.setOnClickListener {
+                contact(model.kontak_rs)
+            }
+
             labelAddress.text = model.alamat
             labelDeskripsi.text = model.deskripsi
             labelRsName.text = model.name
             labelFacility.text = model.fasilitas
             labelContAmbulance.text = model.kontak_rs
             labelContRs.text = model.kontak_ambulance
+
+            if (Preference(this@ListHospitalActivity).getPrefString(const.USER_TYPE) != "admin") {
+                elenAdmin.visibility=View.GONE
+            }
 
             btnCloseDetail.setOnClickListener {
                 dismissBottomSheet()
@@ -227,6 +243,16 @@ class ListHospitalActivity : BaseActivity(), OnMapReadyCallback {
         }
     }
 
+    fun contact(number:String){
+        val intent = Intent(Intent.ACTION_VIEW)
+        val uri = Uri.withAppendedPath(
+            ContactsContract.Contacts.CONTENT_URI,
+           (number)
+        )
+        intent.data = uri
+        startActivity(intent)
+    }
+
     private fun setBottomSheet() {
         vbind.includeHospitalDetail.let { v ->
             v.btnCloseDetail.setOnClickListener {
@@ -254,7 +280,6 @@ class ListHospitalActivity : BaseActivity(), OnMapReadyCallback {
         hospitalAdapter.setInterface(object : HospitalAdapter.HospitalAdapterInterface {
             override fun onclick(model: HospitalModel.Data) {
                 hospitalItemOnClick(model)
-
             }
 
         })

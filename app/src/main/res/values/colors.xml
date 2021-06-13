@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
@@ -19,8 +17,6 @@
     <color name="colorBlueWaves">#0099ff</color>
     <color name="bootstrapRed">#d9534f</color>
     <color name="colorBlack">#000</color>
-    <color name="colorGreen">#17B241</color>
-    <color name="colorPurple">#7988FC</color>
 
     <color name="blue_jeans">#0A3875</color>
 
@@ -31,33 +27,16 @@
     <color name="xdRed">#FF4848</color>
     <color name="xdOrange">#FF8748</color>
 
-    <color name="address">#2F7092</color>
-    <color name="followers">#0D5D98</color>
-    <color name="headings">#3797CF</color>
-    <color name="solidCircle">#AAFFFFFF</color>
-    <color name="circleBorder">#50FFFFFF</color>
-    <color name="gradEnd">#67EFC8</color>
-    <color name="gradStart">#63C9FF</color>
-    <color name="followersBg">#65DCE5</color>
-    <color name="followingBg">#49BEFF</color>
     <color name="grey">#E5E5E5</color>
 
-    <color name="colorMainBackground">#F4F5FA</color>   //materialColor
-    <color name="colorStudentBackground">#EFF5F4</color>   //materialColor
-    <color name="colorCardGreen">#00B7B7</color>   //materialColor
+    //materialColor
+    //materialColor
+    //materialColor
     <color name="colorGiok">#11DAAD</color>
     <color name="colorRedPastel">#f56a79</color>
-    <color name="colorBase">#00B0FF</color>
-    <color name="colorGold">#ffdf00</color>
-    <color name="bootstrapOrange">#f0ad4e</color>
     <color name="bootstrapBlue">#0275d8</color>
-    <color name="colorShadow">#84868B</color>
-    <color name="colorNeoBlue">#1A8DFF</color>
-    <color name="colorPurplish">#F5F6FC</color>
-    <color name="colorTextSecondary">#A8B2C8</color>
-    <color name="colorOrangePrice">#f08a5d</color>
-    <color name="semi_white">#FFFDFD</color>
     <color name="white_bluish">#F5FCFE</color>
+    <color name="dark_ping">#e93b81</color>
 
 
 </resources>

@@ -1,5 +1,7 @@
 package com.feylabs.lasagna.data.model.api
 
+import com.google.gson.annotations.SerializedName
+
 
 data class ReportGetByUserModel(
     val http_response: Int,
@@ -47,8 +49,31 @@ data class ReportGetByUserModel(
             val updated_at: String,
             val staff: Staff,
             val people: People,
-            val category: Category
+            val category: Category,
+            @SerializedName("response")
+            val responses: List<Response>
         ){
+            data class Response(
+                @SerializedName("created_at")
+                val createdAt: String,
+                @SerializedName("id")
+                val id: Int,
+                @SerializedName("path")
+                val path: String,
+                @SerializedName("report_id")
+                val reportId: Int,
+                @SerializedName("responder")
+                val responder: String,
+                @SerializedName("response")
+                val response: String,
+                @SerializedName("status_code")
+                val statusCode: String,
+                @SerializedName("status_label")
+                val statusLabel: String,
+                @SerializedName("updated_at")
+                val updatedAt: String
+            )
+
             data class People(
                 val created_at: String,
                 val email: String,

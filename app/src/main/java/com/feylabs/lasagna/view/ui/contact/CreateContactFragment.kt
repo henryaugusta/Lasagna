@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -70,17 +71,21 @@ class CreateContactFragment : BaseFragment() {
         val createObserver = Observer<Resource<String>> {
             when (it) {
                 is Resource.Success -> {
-                    vbind.includeLoadingFull.loadingRoot.setGone()
+                    Log.d("state contact","success")
                     showSweetAlert(
                         "Success",
-                        "Berhasil Menginput Kontak Instansi",
+                        "Berhasil Menambah Kontak Instansi",
                         R.color.xdGreen
                     )
+                    vbind.includeLoadingFull.loadingRoot.setGone()
+
                 }
                 is Resource.Loading -> {
+                    Log.d("state contact","loading")
                     vbind.includeLoadingFull.loadingRoot.setVisible()
                 }
                 is Resource.Error -> {
+                    Log.d("state contact","error")
                     showSweetAlert(
                         "Error",
                         "Gagal Menginput Kontak Instansi",
@@ -95,8 +100,8 @@ class CreateContactFragment : BaseFragment() {
 
 
         vbind.btnSaveChanges.setOnClickListener {
-            var title = vbind.etName.text.toString()
-            var number = vbind.etContact.text.toString()
+            val title = vbind.etName.text.toString()
+            val number = vbind.etContact.text.toString()
             var isError = false
             if (imageFile == "") {
                 isError = true
@@ -112,7 +117,6 @@ class CreateContactFragment : BaseFragment() {
             }
 
             if (!isError) {
-                vbind.includeLoading.loadingRoot.setVisible()
                 viewModel.storeContact(title, number, File(imageFile.toUri().path.toString()))
                     .observe(
                         viewLifecycleOwner, createObserver

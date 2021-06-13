@@ -101,6 +101,8 @@ dependencies {
     implementation 'com.google.android.gms:play-services-maps:12.0.1'
     implementation "com.google.android.libraries.places:places:1.1.0"
 
+
+    implementation 'com.github.florent37:expansionpanel:1.2.4'
     // Utils
     implementation "androidx.viewpager2:viewpager2:1.0.0"
     implementation 'com.jakewharton.timber:timber:4.7.1'

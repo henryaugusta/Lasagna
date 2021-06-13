@@ -165,6 +165,12 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
+                    <LinearLayout
+                        android:id="@+id/elen_admin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        >
 
                     <TextView
                         android:id="@+id/btn_edit"
@@ -188,6 +194,7 @@
                         android:paddingTop="10dp"
                         android:text="Hapus Data Rumah Sakit" />
 
+                    </LinearLayout>
 
                     <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
@@ -209,11 +216,13 @@
                 </LinearLayout>
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_call"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Hubungi Rumah Sakit" />
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_call_ambulance"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Hubungi Ambulance" />
