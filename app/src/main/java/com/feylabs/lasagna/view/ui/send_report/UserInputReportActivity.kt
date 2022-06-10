@@ -2,12 +2,17 @@ package com.feylabs.lasagna.view.ui.send_report
 
 import android.Manifest
 import android.app.Activity
+import android.app.DatePickerDialog
+import android.app.TimePickerDialog
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.view.animation.AnimationUtils.loadAnimation
+import android.widget.DatePicker
+import android.widget.TimePicker
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -17,9 +22,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.feylabs.lasagna.R
 import com.feylabs.lasagna.adapter.ReportCategoryAdapter
+import com.feylabs.lasagna.data.model.api.ReportCategoryModel
 import com.feylabs.lasagna.databinding.ActivityUserInputReportBinding
 import com.feylabs.lasagna.databinding.ItemCategoryReportBinding
-import com.feylabs.lasagna.data.model.api.ReportCategoryModel
 import com.feylabs.lasagna.util.Resource
 import com.feylabs.lasagna.util.SharedPreference.Preference
 import com.feylabs.lasagna.util.baseclass.BaseActivity
@@ -31,11 +36,16 @@ import com.feylabs.lasagna.view.ui.send_report.UserReviewBeforeInputActivity.Com
 import com.feylabs.lasagna.view.ui.send_report.UserReviewBeforeInputActivity.Companion.IMAGE_URI
 import com.feylabs.lasagna.view.ui.send_report.UserReviewBeforeInputActivity.Companion.LAT
 import com.feylabs.lasagna.view.ui.send_report.UserReviewBeforeInputActivity.Companion.LONG
+import com.feylabs.lasagna.view.ui.send_report.UserReviewBeforeInputActivity.Companion.PENYEBAB_KEJADIAN
+import com.feylabs.lasagna.view.ui.send_report.UserReviewBeforeInputActivity.Companion.WAKTU_KEJADIAN
 import com.feylabs.lasagna.viewmodel.CategoryViewModel
 import com.feylabs.lasagna.viewmodel.InputReportViewModel
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 import timber.log.Timber
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class UserInputReportActivity : BaseActivity() {
@@ -61,9 +71,15 @@ class UserInputReportActivity : BaseActivity() {
     var myLat: Double? = null
 
 
+    lateinit var date  :Calendar
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(vbind.root)
+
+        val currentDate = Calendar.getInstance()
+        date = currentDate
 
         Util.setStatusBarLight(this)
 
@@ -85,6 +101,10 @@ class UserInputReportActivity : BaseActivity() {
 
         vbind.btnChangePhoto.setOnClickListener {
             initPhoto()
+        }
+
+        vbind.tvOutputDate.setOnClickListener {
+            showDateTimePicker()
         }
 
         vbind.includeToolbar.myCustomToolbar.setNavigationOnClickListener {
@@ -269,7 +289,21 @@ class UserInputReportActivity : BaseActivity() {
             "Lokasi Belum Dipilih".showLongToast()
         }
 
+        if(vbind.textFieldPenyebab.editText?.text.toString().isNullOrEmpty()){
+            isDone = false
+            vbind.textFieldPenyebab.startAnimation(loadAnimation(this, R.anim.short_shake))
+            "Penyebab Belum Diisi".showLongToast()
+        }
+
+        if (vbind.tvOutputDate.text==getString(R.string.choose_date_text)){
+            vbind.tvOutputDate.startAnimation(loadAnimation(this, R.anim.short_shake))
+            "Tanggal Belum Dipilih".showLongToast()
+            isDone=false
+        }
+
         if (isDone) {
+            val tanggal = vbind.tvOutputDate.text.toString()
+            val penyebab = vbind.textFieldPenyebab.editText?.text.toString()
             val intent = Intent(this, UserInputDetailActivity::class.java)
 
             Preference(this).save(CATEGORY_ID, selectedCategoryID!!)
@@ -277,6 +311,8 @@ class UserInputReportActivity : BaseActivity() {
             Preference(this).save(LAT,myLat.toString())
             Preference(this).save(LONG,myLong.toString())
             Preference(this).save(CATEGORY_IMAGE,reportCategoryImage)
+            Preference(this).save(WAKTU_KEJADIAN,tanggal)
+            Preference(this).save(PENYEBAB_KEJADIAN,penyebab)
 
             startActivity(intent)
         }
@@ -339,4 +375,35 @@ class UserInputReportActivity : BaseActivity() {
             }
         }
     }
+
+    fun showDateTimePicker() {
+        val ctx: Context = this
+        val currentDate = Calendar.getInstance()
+        date = currentDate
+        DatePickerDialog(
+            ctx,
+            { view: DatePicker?, year: Int, monthOfYear: Int, dayOfMonth: Int ->
+                date.set(year, monthOfYear, dayOfMonth)
+                TimePickerDialog(
+                    ctx,
+                    { timePicker: TimePicker?, hourOfDay: Int, minute: Int ->
+                        date.set(Calendar.HOUR_OF_DAY, hourOfDay)
+                        date.set(Calendar.MINUTE, minute)
+                        vbind.tvOutputDate.text=getConvertedDateTime(date)
+                    },
+                    currentDate[Calendar.HOUR_OF_DAY],
+                    currentDate[Calendar.MINUTE],
+                    false
+                ).show()
+            },
+            currentDate[Calendar.YEAR], currentDate[Calendar.MONTH], currentDate[Calendar.DATE]
+        ).show()
+    }
+
+    private fun getConvertedDateTime(calendar: Calendar): String? {
+        val date = calendar.time
+        val dateFormat: DateFormat = SimpleDateFormat("yyyy-mm-dd hh:mm:ss")
+        return dateFormat.format(date)
+    }
+
 }

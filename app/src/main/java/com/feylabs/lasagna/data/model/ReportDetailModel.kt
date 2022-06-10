@@ -34,6 +34,14 @@ data class ReportDetailModel(
         val idStaff: Any,
         @SerializedName("is_public")
         val isPublic: Int,
+        @SerializedName("kerusakan_bangunan")
+        val kerusakanBangunan: String,
+        @SerializedName("kerusakan_lain")
+        val kerusakanLain: String,
+        @SerializedName("kondisi_korban")
+        val kondisiKorban: String,
+        @SerializedName("korban_jiwa")
+        val korbanJiwa: String,
         @SerializedName("lat")
         val lat: String,
         @SerializedName("long")
@@ -42,6 +50,8 @@ data class ReportDetailModel(
         val noLaporan: String,
         @SerializedName("people")
         val people: People,
+        @SerializedName("peyebab_kejadian")
+        val peyebabKejadian: String,
         @SerializedName("photo_path")
         val photoPath: String,
         @SerializedName("response")
@@ -54,8 +64,12 @@ data class ReportDetailModel(
         val statusDesc: String,
         @SerializedName("status_label")
         val statusLabel: String,
+        @SerializedName("tanggal_kejadian")
+        val tanggalKejadian: Any,
         @SerializedName("updated_at")
-        val updatedAt: String
+        val updatedAt: String,
+        @SerializedName("waktu_kejadian")
+        val waktuKejadian: String
     ) {
         data class Category(
             @SerializedName("category_name")

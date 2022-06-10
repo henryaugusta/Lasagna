@@ -8,7 +8,13 @@ import com.feylabs.lasagna.databinding.ActivityUserInputDetailBinding
 import com.feylabs.lasagna.util.SharedPreference.Preference
 import com.feylabs.lasagna.util.baseclass.Util
 import com.feylabs.lasagna.view.ui.send_report.UserReviewBeforeInputActivity.Companion.DESC
+import com.feylabs.lasagna.view.ui.send_report.UserReviewBeforeInputActivity.Companion.KERUSAKAN_BANGUNAN
+import com.feylabs.lasagna.view.ui.send_report.UserReviewBeforeInputActivity.Companion.KERUSAKAN_LAIN
+import com.feylabs.lasagna.view.ui.send_report.UserReviewBeforeInputActivity.Companion.KONDISI_KORBA
+import com.feylabs.lasagna.view.ui.send_report.UserReviewBeforeInputActivity.Companion.KORBAN_JIWA
 import com.feylabs.lasagna.view.ui.send_report.UserReviewBeforeInputActivity.Companion.LOC
+import com.google.android.material.textfield.TextInputLayout
+import kotlinx.android.synthetic.main.activity_user_input_detail.*
 
 class UserInputDetailActivity : AppCompatActivity() {
 
@@ -25,13 +31,23 @@ class UserInputDetailActivity : AppCompatActivity() {
         vbind.includeToolbar.myCustomToolbar.setNavigationOnClickListener {
             super.onBackPressed()
         }
-
-
     }
 
     private fun goToReview(sDesc : String,sLoc:String) {
-        Preference(this).save(DESC,sDesc)
-        Preference(this).save(LOC,sLoc)
+
+        val kondisiKorban = vbind.textFieldKondisiKorban.getText()
+        val korbanJiwa = vbind.textFieldKorbanJiwa.getText()
+        val kerusakanLain = vbind.textFieldKerusakanLain.getText()
+        val kerusakanBangunan = vbind.textFieldKerusakanBangunan.getText()
+
+        Preference(this).apply {
+            save(KERUSAKAN_BANGUNAN,kerusakanBangunan)
+            save(KERUSAKAN_LAIN,kerusakanLain)
+            save(KORBAN_JIWA,korbanJiwa)
+            save(DESC,sDesc)
+            save(KONDISI_KORBA,kondisiKorban)
+            save(LOC,sLoc)
+        }
         startActivity(Intent(this, UserReviewBeforeInputActivity::class.java))
     }
 
@@ -70,4 +86,10 @@ class UserInputDetailActivity : AppCompatActivity() {
             goToReview(sDesc,sLoc)
         }
     }
+
+    private fun TextInputLayout.getText(): String {
+        return this.editText?.text.toString() ?: ""
+    }
+
 }
+

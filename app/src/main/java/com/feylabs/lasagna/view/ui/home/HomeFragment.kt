@@ -18,6 +18,7 @@ import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.feylabs.lasagna.R
@@ -40,6 +41,7 @@ import com.feylabs.lasagna.view.bottom_sheet.NewsBottomSheet
 import com.feylabs.lasagna.view.ui.daily_covid.DailyCovidActivity
 import com.feylabs.lasagna.view.ui.hospital.ListHospitalActivity
 import com.feylabs.lasagna.view.ui.proceed.ListReportActivity
+import com.feylabs.lasagna.view.ui.send_report.UserInputReportActivity
 import com.feylabs.lasagna.viewmodel.NewsViewModel
 import com.squareup.picasso.Picasso
 import timber.log.Timber
@@ -237,8 +239,8 @@ class HomeFragment : BaseFragment() {
         })
 
 
-        homeViewModel.covidSummary
-        homeViewModel.covidSummary.observe(viewLifecycleOwner, Observer {
+        /*
+             homeViewModel.covidSummary.observe(viewLifecycleOwner, Observer {
             when (it) {
                 is Resource.Success -> {
                     it.data.apply {
@@ -260,6 +262,7 @@ class HomeFragment : BaseFragment() {
                 }
             }
         })
+         */
     }
 
 
@@ -297,14 +300,22 @@ class HomeFragment : BaseFragment() {
     }
 
     private fun setUpViewAction() {
+        
+        vbinding.btnCardAddNewReport.setOnClickListener {
+            startActivity(Intent(requireContext(), UserInputReportActivity::class.java))
+        }
+
+        vbinding.btnCardCheckStatusReport.setOnClickListener {
+            findNavController().navigate(R.id.navigation_my_report)
+        }
         vbinding.btnOpenAI.setOnClickListener {
-            vbinding.includeAi.lytPrixa.apply {
-                visibility = View.VISIBLE
-                animation = AnimationUtils.loadAnimation(
-                    requireContext(),
-                    R.anim.bottom_appear
-                )
-            }
+//            vbinding.includeAi.lytPrixa.apply {
+//                visibility = View.VISIBLE
+//                animation = AnimationUtils.loadAnimation(
+//                    requireContext(),
+//                    R.anim.bottom_appear
+//                )
+//            }
         }
 
         vbinding.includeAi.btnCloseAI.setOnClickListener {

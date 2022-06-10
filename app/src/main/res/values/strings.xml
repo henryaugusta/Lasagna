@@ -11,7 +11,7 @@
     <string name="kirim_report_baru">Kirim Report Baru</string>
     <string name="kirim_laporan">Kirim Laporan</string>
     <string name="status_report">Status Report</string>
-    <string name="prixa">Artificial Intelligent dari Prixa.ai akan membantu kamu menganalisa gejala Covid</string>
+    <string name="prixa">Yuk Laporkan Bencana di sekitarmu, petugas kami akan merespon dengan segera</string>
     <string name="password_lama">Password Lama</string>
     <string name="password_baru">Password Baru</string>
     <string name="terbaru_di_kepri">Terbaru di Kepri</string>
@@ -25,5 +25,6 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
 
     <string name="menu_home">Home</string>
+    <string name="choose_date_text">Klik untuk memilih tanggal dan waktu</string>
 
 </resources>

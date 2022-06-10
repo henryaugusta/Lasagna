@@ -4,10 +4,10 @@ import android.util.Log
 import java.io.File
 
 object Endpoint {
-    const val REAL_URL = "https://lapor-satgas.feylaboratory.xyz"
-    const val BASE_URL = "https://lapor-satgas.feylaboratory.xyz/api"
-//    const val REAL_URL = "http://192.168.1.161:9000"
-//    const val BASE_URL = "http://192.168.1.161:9000/api"
+//    const val REAL_URL = "https://lapor-satgas.feylaboratory.xyz"
+//    const val BASE_URL = "https://lapor-satgas.feylaboratory.xyz/api"
+    const val REAL_URL = "http://192.168.100.4:9000"
+    const val BASE_URL = "http://192.168.100.4:9000/api"
 
     const val PEOPLE_LOGIN = "${BASE_URL}/people/login"
     const val PEOPLE_REGISTER = "${BASE_URL}/people/register"

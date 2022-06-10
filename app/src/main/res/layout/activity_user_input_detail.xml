@@ -30,87 +30,186 @@
                 android:paddingEnd="10dp">
 
 
-
-
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="10dp"
-                    android:fontFamily="@font/poppins_regular"
-                    android:text="Rincian Alamat  : "
-                    android:textColor="@color/colorBlack"
-                    android:textSize="20dp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_regular"
-                    android:text="Rincian Alamat Kejadian,\nMisal : Jalan Zamrud Utara No 10 , disamping kantor kecamatan"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="12sp" />
-
-
-
-                <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    >
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/et_detail_alamat"
+                    android:paddingHorizontal="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/bg_input_neo"
+                    android:orientation="vertical">
+                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="top"
-                        android:hint="Alamat Kejadian"
-                        android:inputType="textMultiLine"
-                        android:lines="5" />
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="10dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="Rincian Alamat  : "
+                        android:textColor="@color/colorBlack"
+                        android:textSize="20dp" />
+
                     <TextView
-                        android:id="@+id/tv_coordinate"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_regular"
-                        android:text=""
+                        android:text="Rincian Alamat Kejadian,\nMisal : Jalan Zamrud Utara No 10 , disamping kantor kecamatan"
                         android:textColor="@color/colorBlack"
                         android:textSize="12sp" />
-                </com.google.android.material.textfield.TextInputLayout>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="10dp"
-                    android:fontFamily="@font/poppins_regular"
-                    android:text="Keterangan Tambahan "
-                    android:textColor="@color/colorBlack"
-                    android:textSize="20dp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_regular"
-                    android:text="Rincian Kejadian ( TKP , Kondisi dan Keadaan , dsb.)\nMisal : Ada Lubang Jalan cukup lebar di KM 19, Membahayakan Pengguna Sepeda Motor"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="12sp" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    >
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/et_detail_kejadian"
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="top"
-                        android:inputType="textMultiLine"
-                        android:hint="Rincian Kejadian"
-                        android:lines="5" />
-                </com.google.android.material.textfield.TextInputLayout>
+                        android:layout_marginTop="8dp"
+                        >
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_detail_alamat"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="top"
+                            android:hint="Alamat Kejadian"
+                            android:inputType="textMultiLine"
+                            android:lines="5" />
+                        <TextView
+                            android:id="@+id/tv_coordinate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_regular"
+                            android:text=""
+                            android:textColor="@color/colorBlack"
+                            android:textSize="12sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="10dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="Keterangan Tambahan "
+                        android:textColor="@color/colorBlack"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="Rincian Kejadian ( TKP , Kondisi dan Keadaan , dsb.)\nMisal : Ada Lubang Jalan cukup lebar di KM 19, Membahayakan Pengguna Sepeda Motor"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="12sp" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        >
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_detail_kejadian"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="top"
+                            android:inputType="textMultiLine"
+                            android:hint="Rincian Kejadian"
+                            android:lines="5" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="10dp"
+                    android:paddingBottom="@dimen/dimen_20dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/bg_input_neo"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="10dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="Dampak Bencana"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="20dp" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textFieldKerusakanBangunan"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dimen_20dp"
+                        android:hint="Kerusakan Bangunan"
+                        app:boxCornerRadiusBottomEnd="@dimen/dimen_20dp"
+                        app:boxCornerRadiusBottomStart="@dimen/dimen_20dp"
+                        app:boxCornerRadiusTopEnd="@dimen/dimen_20dp"
+                        app:boxCornerRadiusTopStart="@dimen/dimen_20dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textFieldKerusakanLain"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dimen_20dp"
+                        android:hint="Kerusakan Lain"
+                        app:boxCornerRadiusBottomEnd="@dimen/dimen_20dp"
+                        app:boxCornerRadiusBottomStart="@dimen/dimen_20dp"
+                        app:boxCornerRadiusTopEnd="@dimen/dimen_20dp"
+                        app:boxCornerRadiusTopStart="@dimen/dimen_20dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textFieldKorbanJiwa"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dimen_20dp"
+                        android:hint="Korban Jiwa"
+                        app:boxCornerRadiusBottomEnd="@dimen/dimen_20dp"
+                        app:boxCornerRadiusBottomStart="@dimen/dimen_20dp"
+                        app:boxCornerRadiusTopEnd="@dimen/dimen_20dp"
+                        app:boxCornerRadiusTopStart="@dimen/dimen_20dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textFieldKondisiKorban"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dimen_20dp"
+                        android:hint="Kondisi Korban"
+                        app:boxCornerRadiusBottomEnd="@dimen/dimen_20dp"
+                        app:boxCornerRadiusBottomStart="@dimen/dimen_20dp"
+                        app:boxCornerRadiusTopEnd="@dimen/dimen_20dp"
+                        app:boxCornerRadiusTopStart="@dimen/dimen_20dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                </LinearLayout>
 
 
             </LinearLayout>

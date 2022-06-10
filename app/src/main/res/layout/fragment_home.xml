@@ -39,7 +39,7 @@
                     android:layout_marginRight="20dp"
                     android:width="200dp"
                     android:fontFamily="@font/poppins_medium"
-                    android:text="Periksa Sekarang"
+                    android:text="Laporkan Kejadian "
                     android:textColor="@color/colorWhite"
                     android:textSize="17dp" />
 
@@ -52,6 +52,7 @@
                     android:layout_marginBottom="20dp"
                     android:fontFamily="@font/poppins_medium"
                     android:text="Klik Disini"
+                    android:visibility="gone"
                     android:textColor="@color/colorWhite"
                     android:textSize="17dp" />
 
@@ -79,6 +80,7 @@
                 app:cardCornerRadius="20dp">
 
                 <LinearLayout
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -260,7 +262,7 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
                     android:fontFamily="@font/poppins_regular"
-                    android:text="@string/terbaru_di_kepri"
+                    android:text="Kabar Terbaru"
                     android:textColor="@color/colorBlack"
                     android:textSize="20sp" />
 

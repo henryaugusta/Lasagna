@@ -1,6 +1,5 @@
 package com.feylabs.lasagna.view.ui.report
 
-import android.R.attr
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -131,6 +130,7 @@ class DetailReportActivity : BaseActivity(), OnMapReadyCallback {
                     adapterResponse.setData(it.data?.report?.response?.toMutableList()!!)
                     adapterResponse.notifyDataSetChanged()
 
+
                     Timber.d("myReportFragment: ->success fetch report")
                     it.data?.let {
                         detailModel = it
@@ -152,6 +152,13 @@ class DetailReportActivity : BaseActivity(), OnMapReadyCallback {
                 vbind.etDetailAlamat.text = this.detailAlamat
                 vbind.etDetailKeterangan.text = this.detailKejadian
                 vbind.textViewCategory.text = category.categoryName
+                vbind.tvKerusakanBangunan.text = kerusakanBangunan.toString()
+                vbind.tvKerusakanLain.text = kerusakanLain.toString()
+
+                vbind.tvKorbanJiwa.text = korbanJiwa
+                vbind.tvKondisiKorban.text = kondisiKorban.toString()
+                vbind.tvWaktuKejadian.text = waktuKejadian
+                vbind.tvPenyebab.text = peyebabKejadian
 
                 setLocation(model.lat.toDouble(), model.long.toDouble(), model.detailAlamat)
 
@@ -205,7 +212,6 @@ class DetailReportActivity : BaseActivity(), OnMapReadyCallback {
                     onBackPressed()
                 }
             }
-
 
 
         }

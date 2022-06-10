@@ -35,6 +35,12 @@ class UserReportViewModel : ViewModel() {
                 .addMultipartParameter("lat", lat.toString())
                 .addMultipartParameter("long", long.toString())
                 .addMultipartParameter("is_public", is_public.toString())
+                .addMultipartParameter("waktu_kejadian",waktu_kejadian)
+                .addMultipartParameter("penyebab_bencana",penyebab_bencana)
+                .addMultipartParameter("kerusakan_bangunan",kerusakan_bangunan)
+                .addMultipartParameter("kerusakan_lain",kerusakan_lain)
+                .addMultipartParameter("korban_jiwa",korban_jiwa)
+                .addMultipartParameter("kondisi_korban",kondisi_korban)
                 .addMultipartFile("photo", photo)
                 .build()
                 .getAsJSONObject(object : JSONObjectRequestListener {

@@ -19,22 +19,21 @@
 
             <include
                 android:id="@+id/include_toolbar"
-                layout="@layout/toolbar_non_main"/>
-
+                layout="@layout/toolbar_non_main" />
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingStart="15dp"
-                android:paddingEnd="15dp"
                 android:layout_marginBottom="20dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp">
 
                 <TextView
-                    android:layout_marginTop="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
                     android:fontFamily="@font/poppins_regular"
                     android:text="Kategori : "
                     android:textColor="@color/colorBlack"
@@ -51,9 +50,9 @@
 
                     <ImageView
                         android:id="@+id/image_category"
-                        android:padding="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:padding="10dp"
                         android:scaleType="fitXY"
                         android:src="@drawable/carousel_city_placeholder" />
 
@@ -61,21 +60,21 @@
 
                 <TextView
                     android:id="@+id/textViewCategory"
-                    android:layout_marginTop="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/nama_category"
-                    android:fontFamily="@font/poppins_regular"
-                    android:textColor="@color/black"
-                    android:maxLines="2"
-                    android:textSize="15sp"
+                    android:layout_marginTop="10dp"
                     android:ellipsize="marquee"
-                    android:textAlignment="textStart" />
+                    android:fontFamily="@font/poppins_regular"
+                    android:maxLines="2"
+                    android:text="@string/nama_category"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
 
                 <TextView
-                    android:layout_marginTop="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
                     android:fontFamily="@font/poppins_regular"
                     android:text="Foto Laporan : "
                     android:textColor="@color/colorBlack"
@@ -103,25 +102,125 @@
                 </RelativeLayout>
 
 
-
-
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:padding="@dimen/dimen_10dp"
+                    android:background="@drawable/bg_input_neo"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_10dp"
                     android:orientation="vertical">
 
 
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="Waktu Kejadian Bencana"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="15sp" />
 
+                    <TextView
+                        android:id="@+id/tv_waktu_kejadian"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="-"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="12sp" />
 
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="Penyebab Bencana : "
+                        android:textColor="@color/colorBlack"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/tv_penyebab"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="-"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="Kerusakan Bangunan : "
+                        android:textColor="@color/colorBlack"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/tv_kerusakan_bangunan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="-"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="Kerusakan Lain : "
+                        android:textColor="@color/colorBlack"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/tv_kerusakan_lain"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="-"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="Korban Jiwa : "
+                        android:textColor="@color/colorBlack"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/tv_korban_jiwa"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="-"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="Kondisi Korban : "
+                        android:textColor="@color/colorBlack"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/tv_kondisi_korban"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="-"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="12sp" />
 
 
                 </LinearLayout>
 
 
                 <TextView
-                    android:layout_marginTop="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
                     android:layout_marginEnd="10dp"
                     android:fontFamily="@font/poppins_regular"
                     android:text="Lokasi / Titik Kejadian : "
@@ -130,13 +229,14 @@
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
-                    app:cardCornerRadius="20dp"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="20dp">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
-                        <fragment
-                            xmlns:tools="http://schemas.android.com/tools"
+
+                        <fragment xmlns:tools="http://schemas.android.com/tools"
                             android:id="@+id/map"
                             android:name="com.google.android.gms.maps.SupportMapFragment"
                             android:layout_width="match_parent"
@@ -160,8 +260,7 @@
                     android:id="@+id/et_detail_alamat"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="top"
-                    />
+                    android:gravity="top" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -177,32 +276,31 @@
                     android:id="@+id/et_detail_keterangan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="top"
-                    />
+                    android:gravity="top" />
 
                 <TextView
-                    android:layout_marginTop="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
                     android:layout_marginEnd="10dp"
                     android:fontFamily="@font/poppins_regular"
                     android:text="Izinkan Laporan Ini Diakses Publik ? "
                     android:textColor="@color/colorBlack"
-                    android:textSize="20dp" />
+                    android:textSize="12sp" />
 
-                <androidx.appcompat.widget.SwitchCompat
+                <CheckBox
                     android:id="@+id/switch_public"
-                    android:textOff="Ya"
-                    android:textOn="Tidak"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:text="Izinkan Laporan Ini Diakses Publik ? " />
+
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_send_report"
-                    android:layout_marginTop="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Kirim Laporan"/>
+                    android:layout_marginTop="20dp"
+                    android:text="Kirim Laporan" />
 
 
             </LinearLayout>
@@ -213,7 +311,7 @@
 
     <include
         android:id="@+id/include_loading"
-        android:visibility="invisible"
-        layout="@layout/layout_loading_transparent" />
+        layout="@layout/layout_loading_transparent"
+        android:visibility="gone" />
 
 </RelativeLayout>

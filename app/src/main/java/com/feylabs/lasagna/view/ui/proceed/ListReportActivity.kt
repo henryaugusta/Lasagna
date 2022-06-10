@@ -160,6 +160,10 @@ class ListReportActivity : BaseActivity(), OnMapReadyCallback {
                         btnCancelReport.visibility=View.GONE
                     }
 
+                    if(model.id_people.toString() != Preference(this@ListReportActivity).getPrefString(const.USER_ID)){
+                        btnCancelReport.visibility=View.GONE
+                    }
+
                     btnSeeDetail.setOnClickListener {
                         "Lihat Detail".showLongToast()
                         startActivity(

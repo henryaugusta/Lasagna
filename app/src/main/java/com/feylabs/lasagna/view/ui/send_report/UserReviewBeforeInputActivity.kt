@@ -39,6 +39,14 @@ class UserReviewBeforeInputActivity : BaseActivity(), OnMapReadyCallback {
         const val DESC = "DESCRIPTION"
         const val LOC = "LOCSTION"
         const val IMAGE_URI = "LOxxCssSTION"
+
+        const val TANGGAL_KEJADIAN = "LOxxCssSTION99l2"
+        const val WAKTU_KEJADIAN = "LOxxCssSTIONgwgrc13"
+        const val PENYEBAB_KEJADIAN = "LOxxCssSTION0t525"
+        const val KERUSAKAN_BANGUNAN = "LOxxCssSThr44ION"
+        const val KERUSAKAN_LAIN = "LOxxCssSTIOvwN"
+        const val KORBAN_JIWA = "LOxxCssSTIOewvgeN"
+        const val KONDISI_KORBA = "kondisi_kreonassSTION"
     }
 
     val reportViewModel by lazy { ViewModelProvider(this).get(UserReportViewModel::class.java) }
@@ -66,6 +74,13 @@ class UserReviewBeforeInputActivity : BaseActivity(), OnMapReadyCallback {
         vbind.etDetailAlamat.text = myLoc.toString()
         vbind.etDetailKeterangan.text = myDesc
 
+        vbind.tvWaktuKejadian.text = Preference(this).getPrefString(WAKTU_KEJADIAN)
+        vbind.tvPenyebab.text = Preference(this).getPrefString(PENYEBAB_KEJADIAN)
+        vbind.tvKerusakanBangunan.text=Preference(this).getPrefString(KERUSAKAN_BANGUNAN)
+        vbind.tvKerusakanLain.text=Preference(this).getPrefString(KERUSAKAN_LAIN)
+        vbind.tvKorbanJiwa.text=Preference(this).getPrefString(KORBAN_JIWA)
+        vbind.tvKondisiKorban.text=Preference(this).getPrefString(KONDISI_KORBA)
+
         Picasso.get()
             .load(myCategoryImage)
             .into(vbind.imageCategory)
@@ -85,7 +100,13 @@ class UserReviewBeforeInputActivity : BaseActivity(), OnMapReadyCallback {
                     photo = File(myImage?.toUri()?.path),
                     lat = myLatitude,
                     long =  myLongitude,
-                    status = "0"
+                    status = "0",
+                    waktu_kejadian = getPrefString(WAKTU_KEJADIAN),
+                    kerusakan_bangunan = getPrefString(KERUSAKAN_BANGUNAN),
+                    kerusakan_lain = getPrefString(KERUSAKAN_LAIN),
+                    kondisi_korban = getPrefString(KONDISI_KORBA),
+                    korban_jiwa = getPrefString(KORBAN_JIWA),
+                    penyebab_bencana = getPrefString(PENYEBAB_KEJADIAN)
                 )
                 reportViewModel.sendReportModel(reportModel)
             }

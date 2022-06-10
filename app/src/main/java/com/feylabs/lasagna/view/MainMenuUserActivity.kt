@@ -76,14 +76,13 @@ class MainMenuUserActivity : BaseActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
         when (item.itemId) {
-            R.id.action_logout -> {
-                Preference(this).clearPreferences()
-                startActivity(Intent(this, MainActivity::class.java))
-                "Logout Berhasil".showLongToast()
-                finish()
-            }
+//            R.id.logout -> {
+//                Preference(this).clearPreferences()
+//                startActivity(Intent(this, MainActivity::class.java))
+//                "Logout Berhasil".showLongToast()
+//                finish()
+//            }
         }
         return super.onOptionsItemSelected(item)
 

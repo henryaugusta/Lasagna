@@ -6,7 +6,6 @@ import android.content.Intent
 import android.location.LocationManager
 import android.net.Uri
 import android.os.Bundle
-import android.provider.ContactsContract
 import android.util.Log
 import android.view.View
 import android.view.animation.AnimationUtils
@@ -244,12 +243,8 @@ class ListHospitalActivity : BaseActivity(), OnMapReadyCallback {
     }
 
     fun contact(number:String){
-        val intent = Intent(Intent.ACTION_VIEW)
-        val uri = Uri.withAppendedPath(
-            ContactsContract.Contacts.CONTENT_URI,
-           (number)
-        )
-        intent.data = uri
+        val intent = Intent(Intent.ACTION_DIAL)
+        intent.data = Uri.parse("tel:$number")
         startActivity(intent)
     }
 

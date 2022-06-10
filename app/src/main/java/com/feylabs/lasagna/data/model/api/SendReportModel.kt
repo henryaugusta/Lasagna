@@ -11,5 +11,12 @@ data class SendReportModel(
     var lat  : Double,
     var long  : Double,
     var photo  : File,
-    var status  : String
+    var status  : String,
+
+    var waktu_kejadian  : String,
+    var penyebab_bencana  : String,
+    var kerusakan_bangunan  : String,
+    var kerusakan_lain  : String,
+    var korban_jiwa  : String,
+    var kondisi_korban  : String
 )

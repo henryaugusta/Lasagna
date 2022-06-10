@@ -35,8 +35,8 @@ class Preference(context: Context) {
         return sharedPref.getBoolean(KEY_NAME, false)
     }
 
-    fun getPrefString(KEY_NAME: String): String? {
-        return sharedPref.getString(KEY_NAME, null)
+    fun getPrefString(KEY_NAME: String): String {
+        return sharedPref.getString(KEY_NAME, null) ?: ""
     }
 
     fun getPrefInt(KEY_NAME: String): Int? {
