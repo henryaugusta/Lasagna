@@ -109,23 +109,27 @@ class HomeFragment : BaseFragment() {
                     category_name = "Rumah Sakit",
                     id = 1,
                     photo_path = "/static_web_files/hospital.png"
-                ), ReportCategoryModel.Data(
+                ),
+                ReportCategoryModel.Data(
                     category_name = "Laporan Warga",
                     id = 2,
                     photo_path = "/static_web_files/report.png"
-                ), ReportCategoryModel.Data(
-                    category_name = "Prediksi Cuaca",
-                    id = 3,
-                    photo_path = "/static_web_files/weather.png"
-                ), ReportCategoryModel.Data(
-                    category_name = "Covid Harian",
-                    id = 4,
-                    photo_path = "/static_web_files/covid.png"
-                ), ReportCategoryModel.Data(
-                    category_name = "Kontak Penting",
-                    id = 5,
-                    photo_path = "/static_web_files/contact.png"
                 )
+//                ReportCategoryModel.Data(
+//                    category_name = "Prediksi Cuaca",
+//                    id = 3,
+//                    photo_path = "/static_web_files/weather.png"
+//                ),
+//                ReportCategoryModel.Data(
+//                    category_name = "Covid Harian",
+//                    id = 4,
+//                    photo_path = "/static_web_files/covid.png"
+//                ),
+//                ReportCategoryModel.Data(
+//                    category_name = "Kontak Penting",
+//                    id = 5,
+//                    photo_path = "/static_web_files/contact.png"
+//                )
             )
         )
 
