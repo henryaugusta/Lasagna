@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.feylabs.lasagna.view.ui.admin.AdminHomeFragment"
+        android:name="com.bangkit.nadira.view.ui.admin.AdminHomeFragment"
         android:label="fragment_admin_home"
         tools:layout="@layout/fragment_admin_home" >
         <action
@@ -29,18 +29,18 @@
 
     <fragment
         android:id="@+id/nav_user_management"
-        android:name="com.feylabs.lasagna.view.ui.admin.AdminUserManagementFragment"
+        android:name="com.bangkit.nadira.view.ui.admin.AdminUserManagementFragment"
         android:label="fragment_admin_settings"
         tools:layout="@layout/fragment_admin_user_management" />
 
     <activity
         android:id="@+id/nav_hospital"
-        android:name="com.feylabs.lasagna.view.ui.hospital.ListHospitalActivity"
+        android:name="com.bangkit.nadira.view.ui.hospital.ListHospitalActivity"
         android:label="activity_list_hospital"
         tools:layout="@layout/activity_list_hospital" />
     <fragment
         android:id="@+id/nav_contact"
-        android:name="com.feylabs.lasagna.view.ui.contact.ContactListFragment"
+        android:name="com.bangkit.nadira.view.ui.contact.ContactListFragment"
         android:label="fragment_contact_list"
         tools:layout="@layout/fragment_contact_list" >
         <action
@@ -49,12 +49,12 @@
     </fragment>
     <fragment
         android:id="@+id/createContactFragment"
-        android:name="com.feylabs.lasagna.view.ui.contact.CreateContactFragment"
+        android:name="com.bangkit.nadira.view.ui.contact.CreateContactFragment"
         android:label="Kontak Penting" />
     <fragment
         android:id="@+id/nav_category"
         tools:layout="@layout/fragment_category_manage"
-        android:name="com.feylabs.lasagna.view.ui.category.CategoryManageFragment"
+        android:name="com.bangkit.nadira.view.ui.category.CategoryManageFragment"
         android:label="Kategori Laporan" >
         <action
             android:id="@+id/action_nav_category_to_editCategory"
@@ -62,12 +62,12 @@
     </fragment>
     <fragment
         android:id="@+id/editCategory"
-        android:name="com.feylabs.lasagna.view.ui.category.CategoryEditFragment"
+        android:name="com.bangkit.nadira.view.ui.category.CategoryEditFragment"
         android:label="Edit Category" />
     <fragment
         android:id="@+id/navigation_news"
         tools:layout="@layout/fragment_manage_news"
-        android:name="com.feylabs.lasagna.view.ui.news.ManageNewsFragment"
+        android:name="com.bangkit.nadira.view.ui.news.ManageNewsFragment"
         android:label="Manage News" >
         <action
             android:id="@+id/action_navigation_news_to_addNewsFragment"
@@ -75,11 +75,11 @@
     </fragment>
     <fragment
         android:id="@+id/addNewsFragment"
-        android:name="com.feylabs.lasagna.view.ui.news.AddNewsFragment"
+        android:name="com.bangkit.nadira.view.ui.news.AddNewsFragment"
         android:label="Add News" />
     <activity
         android:id="@+id/listReportActivity"
-        android:name="com.feylabs.lasagna.view.ui.proceed.ListReportActivity"
+        android:name="com.bangkit.nadira.view.ui.proceed.ListReportActivity"
         android:label="Report Dari Warga" />
 
 </navigation>

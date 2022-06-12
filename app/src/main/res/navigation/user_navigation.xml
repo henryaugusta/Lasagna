@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.feylabs.lasagna.view.ui.home.HomeFragment"
+        android:name="com.bangkit.nadira.view.ui.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -20,25 +20,25 @@
 
     <fragment
         android:id="@+id/navigation_my_report"
-        android:name="com.feylabs.lasagna.view.ui.report.MyReportFragment"
+        android:name="com.bangkit.nadira.view.ui.report.MyReportFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_my_report" />
 
 
     <fragment
         android:id="@+id/navigation_settings"
-        android:name="com.feylabs.lasagna.view.ui.settings.SettingsFragment"
+        android:name="com.bangkit.nadira.view.ui.settings.SettingsFragment"
         android:label="Profile" />
     <fragment
         android:id="@+id/contactListFragment"
-        android:name="com.feylabs.lasagna.view.ui.contact.ContactListFragment"
+        android:name="com.bangkit.nadira.view.ui.contact.ContactListFragment"
         android:label="fragment_contact_list"
         tools:layout="@layout/fragment_contact_list" />
 
     <activity
         android:id="@+id/listReportActivity"
         tools:layout="@layout/activity_list_report"
-        android:name="com.feylabs.lasagna.view.ui.proceed.ListReportActivity"
+        android:name="com.bangkit.nadira.view.ui.proceed.ListReportActivity"
         android:label="Report Dari Warga" />
 
 

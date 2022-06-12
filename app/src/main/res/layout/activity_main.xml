@@ -7,16 +7,18 @@
 
     <ImageView
         android:id="@+id/patternLeft"
-        android:layout_width="wrap_content"
+        android:layout_width="10dp"
         android:layout_height="match_parent"
         android:scaleType="fitXY"
         android:src="@drawable/ic_group_pattern1"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/container1"
+        android:visibility="gone"
         android:layout_toEndOf="@id/patternLeft"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -63,22 +65,23 @@
         android:orientation="vertical">
 
         <ImageView
-            android:layout_width="96dp"
-            android:layout_height="96dp"
-            android:src="@drawable/logo_original" />
+            android:id="@+id/sample_image"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:src="@drawable/nadira" />
 
         <TextView
             android:id="@+id/label_title"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/avenir_regular"
-            android:text="@string/satgas"
+            android:text="Aplikasi Lapor Bencana"
             android:textColor="@color/black"
             android:textSize="20dp" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/avenir_regular"
             android:text="@string/jargon"
@@ -119,8 +122,8 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:elevation="0dp"
-            android:backgroundTint="@color/tm_yellow"
-            android:textColor="@color/tm_dark_blue"
+            android:backgroundTint="#004B6B"
+            android:textColor="@color/white"
             android:drawableEnd="@drawable/ic_baseline_arrow_forward_24"
             android:text="@string/login"
             android:fontFamily="@font/avenir_regular"

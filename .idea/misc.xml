@@ -4,14 +4,24 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/henry/OneDrive/Desktop/Zabrina Raissa - Ciptadana/Android-Lasagna/app/src/main/res/drawable/bg_input_neo.xml" value="0.1855" />
-        <entry key="..\:/Users/henry/OneDrive/Desktop/Zabrina Raissa - Ciptadana/Android-Lasagna/app/src/main/res/layout/activity_detail_report.xml" value="0.12182971014492754" />
+        <entry key="..\:/Users/henry/OneDrive/Desktop/Zabrina Raissa - Ciptadana/Android-Lasagna/app/src/main/res/drawable/ic_new_report.xml" value="0.126" />
+        <entry key="..\:/Users/henry/OneDrive/Desktop/Zabrina Raissa - Ciptadana/Android-Lasagna/app/src/main/res/drawable/ic_status.xml" value="0.126" />
+        <entry key="..\:/Users/henry/OneDrive/Desktop/Zabrina Raissa - Ciptadana/Android-Lasagna/app/src/main/res/drawable/xd_prixa.xml" value="0.1525" />
+        <entry key="..\:/Users/henry/OneDrive/Desktop/Zabrina Raissa - Ciptadana/Android-Lasagna/app/src/main/res/layout/activity_detail_report.xml" value="0.25" />
         <entry key="..\:/Users/henry/OneDrive/Desktop/Zabrina Raissa - Ciptadana/Android-Lasagna/app/src/main/res/layout/activity_list_report.xml" value="0.1" />
+        <entry key="..\:/Users/henry/OneDrive/Desktop/Zabrina Raissa - Ciptadana/Android-Lasagna/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Users/henry/OneDrive/Desktop/Zabrina Raissa - Ciptadana/Android-Lasagna/app/src/main/res/layout/activity_review_before_input.xml" value="0.18" />
         <entry key="..\:/Users/henry/OneDrive/Desktop/Zabrina Raissa - Ciptadana/Android-Lasagna/app/src/main/res/layout/activity_user_input_detail.xml" value="0.14" />
-        <entry key="..\:/Users/henry/OneDrive/Desktop/Zabrina Raissa - Ciptadana/Android-Lasagna/app/src/main/res/layout/activity_user_input_report.xml" value="0.16" />
+        <entry key="..\:/Users/henry/OneDrive/Desktop/Zabrina Raissa - Ciptadana/Android-Lasagna/app/src/main/res/layout/activity_user_input_report.xml" value="0.25" />
         <entry key="..\:/Users/henry/OneDrive/Desktop/Zabrina Raissa - Ciptadana/Android-Lasagna/app/src/main/res/layout/fragment_admin_home.xml" value="0.14010416666666667" />
         <entry key="..\:/Users/henry/OneDrive/Desktop/Zabrina Raissa - Ciptadana/Android-Lasagna/app/src/main/res/layout/fragment_home.xml" value="0.16" />
         <entry key="..\:/Users/henry/OneDrive/Desktop/Zabrina Raissa - Ciptadana/Android-Lasagna/app/src/main/res/layout/fragment_my_report.xml" value="0.14719202898550723" />
+        <entry key="..\:/Users/henry/OneDrive/Desktop/Zabrina Raissa - Ciptadana/Android-Lasagna/app/src/main/res/layout/item_category_report.xml" value="0.14270833333333333" />
+        <entry key="..\:/Users/henry/OneDrive/Desktop/Zabrina Raissa - Ciptadana/Android-Lasagna/app/src/main/res/layout/item_category_report_new.xml" value="0.33" />
+        <entry key="..\:/Users/henry/OneDrive/Desktop/Zabrina Raissa - Ciptadana/Android-Lasagna/app/src/main/res/layout/item_report_response.xml" value="0.14739583333333334" />
+        <entry key="..\:/Users/henry/OneDrive/Desktop/Zabrina Raissa - Ciptadana/Android-Lasagna/app/src/main/res/layout/layout_loading_transparent.xml" value="0.13125" />
+        <entry key="..\:/Users/henry/OneDrive/Desktop/Zabrina Raissa - Ciptadana/Android-Lasagna/app/src/main/res/layout/layout_login_user.xml" value="0.16" />
+        <entry key="..\:/Users/henry/OneDrive/Desktop/Zabrina Raissa - Ciptadana/Android-Lasagna/app/src/main/res/layout/layout_register_user.xml" value="0.14" />
         <entry key="..\:/Users/henry/OneDrive/Desktop/Zabrina Raissa - Ciptadana/Android-Lasagna/app/src/main/res/layout/option_report_user.xml" value="0.14719202898550723" />
         <entry key="..\:/Users/henry/OneDrive/Desktop/Zabrina Raissa - Ciptadana/Android-Lasagna/app/src/main/res/menu/menu_input_report.xml" value="0.1" />
         <entry key="..\:/Users/henry/OneDrive/Desktop/Zabrina Raissa - Ciptadana/Android-Lasagna/app/src/main/res/menu/top_bar_menu.xml" value="0.1" />

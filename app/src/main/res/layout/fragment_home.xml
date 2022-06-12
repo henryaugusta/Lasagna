@@ -18,57 +18,28 @@
             android:orientation="vertical"
             tools:ignore="ExtraText">
 
-            <RelativeLayout
-                android:id="@+id/btnOpenAI"
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="13dp">
+                android:layout_marginTop="20dp"
+                android:layout_marginHorizontal="@dimen/dimen_20dp"
+                app:cardCornerRadius="@dimen/dimen_20dp">
 
-                <ImageView
+                <RelativeLayout
+                    android:id="@+id/btnOpenAI"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/xd_prixa" />
+                    android:layout_height="150dp">
 
-                <TextView
-                    android:id="@+id/txt1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginRight="20dp"
-                    android:width="200dp"
-                    android:fontFamily="@font/poppins_medium"
-                    android:text="Laporkan Kejadian "
-                    android:textColor="@color/colorWhite"
-                    android:textSize="17dp" />
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/banner_atas" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/txt2"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginBottom="20dp"
-                    android:fontFamily="@font/poppins_medium"
-                    android:text="Klik Disini"
-                    android:visibility="gone"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="17dp" />
+                </RelativeLayout>
 
-                <TextView
-                    android:id="@+id/txt2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/txt1"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginRight="20dp"
-                    android:width="200dp"
-                    android:fontFamily="@font/poppins_regular"
-                    android:text="@string/prixa"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="12dp" />
-            </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/containerCase"
@@ -80,11 +51,11 @@
                 app:cardCornerRadius="20dp">
 
                 <LinearLayout
-                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="gone">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -262,50 +233,9 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
                     android:fontFamily="@font/poppins_regular"
-                    android:text="Kabar Terbaru"
+                    android:text="Kirim Laporan Bencana"
                     android:textColor="@color/colorBlack"
                     android:textSize="20sp" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/container_card_news"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:orientation="horizontal"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:listitem="@layout/item_news" />
-
-                <ru.tinkoff.scrollingpagerindicator.ScrollingPagerIndicator
-                    android:id="@+id/indicator"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="20dp"
-                    android:backgroundTint="@color/blue_jeans" />
-
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:background="@color/colorWhite"
-                android:orientation="vertical"
-                android:padding="10dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:textSize="20sp"
-                    android:fontFamily="@font/poppins_regular"
-                    android:text="@string/kirim_laporan"
-                    android:textColor="@color/colorBlack" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -383,11 +313,12 @@
             </LinearLayout>
 
 
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:background="#d3e0ea"
+                android:background="#FAB01D"
                 android:orientation="vertical"
                 android:padding="10dp">
 
@@ -397,43 +328,84 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
                     android:fontFamily="@font/poppins_regular"
-                    android:textColor="@color/colorWhite"
                     android:text="Menu"
+                    android:textColor="@color/colorWhite"
                     android:textSize="20dp" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:layout_marginTop="10dp"
                     android:id="@+id/rv_category"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:listitem="@layout/item_category_report"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                    android:orientation="horizontal"/>
+                    tools:itemCount="9"
+                    tools:listitem="@layout/item_category_report" />
 
                 <TextView
-                    android:layout_marginTop="30dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
                     android:fontFamily="@font/poppins_regular"
-                    android:text="Made with ♥ by ESD Lab"
+                    android:text="Made with ♥ Capstone C22-PS345"
                     android:textAlignment="center"
                     android:textColor="@color/white" />
 
 
             </LinearLayout>
 
-            <RelativeLayout
-                android:visibility="gone"
-                android:layout_marginTop="30dp"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                >
+                android:layout_marginTop="@dimen/dimen_20dp"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:visibility="gone"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Berita Terbaru"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="20sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/container_card_news"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/item_news" />
+
+                <ru.tinkoff.scrollingpagerindicator.ScrollingPagerIndicator
+                    android:id="@+id/indicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:backgroundTint="@color/blue_jeans" />
+
+
+            </LinearLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:visibility="gone">
+
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_homie"
                     android:scaleType="fitXY"
-                    />
+                    android:src="@drawable/ic_homie" />
 
             </RelativeLayout>
 
@@ -448,6 +420,7 @@
 
     <include
         android:id="@+id/include_loading"
+        android:visibility="gone"
         layout="@layout/layout_loading_transparent" />
 
 
