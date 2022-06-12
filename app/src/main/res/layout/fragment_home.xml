@@ -327,7 +327,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
-                    android:fontFamily="@font/poppins_regular"
+                    android:fontFamily="@font/poppins_medium"
                     android:text="Menu"
                     android:textColor="@color/colorWhite"
                     android:textSize="20dp" />
@@ -366,7 +366,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     android:fontFamily="@font/poppins_regular"
                     android:text="Berita Terbaru"
                     android:textColor="@color/colorBlack"

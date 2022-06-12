@@ -316,6 +316,7 @@ class UserInputReportActivity : BaseActivity() {
         }
 
         if (modelResult != reportCategoryName) {
+            isDone = false
             vbind.tvOutputDate.startAnimation(loadAnimation(this, R.anim.short_shake))
             "Kategori tidak sesuai dengan klasifikasi gambar, silakan pilih gambar ulang atau ubah kategori".showLongToast()
         }
@@ -430,8 +431,14 @@ class UserInputReportActivity : BaseActivity() {
     fun classifyImage(imagez: Bitmap) {
         try {
             val imageSize = 299
-            val imageResized = Bitmap.createScaledBitmap(imagez, imageSize, imageSize, false)
+            val imageResizedz = Bitmap.createScaledBitmap(imagez, imageSize, imageSize, false)
             val model = ModelXceptionV2.newInstance(this)
+
+            val mutableBitmap = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                imageResizedz.copy(Bitmap.Config.RGBA_F16, true)
+            } else {
+                imageResizedz
+            }
 
             // Creates inputs for reference.
             val inputFeature0 = TensorBuffer.createFixedSize(
@@ -442,9 +449,7 @@ class UserInputReportActivity : BaseActivity() {
             byteBuffer.order(ByteOrder.nativeOrder())
             val intValues = IntArray(imageSize * imageSize)
 
-//            image.getPixel(imageSize,imageSize)
-//            image.getPixels(intValues, 0, image.width, 0, 0, image.width,image.height );
-            imageResized.getPixels(intValues, 0, imageSize, 0, 0, imageSize, imageSize);
+            mutableBitmap.getPixels(intValues, 0, imageSize, 0, 0, imageSize, imageSize);
 
             var pixel = 0
             //iterate over each pixel and extract R, G, and B values. Add those values individually to the byte buffer.
