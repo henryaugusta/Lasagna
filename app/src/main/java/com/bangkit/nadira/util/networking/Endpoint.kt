@@ -9,8 +9,8 @@ object Endpoint {
 //    const val REAL_URL = "http://192.168.100.4:9000"
 //    const val BASE_URL = "http://192.168.100.4:9000/api"
 
-    const val REAL_URL = "http://34.101.94.103"
-    const val BASE_URL = "http://34.101.94.103/api"
+    const val REAL_URL = "http://192.168.30.251:1515"
+    const val BASE_URL = "$REAL_URL/api"
 
     const val PEOPLE_LOGIN = "${BASE_URL}/people/login"
     const val PEOPLE_REGISTER = "${BASE_URL}/people/register"

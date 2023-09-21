@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bangkit.nadira.R
 import com.bangkit.nadira.databinding.ActivityMainBinding
+import com.bangkit.nadira.databinding.ActivityMainNewBinding
 import com.bangkit.nadira.databinding.LayoutLoginUserBinding
 import com.bangkit.nadira.databinding.LayoutRegisterUserBinding
 import com.bangkit.nadira.util.Resource
@@ -41,13 +42,13 @@ class MainActivity : BaseActivity() {
     lateinit var d: Date
     lateinit var meTime: String
 
-    lateinit var viewBinding: ActivityMainBinding
+    lateinit var viewBinding: ActivityMainNewBinding
     lateinit var layoutLogin: LayoutLoginUserBinding
     lateinit var layoutRegister: LayoutRegisterUserBinding
 
     @SuppressLint("SimpleDateFormat")
     override fun onCreate(savedInstanceState: Bundle?) {
-        viewBinding = ActivityMainBinding.inflate(layoutInflater)
+        viewBinding = ActivityMainNewBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(viewBinding.root)
 

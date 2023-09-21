@@ -62,7 +62,7 @@ class HomeFragment : BaseFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val bottomNews = inflater.inflate(R.layout.layout_detail_news, container, false)
         newsBottomSheetBinding = LayoutDetailNewsBinding.bind(bottomNews)
         val root = inflater.inflate(R.layout.fragment_home, container, false)
@@ -109,22 +109,27 @@ class HomeFragment : BaseFragment() {
                     category_name = "Laporan Warga",
                     id = 2,
                     photo_path = "/static_web_files/report.png"
+                ),
+                ReportCategoryModel.Data(
+                    category_name = "Prediksi Cuaca",
+                    id = 3,
+                    photo_path = "/static_web_files/weather.png"
+                ),
+                ReportCategoryModel.Data(
+                    category_name = "Covid Harian",
+                    id = 4,
+                    photo_path = "/static_web_files/covid.png"
+                ),
+                ReportCategoryModel.Data(
+                    category_name = "Kontak Penting",
+                    id = 5,
+                    photo_path = "/static_web_files/contact.png"
+                ),
+                ReportCategoryModel.Data(
+                    category_name = "BPJS",
+                    id = 6,
+                    photo_path = "/static_web_files/logo_bpjs.png"
                 )
-//                ReportCategoryModel.Data(
-//                    category_name = "Prediksi Cuaca",
-//                    id = 3,
-//                    photo_path = "/static_web_files/weather.png"
-//                ),
-//                ReportCategoryModel.Data(
-//                    category_name = "Covid Harian",
-//                    id = 4,
-//                    photo_path = "/static_web_files/covid.png"
-//                ),
-//                ReportCategoryModel.Data(
-//                    category_name = "Kontak Penting",
-//                    id = 5,
-//                    photo_path = "/static_web_files/contact.png"
-//                )
             )
         )
 

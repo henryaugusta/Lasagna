@@ -68,7 +68,7 @@
             android:id="@+id/sample_image"
             android:layout_width="match_parent"
             android:layout_height="300dp"
-            android:src="@drawable/nadira" />
+            android:src="@drawable/logo_citoaltecy_big" />
 
         <TextView
             android:id="@+id/label_title"
@@ -76,7 +76,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/avenir_regular"
-            android:text="Aplikasi Lapor Bencana"
+            android:text="Citoaltecy"
             android:textColor="@color/black"
             android:textSize="20dp" />
 

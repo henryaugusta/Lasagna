@@ -7,10 +7,11 @@
     android:background="@color/white_bluish"
     tools:context=".view.ui.home.HomeFragment">
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true">
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -18,10 +19,52 @@
             android:orientation="vertical"
             tools:ignore="ExtraText">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_20dp"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:visibility="gone"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Berita Terbaru"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="20sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/container_card_news"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/item_news" />
+
+                <ru.tinkoff.scrollingpagerindicator.ScrollingPagerIndicator
+                    android:id="@+id/indicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:backgroundTint="@color/blue_jeans" />
+
+
+            </LinearLayout>
+
+
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:visibility="gone"
                 android:layout_marginHorizontal="@dimen/dimen_20dp"
                 app:cardCornerRadius="@dimen/dimen_20dp">
 
@@ -318,7 +361,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:background="#FAB01D"
                 android:orientation="vertical"
                 android:padding="10dp">
 
@@ -327,9 +369,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
+                    android:textColor="@color/colorBlack"
                     android:fontFamily="@font/poppins_medium"
                     android:text="Menu"
-                    android:textColor="@color/colorWhite"
                     android:textSize="20dp" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -349,50 +391,10 @@
                     android:fontFamily="@font/poppins_regular"
                     android:text="Made with ♥ Capstone C22-PS345"
                     android:textAlignment="center"
-                    android:textColor="@color/white" />
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dimen_20dp"
-                android:orientation="vertical"
-                android:padding="10dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:visibility="visible"
-                    android:fontFamily="@font/poppins_regular"
-                    android:text="Berita Terbaru"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="20sp" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/container_card_news"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:orientation="horizontal"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:listitem="@layout/item_news" />
-
-                <ru.tinkoff.scrollingpagerindicator.ScrollingPagerIndicator
-                    android:id="@+id/indicator"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="20dp"
-                    android:backgroundTint="@color/blue_jeans" />
-
+                    android:textColor="@color/black" />
 
             </LinearLayout>
+
 
 
             <RelativeLayout
@@ -411,7 +413,7 @@
 
 
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
     <include
         android:id="@+id/include_ai"
