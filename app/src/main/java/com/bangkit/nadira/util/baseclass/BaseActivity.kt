@@ -29,6 +29,10 @@ open class BaseActivity : AppCompatActivity() {
         this.visibility = View.INVISIBLE
     }
 
+    fun showToast(message:String){
+        Toast.makeText(this,message,Toast.LENGTH_LONG).show()
+    }
+
     fun showSweetAlert(title: String, desc: String, color: Int) {
         Alerter.create(this)
             .setTitle(title)

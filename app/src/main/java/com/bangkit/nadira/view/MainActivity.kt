@@ -24,6 +24,7 @@ import com.bangkit.nadira.util.SharedPreference.const.USER_NAME
 import com.bangkit.nadira.util.SharedPreference.const.USER_TYPE
 import com.bangkit.nadira.util.baseclass.BaseActivity
 import com.bangkit.nadira.view.ui.AdminHomeActivity
+import com.bangkit.nadira.view.ui.nfc.MyNfcActivity
 import com.bangkit.nadira.viewmodel.LoginViewModel
 import com.bangkit.nadira.viewmodel.RegisterViewModel
 import kotlinx.coroutines.*
@@ -66,6 +67,11 @@ class MainActivity : BaseActivity() {
 
         classifyImage(icon)
 
+        viewBinding.sampleImage.setOnClickListener {
+            startActivity(Intent(
+                this, MyNfcActivity::class.java
+            ))
+        }
 
 
         //Register View Model Listener

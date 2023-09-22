@@ -36,6 +36,7 @@ import com.bangkit.nadira.viewmodel.MainMenuUserViewModel
 import com.bangkit.nadira.view.bottom_sheet.NewsBottomSheet
 import com.bangkit.nadira.view.ui.daily_covid.DailyCovidActivity
 import com.bangkit.nadira.view.ui.hospital.ListHospitalActivity
+import com.bangkit.nadira.view.ui.nfc.MyNfcActivity
 import com.bangkit.nadira.view.ui.proceed.ListReportActivity
 import com.bangkit.nadira.view.ui.send_report.UserInputReportActivity
 import com.bangkit.nadira.viewmodel.NewsViewModel
@@ -126,9 +127,14 @@ class HomeFragment : BaseFragment() {
                     photo_path = "/static_web_files/contact.png"
                 ),
                 ReportCategoryModel.Data(
-                    category_name = "BPJS",
+                    category_name = "BPJSTK",
                     id = 6,
                     photo_path = "/static_web_files/logo_bpjs.png"
+                ),
+                ReportCategoryModel.Data(
+                    category_name = "NFC",
+                    id = 7,
+                    photo_path = "/static_web_files/mobile_pay.png"
                 )
             )
         )
@@ -142,18 +148,25 @@ class HomeFragment : BaseFragment() {
                     1 -> {
                         startActivity(Intent(requireContext(), ListHospitalActivity::class.java))
                     }
+
                     2 -> {
                         startActivity(Intent(requireContext(), ListReportActivity::class.java))
                     }
+
                     3 -> {
                         startActivity(Intent(requireContext(), WeatherActivity::class.java))
                     }
+
                     4 -> {
                         startActivity(Intent(requireContext(), DailyCovidActivity::class.java))
                     }
+
                     5 -> {
                         Navigation.findNavController(vbinding.root)
                             .navigate(R.id.action_navigation_home_to_contactListFragment)
+                    }
+                    7 -> {
+                        startActivity(Intent(requireContext(), MyNfcActivity::class.java))
                     }
                 }
 
@@ -227,11 +240,13 @@ class HomeFragment : BaseFragment() {
                     Timber.d("register: loading")
                     vbinding.includeLoading.loadingRoot.visibility = View.GONE
                 }
+
                 is Resource.Error -> {
                     Timber.d("register: error")
                     vbinding.includeLoading.loadingRoot.visibility = View.GONE
                     "Gagal Terhubung Dengan Server".showLongToast()
                 }
+
                 is Resource.Success -> {
                     it.data?.let { it1 -> newsAdapterCarousel.setData(it1) }
                     newsAdapterCarousel.notifyDataSetChanged()
@@ -304,7 +319,7 @@ class HomeFragment : BaseFragment() {
     }
 
     private fun setUpViewAction() {
-        
+
         vbinding.btnCardAddNewReport.setOnClickListener {
             startActivity(Intent(requireContext(), UserInputReportActivity::class.java))
         }
