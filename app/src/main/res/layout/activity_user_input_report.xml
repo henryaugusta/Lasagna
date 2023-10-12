@@ -146,7 +146,7 @@
                         android:layout_marginTop="20dp"
                         android:layout_marginEnd="10dp"
                         android:fontFamily="@font/poppins_regular"
-                        android:text="Penyebab Bencana"
+                        android:text="Waktu Kejadian"
                         android:textColor="@color/colorBlack"
                         android:textSize="20dp" />
 
@@ -157,6 +157,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dimen_20dp"
+                        android:visibility="gone"
                         android:hint="Penyebab Bencana"
                         app:boxCornerRadiusBottomEnd="@dimen/dimen_20dp"
                         app:boxCornerRadiusBottomStart="@dimen/dimen_20dp"
@@ -165,6 +166,7 @@
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
+                            android:text="-"
                             android:layout_height="wrap_content" />
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -176,7 +178,7 @@
                         android:fontFamily="@font/poppins_regular"
                         android:layout_marginHorizontal="10dp"
                         android:layout_marginTop="@dimen/dimen_20dp"
-                        android:text="Tanggal dan Waktu Bencana"
+                        android:text="Tanggal dan Waktu Kejadian"
                         android:textColor="@color/colorBlack"
                         android:textSize="17sp" />
 

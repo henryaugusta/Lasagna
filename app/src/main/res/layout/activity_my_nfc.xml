@@ -1,128 +1,152 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
 
 
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <androidx.core.widget.NestedScrollView
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical">
-
-        <androidx.cardview.widget.CardView
+        android:layout_height="wrap_content">
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dimen_20dp"
-            android:layout_marginTop="@dimen/dimen_20dp"
-            android:elevation="@dimen/dimen_20dp"
-            app:cardCornerRadius="@dimen/dimen_20dp">
+            android:gravity="center"
+            android:orientation="vertical">
 
-            <androidx.appcompat.widget.LinearLayoutCompat
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="@dimen/dimen_20dp">
+                android:layout_margin="@dimen/dimen_20dp"
+                android:layout_marginTop="@dimen/dimen_20dp"
+                android:elevation="@dimen/dimen_20dp"
+                app:cardCornerRadius="@dimen/dimen_20dp">
 
-                <TextView
-                    android:id="@+id/title_card"
-                    android:gravity="center"
+                <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/avenir_regular"
-                    android:text="Add New Card"
-                    android:textSize="22sp" />
+                    android:orientation="vertical"
+                    android:padding="@dimen/dimen_20dp">
 
-                <ImageView
-                    android:layout_marginTop="@dimen/dimen_20dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:src="@drawable/logo_qrcitoaltecy" />
-
-                <TextView
-                    android:gravity="center"
-                    android:layout_marginTop="@dimen/dimen_20dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/avenir_regular"
-                    android:text="Tempelkan Kartu ke NFC Scanner Device anda"
-                    android:textSize="12sp" />
-
-                <TextView
-                    android:id="@+id/text_desc_how_to"
-                    android:gravity="center"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/avenir_regular"
-                    android:text="Simpan Kartu ke Database terlebih dahulu untuk dapat digunakan mengontrol device"
-                    android:textSize="11sp"
-                    android:textColor="@color/green11"
-                    />
-
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_marginTop="17dp"
-                    android:id="@+id/containerPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Label"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etCardLabel"
+                    <TextView
+                        android:id="@+id/title_card"
+                        android:gravity="center"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="text"
-                        />
-                </com.google.android.material.textfield.TextInputLayout>
+                        android:fontFamily="@font/avenir_regular"
+                        android:text="Add New Card"
+                        android:textSize="22sp" />
 
+                    <ImageView
+                        android:layout_marginTop="@dimen/dimen_20dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:src="@drawable/logo_qrcitoaltecy" />
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_marginTop="17dp"
-                    android:id="@+id/containerCardId"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="ID Kartu"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etCardId"
+                    <TextView
+                        android:gravity="center"
+                        android:layout_marginTop="@dimen/dimen_20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="text"
+                        android:fontFamily="@font/avenir_regular"
+                        android:text="Tempelkan Kartu ke NFC Scanner Device anda"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/text_desc_how_to"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/avenir_regular"
+                        android:text="Simpan Kartu ke Database terlebih dahulu untuk dapat digunakan mengontrol device"
+                        android:textSize="11sp"
+                        android:textColor="@color/green11"
                         />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.button.MaterialButton
-                    android:layout_width="match_parent"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/btn_save_card"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/dimen_20dp"
-                    android:text="Save Card"/>
 
 
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_marginTop="17dp"
+                        android:id="@+id/containerPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Label"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etCardLabel"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text"
+                            />
+                    </com.google.android.material.textfield.TextInputLayout>
 
 
-            </androidx.appcompat.widget.LinearLayoutCompat>
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_marginTop="17dp"
+                        android:id="@+id/containerCardId"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="ID Kartu"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-        </androidx.cardview.widget.CardView>
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etCardId"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text"
+                            />
+                    </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:id="@+id/cardIdTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="32dp"
-            android:text="Card ID will appear here"
-            android:textSize="18sp" />
+                    <com.google.android.material.button.MaterialButton
+                        android:layout_width="match_parent"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/btn_save_card"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/dimen_20dp"
+                        android:text="Save/Update Card"/>
 
 
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </androidx.cardview.widget.CardView>
 
 
-</RelativeLayout>
+            <TextView
+                android:id="@+id/card_list_title"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/avenir_regular"
+                android:text="Kartu Yang Telah Ditambahkan"
+                android:textSize="17sp" />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_my_nfc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/item_my_nfc_list"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+    <include
+        android:id="@+id/include_loading"
+        layout="@layout/layout_loading_transparent"
+        android:visibility="gone" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

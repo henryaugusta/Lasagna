@@ -44,7 +44,7 @@
                             android:id="@+id/profile"
                             android:layout_width="60dp"
                             android:layout_height="60dp"
-                            android:src="@drawable/logo_original" />
+                            android:src="@drawable/logo_citoaltecy_big" />
                     </androidx.cardview.widget.CardView>
 
 
@@ -265,7 +265,7 @@
                         android:layout_marginLeft="16dp"
                         android:fontFamily="@font/poppins_regular"
                         android:layout_toRightOf="@id/icon_asd"
-                        android:text="Laporan Warga"
+                        android:text="Laporan Emergency"
                         android:textColor="#202020"
                         android:textSize="20dp" />
 
@@ -315,7 +315,7 @@
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:visibility="gone"
+                    android:visibility="visible"
                     android:id="@+id/containerKontak"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

@@ -161,6 +161,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_medium"
                         android:text="Penyebab Bencana : "
+                        android:visibility="gone"
                         android:textColor="@color/colorBlack"
                         android:textSize="15sp" />
 
@@ -170,6 +171,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_regular"
                         android:text="-"
+                        android:visibility="gone"
                         android:textColor="@color/colorBlack"
                         android:textSize="12sp" />
 
@@ -178,6 +180,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_medium"
                         android:text="Kerusakan Bangunan : "
+                        android:visibility="gone"
                         android:textColor="@color/colorBlack"
                         android:textSize="15sp" />
 
@@ -187,6 +190,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_regular"
                         android:text="-"
+                        android:visibility="gone"
                         android:textColor="@color/colorBlack"
                         android:textSize="12sp" />
 
@@ -195,6 +199,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_medium"
                         android:text="Kerusakan Lain : "
+                        android:visibility="gone"
                         android:textColor="@color/colorBlack"
                         android:textSize="15sp" />
 
@@ -204,6 +209,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_regular"
                         android:text="-"
+                        android:visibility="gone"
                         android:textColor="@color/colorBlack"
                         android:textSize="15sp" />
 
@@ -212,6 +218,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_medium"
                         android:text="Korban Jiwa : "
+                        android:visibility="gone"
                         android:textColor="@color/colorBlack"
                         android:textSize="15sp" />
 
@@ -221,6 +228,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_regular"
                         android:text="-"
+                        android:visibility="gone"
                         android:textColor="@color/colorBlack"
                         android:textSize="12sp" />
 
@@ -229,6 +237,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_medium"
                         android:text="Kondisi Korban : "
+                        android:visibility="gone"
                         android:textColor="@color/colorBlack"
                         android:textSize="15sp" />
 
@@ -238,6 +247,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_regular"
                         android:text="-"
+                        android:visibility="gone"
                         android:textColor="@color/colorBlack"
                         android:textSize="12sp" />
 
@@ -344,7 +354,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginEnd="10dp"
                                 android:fontFamily="@font/poppins_regular"
-                                android:text="Riwayat Respon Petugas  : "
+                                android:text="Riwayat Respon : "
                                 android:textColor="@color/colorBlack"
                                 android:textSize="17sp" />
 

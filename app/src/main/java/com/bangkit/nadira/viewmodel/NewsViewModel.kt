@@ -17,7 +17,6 @@ class NewsViewModel : ViewModel() {
 
     val newsDB: MutableLiveData<Resource<MutableList<ModelNewsCarousel>>> = MutableLiveData()
     val createNewsResponse: MutableLiveData<Resource<String>> = MutableLiveData(
-
     )
 
     fun fetchNews() {

@@ -43,7 +43,7 @@
                     android:drawablePadding="20dp"
                     android:drawableTint="@color/colorWhite"
                     android:fontFamily="@font/poppins_medium"
-                    android:text="Laporan Dari Warga"
+                    android:text="Laporan Emergency"
                     android:textColor="@color/colorWhite" />
             </LinearLayout>
 

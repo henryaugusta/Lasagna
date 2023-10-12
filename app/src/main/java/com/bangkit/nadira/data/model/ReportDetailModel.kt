@@ -19,15 +19,15 @@ data class ReportDetailModel(
         @SerializedName("category")
         val category: Category,
         @SerializedName("created_at")
-        val createdAt: String,
+        val createdAt: String?,
         @SerializedName("detail_alamat")
-        val detailAlamat: String,
+        val detailAlamat: String?,
         @SerializedName("detail_kejadian")
-        val detailKejadian: String,
+        val detailKejadian: String?,
         @SerializedName("id")
-        val id: Int,
+        val id: Int?,
         @SerializedName("id_category")
-        val idCategory: Int,
+        val idCategory: Int?,
         @SerializedName("id_people")
         val idPeople: Int,
         @SerializedName("id_staff")
@@ -35,41 +35,41 @@ data class ReportDetailModel(
         @SerializedName("is_public")
         val isPublic: Int,
         @SerializedName("kerusakan_bangunan")
-        val kerusakanBangunan: String,
+        val kerusakanBangunan: String?,
         @SerializedName("kerusakan_lain")
-        val kerusakanLain: String,
+        val kerusakanLain: String?,
         @SerializedName("kondisi_korban")
-        val kondisiKorban: String,
+        val kondisiKorban: String?,
         @SerializedName("korban_jiwa")
-        val korbanJiwa: String,
+        val korbanJiwa: String?,
         @SerializedName("lat")
-        val lat: String,
+        val lat: String?,
         @SerializedName("long")
-        val long: String,
+        val long: String?,
         @SerializedName("no_laporan")
-        val noLaporan: String,
+        val noLaporan: String?,
         @SerializedName("people")
         val people: People,
         @SerializedName("peyebab_kejadian")
-        val peyebabKejadian: String,
+        val peyebabKejadian: String?,
         @SerializedName("photo_path")
-        val photoPath: String,
+        val photoPath: String?,
         @SerializedName("response")
         val response: List<Response>,
         @SerializedName("staff")
         val staff: Any,
         @SerializedName("status")
-        val status: String,
+        val status: String?,
         @SerializedName("status_desc")
-        val statusDesc: String,
+        val statusDesc: String?,
         @SerializedName("status_label")
-        val statusLabel: String,
+        val statusLabel: String?,
         @SerializedName("tanggal_kejadian")
         val tanggalKejadian: Any,
         @SerializedName("updated_at")
-        val updatedAt: String,
+        val updatedAt: String?,
         @SerializedName("waktu_kejadian")
-        val waktuKejadian: String
+        val waktuKejadian: String?
     ) {
         data class Category(
             @SerializedName("category_name")

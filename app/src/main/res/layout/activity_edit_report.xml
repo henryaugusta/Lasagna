@@ -69,7 +69,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Nama Instansi"
+                                android:text="Judul"
                                 android:textSize="13sp" />
 
                             <EditText
@@ -78,7 +78,7 @@
                                 android:layout_height="wrap_content"
                                 android:drawablePadding="10dp"
                                 android:fontFamily="sans-serif-light"
-                                android:hint="Nama Instansi"
+                                android:hint="Judul"
                                 android:textColor="@color/colorBlack"
                                 android:textSize="18sp" />
 
@@ -117,7 +117,7 @@
                                 android:layout_height="wrap_content"
                                 android:gravity="top"
                                 android:inputType="textMultiLine"
-                                android:hint="Rincian Kejadian"
+                                android:hint="Penanganan"
                                 android:lines="5" />
                         </com.google.android.material.textfield.TextInputLayout>
 

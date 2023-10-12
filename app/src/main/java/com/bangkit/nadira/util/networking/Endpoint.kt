@@ -9,7 +9,7 @@ object Endpoint {
 //    const val REAL_URL = "http://192.168.100.4:9000"
 //    const val BASE_URL = "http://192.168.100.4:9000/api"
 
-    const val REAL_URL = "http://192.168.30.251:1515"
+    const val REAL_URL = "https://citoaltecy.feylabs.my.id"
     const val BASE_URL = "$REAL_URL/api"
 
     const val PEOPLE_LOGIN = "${BASE_URL}/people/login"
@@ -19,6 +19,11 @@ object Endpoint {
     fun REPORT_GET_BY_USER(id_user: String): String {
         return "${BASE_URL}/report/users/$id_user/"
     }
+
+
+    const val NFC_STORE_NEW = "${BASE_URL}/nfc-cards/new"
+    const val GET_MY_CARD = "${BASE_URL}/nfc-cards/user"
+    const val DELETE_CARD = "${BASE_URL}/nfc-cards"
 
     fun REPORT_ALL(): String {
         return "${BASE_URL}/report/users/all"
@@ -49,7 +54,6 @@ object Endpoint {
 
     const val NEWS_FETCH_ALL = "${BASE_URL}/news/fetchAll"
     const val NEWS_STORE = "${BASE_URL}/news/store"
-
     const val HOSPITAL_FETCH = "${BASE_URL}/hospital/fetch"
 
     fun HOSPITAL_DELETE(id: String): String {

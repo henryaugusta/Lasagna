@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.text.Html
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,7 @@ import android.view.animation.AnimationUtils
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
@@ -30,6 +32,8 @@ import com.bangkit.nadira.data.model.api.ReportCategoryModel
 import com.bangkit.nadira.data.remote.RemoteDataSource
 import com.bangkit.nadira.databinding.ItemCategoryReportNewBinding
 import com.bangkit.nadira.util.Resource
+import com.bangkit.nadira.util.SharedPreference.Preference
+import com.bangkit.nadira.util.SharedPreference.const
 import com.bangkit.nadira.util.baseclass.BaseFragment
 import com.bangkit.nadira.util.baseclass.Util
 import com.bangkit.nadira.viewmodel.MainMenuUserViewModel
@@ -40,7 +44,9 @@ import com.bangkit.nadira.view.ui.nfc.MyNfcActivity
 import com.bangkit.nadira.view.ui.proceed.ListReportActivity
 import com.bangkit.nadira.view.ui.send_report.UserInputReportActivity
 import com.bangkit.nadira.viewmodel.NewsViewModel
+import com.google.firebase.messaging.FirebaseMessaging
 import com.squareup.picasso.Picasso
+import io.karn.notify.Notify
 import timber.log.Timber
 
 
@@ -82,6 +88,42 @@ class HomeFragment : BaseFragment() {
         menuViewModel.title.value = "Beranda"
         newsViewModel.fetchNews()
 
+        FirebaseMessaging.getInstance().token
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val name = Preference(requireContext()).getPrefString(const.USER_NAME)
+                    if (task.result != null && !TextUtils.isEmpty(task.result)) {
+                        menuViewModel.sendToken(token = task.result.toString(), device = "user", name = name)
+                    }
+                }
+            }
+
+
+        vbinding.isengIsengAja.setOnClickListener {
+            menuViewModel.randomUpdate()
+        }
+
+
+        vbinding.switchDoor.setOnCheckedChangeListener { compoundButton, b ->
+            if(b){
+                menuViewModel.updateDoorState(true)
+                showSweetAlert("Pintu Berhasil Dikunci"," ",R.color.xdGreen)
+            }else{
+                menuViewModel.updateDoorState(false)
+                showSweetAlert("Pintu Berhasil Dibuka"," ",R.color.xdGreen)
+            }
+        }
+
+        vbinding.switchLamp.setOnCheckedChangeListener { compoundButton, b ->
+            if(b){
+                menuViewModel.updateLampState(true)
+                showSweetAlert("Lampu Berhasil Dinyalakan"," ",R.color.xdGreen)
+            }else{
+                menuViewModel.updateLampState(false)
+                showSweetAlert("Lampu Berhasil Dipadamkan"," ",R.color.xdGreen)
+            }
+        }
+
 
         setUpAdapter()
         setupRecyclerView()
@@ -102,12 +144,12 @@ class HomeFragment : BaseFragment() {
         menuAdapter.setData(
             mutableListOf(
                 ReportCategoryModel.Data(
-                    category_name = "Rumah Sakit",
+                    category_name = "Ambulance Terdekat/Rumah Sakit",
                     id = 1,
                     photo_path = "/static_web_files/hospital.png"
                 ),
                 ReportCategoryModel.Data(
-                    category_name = "Laporan Warga",
+                    category_name = "Emergency Report",
                     id = 2,
                     photo_path = "/static_web_files/report.png"
                 ),
@@ -116,11 +158,11 @@ class HomeFragment : BaseFragment() {
                     id = 3,
                     photo_path = "/static_web_files/weather.png"
                 ),
-                ReportCategoryModel.Data(
-                    category_name = "Covid Harian",
-                    id = 4,
-                    photo_path = "/static_web_files/covid.png"
-                ),
+//                ReportCategoryModel.Data(
+//                    category_name = "Covid Harian",
+//                    id = 4,
+//                    photo_path = "/static_web_files/covid.png"
+//                ),
                 ReportCategoryModel.Data(
                     category_name = "Kontak Penting",
                     id = 5,
@@ -191,7 +233,6 @@ class HomeFragment : BaseFragment() {
         //Set News Item On Click
         newsAdapterCarousel.setInterface(object : NewsAdapterCarousel.NewsAdapterInterface {
             override fun onclick(model: ModelNewsCarousel) {
-                model.title.showLongToast()
                 val motDetailBottomSheet = NewsBottomSheet(requireActivity())
                 motDetailBottomSheet.apply {
                     val closeBtn = findViewById<ImageButton>(R.id.btn_close_detail_news)
@@ -257,31 +298,6 @@ class HomeFragment : BaseFragment() {
             }
         })
 
-
-        /*
-             homeViewModel.covidSummary.observe(viewLifecycleOwner, Observer {
-            when (it) {
-                is Resource.Success -> {
-                    it.data.apply {
-                        vbinding.odp.text = "Total ODP ( Indonesia ) : "+this?.data?.jumlahOdp.toString()
-                        vbinding.death.text = this?.update?.total?.jumlahMeninggal.toString()
-                        vbinding.deathNew.text =
-                            this?.update?.penambahan?.jumlahMeninggal.toString()
-                        vbinding.recovered.text = this?.update?.total?.jumlahMeninggal.toString()
-                        vbinding.recoveredNew.text =
-                            this?.update?.penambahan?.jumlahMeninggal.toString()
-                        vbinding.infected.text = this?.update?.total?.jumlahPositif.toString()
-                        vbinding.infectedNew.text =
-                            this?.update?.penambahan?.jumlahSembuh.toString()
-                        vbinding.inHospital.text = "Dirawat : " + this?.update?.total?.jumlahDirawat.toString()
-                    }
-                }
-                else -> {
-
-                }
-            }
-        })
-         */
     }
 
 

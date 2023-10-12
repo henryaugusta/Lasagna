@@ -41,7 +41,7 @@ class MyReportFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        menuViewModel.title.value = "Laporan Saya"
+        menuViewModel.title.value = "My Emergency Report"
         userReportViewModel.getReportByUser(
             Preference(requireContext()).getPrefString(USER_ID).toString()
         )

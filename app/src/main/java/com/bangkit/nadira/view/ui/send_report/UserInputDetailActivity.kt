@@ -53,7 +53,7 @@ class UserInputDetailActivity : AppCompatActivity() {
     private fun setUpToolbar() {
         vbind.includeToolbar.myCustomToolbar.apply {
             inflateMenu(R.menu.menu_input_report)
-            title = "Buat Laporan Baru"
+            title = "Emergency"
             setOnMenuItemClickListener {
 
                 when (it.itemId) {
@@ -72,14 +72,14 @@ class UserInputDetailActivity : AppCompatActivity() {
         val sDesc = vbind.etDetailKejadian.text.toString()
         val sLoc = vbind.etDetailAlamat.text.toString()
 
-        if (sDesc.length<10){
-            isDone=false
-            vbind.etDetailKejadian.error="Minimal 10 Karakter"
-        }
-        if (sLoc.length<10){
-            isDone=false
-            vbind.etDetailAlamat.error="Minimal 10 Karakter"
-        }
+//        if (sDesc.length<10){
+//            isDone=false
+//            vbind.etDetailKejadian.error="Minimal 10 Karakter"
+//        }
+//        if (sLoc.length<10){
+//            isDone=false
+//            vbind.etDetailAlamat.error="Minimal 10 Karakter"
+//        }
 
         if (isDone){
             goToReview(sDesc,sLoc)

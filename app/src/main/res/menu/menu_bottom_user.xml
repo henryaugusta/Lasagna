@@ -10,8 +10,8 @@
 
     <item
         android:id="@+id/navigation_my_report"
-        android:icon="@drawable/ic_dashboard_black_24dp"
-        android:title="Laporan Saya" />
+        android:icon="@drawable/baseline_doorbell_24"
+        android:title="Emergency" />
 
     <item
         android:id="@+id/navigation_settings"

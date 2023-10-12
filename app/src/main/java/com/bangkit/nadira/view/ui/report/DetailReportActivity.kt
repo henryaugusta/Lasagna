@@ -132,12 +132,14 @@ class DetailReportActivity : BaseActivity(), OnMapReadyCallback {
                     vbind.includeLoading.loadingRoot.visibility = View.VISIBLE
 
                 }
+
                 is Resource.Error -> {
                     vbind.includeLoading.loadingRoot.visibility = View.GONE
                     showSweetAlert("Error", it.message.toString(), R.color.xdRed)
                     Timber.d("myReportFragment: ->failed fetch report")
                     "Error".showLongToast()
                 }
+
                 is Resource.Success -> {
                     vbind.includeLoading.loadingRoot.visibility = View.GONE
 
@@ -152,6 +154,7 @@ class DetailReportActivity : BaseActivity(), OnMapReadyCallback {
                     }
 
                 }
+
                 else -> {
                 }
             }
@@ -174,8 +177,13 @@ class DetailReportActivity : BaseActivity(), OnMapReadyCallback {
                 vbind.tvWaktuKejadian.text = waktuKejadian
                 vbind.tvPenyebab.text = peyebabKejadian
 
-                setLocation(model.lat.toDouble(), model.long.toDouble(), model.detailAlamat)
-
+                if (model.lat?.isNotEmpty() == true && model?.long?.isNotEmpty() == true) {
+                    setLocation(
+                        model.lat.toDouble(),
+                        model.long?.toDoubleOrNull() ?: 0.0,
+                        model.detailAlamat.toString().orEmpty()
+                    )
+                }
             }
         }
 
@@ -204,7 +212,7 @@ class DetailReportActivity : BaseActivity(), OnMapReadyCallback {
         Glide.with(this)
             .asBitmap()
             .load(Endpoint.REAL_URL + model.photoPath)
-            .into(object : CustomTarget<Bitmap>(){
+            .into(object : CustomTarget<Bitmap>() {
                 override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
                     classifyImage(resource)
                 }
@@ -214,7 +222,6 @@ class DetailReportActivity : BaseActivity(), OnMapReadyCallback {
                 }
 
             })
-
 
 
     }
@@ -315,7 +322,8 @@ class DetailReportActivity : BaseActivity(), OnMapReadyCallback {
 
     private fun Uri.toBitmap(): Bitmap {
         val bitmap = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            ImageDecoder.decodeBitmap(ImageDecoder.createSource(contentResolver, this)).copy(Bitmap.Config.RGBA_F16, true)
+            ImageDecoder.decodeBitmap(ImageDecoder.createSource(contentResolver, this))
+                .copy(Bitmap.Config.RGBA_F16, true)
         } else {
             MediaStore.Images.Media.getBitmap(contentResolver, this)
         }

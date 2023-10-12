@@ -225,7 +225,7 @@ class UserInputReportActivity : BaseActivity() {
     private fun setUpToolbar() {
         vbind.includeToolbar.myCustomToolbar.apply {
             inflateMenu(R.menu.menu_input_report)
-            title = "Buat Laporan Baru"
+            title = "Emergency"
             setOnMenuItemClickListener {
 
                 when (it.itemId) {
@@ -315,11 +315,11 @@ class UserInputReportActivity : BaseActivity() {
             isDone = false
         }
 
-        if (modelResult != reportCategoryName) {
-            isDone = false
-            vbind.tvOutputDate.startAnimation(loadAnimation(this, R.anim.short_shake))
-            "Kategori tidak sesuai dengan klasifikasi gambar, silakan pilih gambar ulang atau ubah kategori".showLongToast()
-        }
+//        if (modelResult != reportCategoryName) {
+//            isDone = false
+//            vbind.tvOutputDate.startAnimation(loadAnimation(this, R.anim.short_shake))
+//            "Kategori tidak sesuai dengan klasifikasi gambar, silakan pilih gambar ulang atau ubah kategori".showLongToast()
+//        }
 
         if (isDone) {
             val tanggal = vbind.tvOutputDate.text.toString()

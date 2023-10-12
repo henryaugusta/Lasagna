@@ -42,6 +42,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:layout_marginEnd="10dp"
+                        android:visibility="gone"
                         android:fontFamily="@font/poppins_regular"
                         android:text="Rincian Alamat  : "
                         android:textColor="@color/colorBlack"
@@ -51,6 +52,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_regular"
+                        android:visibility="gone"
                         android:text="Rincian Alamat Kejadian,\nMisal : Jalan Zamrud Utara No 10 , disamping kantor kecamatan"
                         android:textColor="@color/colorBlack"
                         android:textSize="12sp" />
@@ -59,6 +61,7 @@
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:visibility="gone"
                         android:layout_marginTop="8dp"
                         >
 
@@ -67,6 +70,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="top"
+                            android:text="-"
                             android:hint="Alamat Kejadian"
                             android:inputType="textMultiLine"
                             android:lines="5" />
@@ -93,6 +97,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:visibility="gone"
                         android:fontFamily="@font/poppins_regular"
                         android:text="Rincian Kejadian ( TKP , Kondisi dan Keadaan , dsb.)\nMisal : Ada Lubang Jalan cukup lebar di KM 19, Membahayakan Pengguna Sepeda Motor"
                         android:textColor="@color/colorBlack"
@@ -103,6 +108,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
+                        android:layout_marginBottom="@dimen/dimen_20dp"
                         >
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -111,7 +117,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="top"
                             android:inputType="textMultiLine"
-                            android:hint="Rincian Kejadian"
+                            android:hint="Rincian Kejadian dan Lain Sebagainya"
                             android:lines="5" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -122,6 +128,7 @@
                     android:layout_height="wrap_content"
                     android:paddingHorizontal="10dp"
                     android:paddingBottom="@dimen/dimen_20dp"
+                    android:visibility="gone"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/bg_input_neo"
                     android:orientation="vertical">
@@ -150,6 +157,8 @@
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
+                            android:text="-"
+
                             android:layout_height="wrap_content" />
 
                     </com.google.android.material.textfield.TextInputLayout>
